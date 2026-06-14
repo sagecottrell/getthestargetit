@@ -1,8 +1,7 @@
 [gd_scene format=3 uid="uid://c37gvunodskee"]
 
-[sub_resource type="BoxMesh" id="BoxMesh_8mdrg"]
+[ext_resource type="PackedScene" uid="uid://c5x2v82qqhmqu" path="res://prefabs/star/Star.tscn" id="1_jotil"]
 
 [node name="Testscene" type="Node3D" unique_id=1867083525]
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1461147446]
-mesh = SubResource("BoxMesh_8mdrg")
+[node name="Star" parent="." unique_id=1036149878 instance=ExtResource("1_jotil")]

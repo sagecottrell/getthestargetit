@@ -3,9 +3,24 @@ extends Node3D
 @export var root: PackedScene
 
 func _ready() -> void:
-	var b = var_to_bytes_with_objects(root)
-	print(b)
-	var s = bytes_to_var_with_objects(b)
-	print(s)
+	pass
+
+
+
+func pack_and_send(node: Node3D):
+	var scene = PackedScene.new()
+	scene.pack(node)
 	
-	add_child(s.instantiate())
+	send_bytes.rpc(var_to_bytes_with_objects(scene))
+
+@rpc()
+func send_bytes(bytes: PackedByteArray):
+	change_scene(bytes_to_var_with_objects(bytes))
+
+func change_scene(scene: PackedScene):
+	var world = $World
+	for child in world.get_children():
+		world.remove_child(child)
+		child.queue_free()
+	
+	world.add_child(scene.instantiate())

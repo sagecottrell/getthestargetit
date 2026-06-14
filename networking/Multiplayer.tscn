@@ -1,0 +1,41 @@
+[gd_scene format=3 uid="uid://bqrgsspuugbqk"]
+
+[ext_resource type="Script" uid="uid://bih64wpv0rrgq" path="res://networking/multiplayer.gd" id="1_xbtfq"]
+
+[node name="Multiplayer" type="Node" unique_id=307702401]
+script = ExtResource("1_xbtfq")
+
+[node name="UI" type="Control" parent="." unique_id=371793306]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Net" type="VBoxContainer" parent="UI" unique_id=525925329]
+layout_mode = 0
+offset_right = 287.0
+offset_bottom = 34.0
+
+[node name="Options" type="HBoxContainer" parent="UI/Net" unique_id=906712591]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="UI/Net/Options" unique_id=1822815930]
+layout_mode = 2
+text = "Direct:"
+
+[node name="Host" type="Button" parent="UI/Net/Options" unique_id=1149951056]
+layout_mode = 2
+text = "Host"
+
+[node name="Connect" type="Button" parent="UI/Net/Options" unique_id=129437415]
+layout_mode = 2
+text = "Connect"
+
+[node name="Remote" type="LineEdit" parent="UI/Net/Options" unique_id=41860893]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "127.0.0.1"
+placeholder_text = "ip address or host"
+
+[connection signal="pressed" from="UI/Net/Options/Host" to="." method="_on_host_pressed"]
+[connection signal="pressed" from="UI/Net/Options/Connect" to="." method="_on_connect_pressed"]
