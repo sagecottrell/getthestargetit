@@ -3,6 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://c5x2v82qqhmqu" path="res://prefabs/star/Star.tscn" id="1_snpiq"]
 [ext_resource type="Script" uid="uid://csjccrhj5wnx7" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_3d.gd" id="2_15fo5"]
 [ext_resource type="Script" uid="uid://8umksf8e80fw" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="3_q5f6h"]
+[ext_resource type="Texture2D" uid="uid://svijnbaaeuol" path="res://addons/character-controller/example/main/textures/Free DEMO Pixel Skies Background pack by Digital Moons/demo01_PixelSky.png" id="4_15fo5"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_snpiq"]
 
@@ -11,13 +12,29 @@
 [sub_resource type="Resource" id="Resource_mawog"]
 script = ExtResource("3_q5f6h")
 
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_q5f6h"]
+panorama = ExtResource("4_15fo5")
+filter = false
+
+[sub_resource type="Sky" id="Sky_t5ash"]
+sky_material = SubResource("PanoramaSkyMaterial_q5f6h")
+radiance_size = 0
+
+[sub_resource type="Environment" id="Environment_uncnl"]
+background_mode = 2
+background_energy_multiplier = 0.5
+sky = SubResource("Sky_t5ash")
+ambient_light_color = Color(1, 1, 1, 1)
+tonemap_mode = 2
+glow_enabled = true
+
 [node name="Testscene" type="Node3D" unique_id=1867083525]
 
 [node name="Star" parent="." unique_id=1036149878 instance=ExtResource("1_snpiq")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.58549905, 0.4729395, 0.3487022)
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="." unique_id=440117991]
-transform = Transform3D(0.21919148, -0.14731133, -0.96449697, -0.6215675, 0.74089533, -0.25441718, 0.75206983, 0.6552659, 0.070833996, 0.6983831, 1.2442709, 1.4150271)
+transform = Transform3D(0.21919148, -0.14731133, -0.96449697, -0.6215675, 0.74089533, -0.25441718, 0.75206983, 0.6552659, 0.070833996, -0.7016169, 1.7442709, 1.4150271)
 mesh = SubResource("CapsuleMesh_snpiq")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=15635795]
@@ -32,3 +49,13 @@ transform = Transform3D(-1, 0, 8.742278e-08, 3.527905e-08, 0.91495967, 0.4035453
 script = ExtResource("2_15fo5")
 tween_resource = SubResource("Resource_mawog")
 metadata/_custom_type_script = "uid://csjccrhj5wnx7"
+
+[node name="Lighting" type="Node" parent="." unique_id=1241849929]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Lighting" unique_id=892694831]
+environment = SubResource("Environment_uncnl")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Lighting" unique_id=1627471412]
+transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866026, -0.5, 0.75, -0.433013, 0, 5, 0)
+shadow_enabled = true
+directional_shadow_max_distance = 250.0

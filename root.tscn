@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://bqrgsspuugbqk" path="res://networking/Multiplayer.tscn" id="3_28aoi"]
 [ext_resource type="Script" uid="uid://bd046eokvcnu2" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="3_vvh5c"]
 [ext_resource type="Script" uid="uid://btdvny6i4c55h" path="res://DirectoryWatcher/DirectoryWatcher.gd" id="4_28aoi"]
+[ext_resource type="Script" uid="uid://coe0x2enkov31" path="res://server/file_list.gd" id="4_jnlp7"]
 
 [node name="Node3D" type="Node3D" unique_id=790539646]
 script = ExtResource("1_pq8q7")
@@ -35,6 +36,7 @@ size_flags_horizontal = 3
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
+script = ExtResource("4_jnlp7")
 
 [node name="ClientGUI" type="CanvasLayer" parent="." unique_id=586921557]
 
@@ -59,8 +61,9 @@ metadata/_custom_type_script = "uid://btdvny6i4c55h"
 
 [connection signal="on_client" from="Multiplayer" to="." method="_on_multiplayer_on_client"]
 [connection signal="on_host" from="Multiplayer" to="." method="_on_multiplayer_on_host"]
-[connection signal="files_created" from="DirectoryWatcher" to="." method="_on_directory_watcher_files_created"]
-[connection signal="files_deleted" from="DirectoryWatcher" to="." method="_on_directory_watcher_files_deleted"]
-[connection signal="files_modified" from="DirectoryWatcher" to="." method="_on_directory_watcher_files_modified"]
+[connection signal="on_press_send" from="ServerGUI/HBoxContainer/FileList" to="." method="pack_and_send"]
+[connection signal="files_created" from="DirectoryWatcher" to="ServerGUI/HBoxContainer/FileList" method="_on_directory_watcher_files_created"]
+[connection signal="files_deleted" from="DirectoryWatcher" to="ServerGUI/HBoxContainer/FileList" method="_on_directory_watcher_files_deleted"]
+[connection signal="files_modified" from="DirectoryWatcher" to="ServerGUI/HBoxContainer/FileList" method="_on_directory_watcher_files_modified"]
 
 [editable path="Multiplayer"]
