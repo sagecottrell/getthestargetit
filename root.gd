@@ -97,5 +97,5 @@ func _create_fileselector(fl: Node, fp: String):
 	child.name = str(hash(fp))
 	child.file_path = fp
 	fl.add_child(child)
-	child.pressed.connect(_on_file_send_pressed)
+	child.pressed.connect(pack_and_send)
 	

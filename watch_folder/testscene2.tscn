@@ -1,0 +1,34 @@
+[gd_scene format=3 uid="uid://oeilmdfn02sj"]
+
+[ext_resource type="PackedScene" uid="uid://c5x2v82qqhmqu" path="res://prefabs/star/Star.tscn" id="1_snpiq"]
+[ext_resource type="Script" uid="uid://csjccrhj5wnx7" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_3d.gd" id="2_15fo5"]
+[ext_resource type="Script" uid="uid://8umksf8e80fw" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="3_q5f6h"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_jotil"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_snpiq"]
+
+[sub_resource type="Resource" id="Resource_mawog"]
+script = ExtResource("3_q5f6h")
+
+[node name="Testscene" type="Node3D" unique_id=1867083525]
+
+[node name="Star" parent="." unique_id=1036149878 instance=ExtResource("1_snpiq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.58549905, 0.4729395, 0.3487022)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=15635795]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0)
+mesh = SubResource("BoxMesh_jotil")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="MeshInstance3D" unique_id=440117991]
+transform = Transform3D(0.21919148, -0.14731133, -0.96449697, -0.6215675, 0.74089533, -0.25441718, 0.75206983, 0.6552659, 0.070833996, -0.3016169, 1.2442709, 1.4150271)
+mesh = SubResource("CapsuleMesh_snpiq")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1357400937]
+transform = Transform3D(1, 0, 0, 0, -0.93514144, 0.35427466, 0, -0.35427466, -0.93514144, 0, 2.225183, -3)
+
+[node name="PhantomCamera3D" type="Node3D" parent="." unique_id=1283653073]
+transform = Transform3D(-1, 0, 8.742278e-08, 3.527905e-08, 0.91495967, 0.40354532, -7.998832e-08, 0.40354532, -0.91495967, 0, 1.5949668, -3)
+script = ExtResource("2_15fo5")
+tween_resource = SubResource("Resource_mawog")
+metadata/_custom_type_script = "uid://csjccrhj5wnx7"
