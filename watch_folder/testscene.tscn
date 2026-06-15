@@ -42,12 +42,12 @@ directional_shadow_max_distance = 250.0
 [node name="Star" parent="." unique_id=1036149878 instance=ExtResource("1_bqvsh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.58549905, 0.4729395, 0.3487022)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=15635795]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0)
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="." unique_id=440117991]
+transform = Transform3D(0.21919148, -0.14731133, -0.96449697, -0.6215675, 0.74089533, -0.25441718, 0.75206983, 0.6552659, 0.070833996, -1.3016169, 0.6538664, -1.1039395)
 mesh = SubResource("BoxMesh_jotil")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="MeshInstance3D" unique_id=440117991]
-transform = Transform3D(0.21919148, -0.14731133, -0.96449697, -0.6215675, 0.74089533, -0.25441718, 0.75206983, 0.6552659, 0.070833996, -2.301617, 0.6538664, -3.132483)
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=15635795]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 4.0285435)
 mesh = SubResource("BoxMesh_jotil")
 
 [node name="PhantomCamera3D" type="Node3D" parent="." unique_id=1283653073]

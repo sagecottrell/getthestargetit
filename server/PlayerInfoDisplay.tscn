@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://bjdbhmq2r0ui"]
+
+[ext_resource type="Script" uid="uid://biaw6iw0vpn8s" path="res://server/player_info_display.gd" id="1_ykauy"]
+
+[node name="PlayerInfoDisplay" type="PanelContainer" unique_id=764595799]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+script = ExtResource("1_ykauy")
+
+[node name="label" type="RichTextLabel" parent="." unique_id=933845106]
+layout_mode = 2
+bbcode_enabled = true
+fit_content = true

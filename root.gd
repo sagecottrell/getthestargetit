@@ -1,5 +1,8 @@
 extends Node3D
 
+
+static var PlayerIds: Dictionary[int, PlayerInfo] = {}
+
 func _ready() -> void:
 	$ServerGUI.visible = false
 	$ClientGUI.visible = false
@@ -25,6 +28,20 @@ func _on_multiplayer_on_client() -> void:
 	# on the client side, when the client starts up
 	$ClientGUI.visible = true
 	$DirectoryWatcher.queue_free()
+	
+	var info: PlayerInfo = $Multiplayer.get_playerinfo()
+	send_player_info.rpc(info.to_json())
+
+@rpc("any_peer")
+func send_player_info(json: String):
+	# The server knows who sent the input.
+	var sender_id = multiplayer.get_remote_sender_id()
+	var info: PlayerInfo = PlayerInfo.from_json(json)
+	PlayerIds[sender_id] = info
+	
+	var display: PlayerInfoDisplay = preload("res://server/PlayerInfoDisplay.tscn").instantiate()
+	display.set_info(info)
+	%PlayerList.add_child(display)
 
 func _on_client_connect(id: int):
 	prints("client connected:", id)

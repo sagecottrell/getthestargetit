@@ -1,4 +1,5 @@
 # multiplayer.gd
+class_name MultiplayerInfo
 extends Node
 
 const PORT = 9999
@@ -30,7 +31,7 @@ func _on_host_pressed():
 
 func _on_connect_pressed():
 	# Start as client.
-	var txt : String = $UI/Net/Options/Remote.text
+	var txt : String = %Remote.text
 	if txt == "":
 		OS.alert("Need a remote to connect to.")
 		return
@@ -60,3 +61,7 @@ func client_start_game():
 	$UI.hide()
 	get_tree().paused = false
 	on_client.emit()
+
+func get_playerinfo() -> PlayerInfo:
+	var color: Color = %PlayerColor.color
+	return PlayerInfo.new(%PlayerName.text, Color.from_hsv(color.h, 1, 1))
