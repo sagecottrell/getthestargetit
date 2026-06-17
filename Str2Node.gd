@@ -2,7 +2,7 @@ class_name Str2Node
 
 
 static func tscn_string_to_node(tscn_text: String) -> Node:
-	var temp_path = "user://temp_runtime_scene.tscn"
+	var temp_path = "user://%s-temp_runtime_scene.tscn" % [randi()]
 	
 	# 1. Save the string content into a temporary file
 	var file = FileAccess.open(temp_path, FileAccess.WRITE)

@@ -65,12 +65,6 @@ class_name FPSController3D
 ## [HeadMovement3D] reference, where the rotation of the camera sight is calculated
 @onready var head: HeadMovement3D = get_node(NodePath("Head"))
 
-## First Person Camera3D reference
-@onready var first_person_camera_reference : Marker3D = get_node(NodePath("Head/FirstPersonCameraReference"))
-
-## Third Person Camera3D reference
-@onready var third_person_camera_reference : Marker3D = get_node(NodePath("Head/ThirdPersonCameraReference"))
-
 ## HeadBob reference
 @onready var head_bob: HeadBob = get_node(NodePath("Head/Head Bob"))
 

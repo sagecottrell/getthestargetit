@@ -4,8 +4,7 @@ class_name HeadBob
 ## HeadBob Effect for [FPSController3D]
 
 ## Node that will receive the headbob effect
-@export_node_path("Node3D") var head_path : NodePath
-
+@export var head: Node3D
 
 @export_group("Step Bob")
 
@@ -44,9 +43,6 @@ class_name HeadBob
 
 ## Rotation angle limit per move
 @export var angle_limit_for_rotation := 0.1
-
-## Node that will receive the headbob effect
-@onready var head: Node3D = get_node(head_path)
 
 ## Actual speed of headbob
 var speed : float = 0

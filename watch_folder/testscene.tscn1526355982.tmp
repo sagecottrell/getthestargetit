@@ -5,8 +5,6 @@
 [ext_resource type="Script" uid="uid://dgsdjeok8npq5" path="res://prefabs/RandomPosition.gd" id="5_0kh3j"]
 [ext_resource type="Texture2D" uid="uid://cbkig6ttx0fxg" path="res://addons/character-controller/example/main/textures/grass.png" id="5_df8lk"]
 [ext_resource type="PackedScene" uid="uid://x18ax2thkbko" path="res://prefabs/player_spawn/PlayerSpawn.tscn" id="5_pxpqt"]
-[ext_resource type="Script" uid="uid://csjccrhj5wnx7" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_3d.gd" id="6_pxpqt"]
-[ext_resource type="Script" uid="uid://8umksf8e80fw" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="7_k8yl0"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_0kh3j"]
 panorama = ExtResource("1_1dey0")
@@ -28,9 +26,6 @@ glow_enabled = true
 albedo_texture = ExtResource("5_df8lk")
 uv1_scale = Vector3(9.715, 9.715, 9.715)
 texture_filter = 0
-
-[sub_resource type="Resource" id="Resource_ix6w0"]
-script = ExtResource("7_k8yl0")
 
 [node name="Testscene" type="Node3D" unique_id=1867083525]
 
@@ -66,17 +61,7 @@ size = Vector3(54.164192, 1, 53.938354)
 material = SubResource("StandardMaterial3D_pxpqt")
 
 [node name="PlayerSpawn" parent="." unique_id=1298073336 instance=ExtResource("5_pxpqt")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.3578625, 4.823825)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, 4.823825)
 
 [node name="PlayerSpawn2" parent="." unique_id=1114555839 instance=ExtResource("5_pxpqt")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.6602993, 5.487046, 4.823825)
-
-[node name="PlayerSpawn3" parent="." unique_id=1393393893 instance=ExtResource("5_pxpqt")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.6026115, 5.3013415, 4.823825)
-
-[node name="PhantomCamera3D" type="Node3D" parent="." unique_id=1004881554]
-transform = Transform3D(-0.8660254, 0, 0.50000006, 0, 1, 0, -0.50000006, 0, -0.8660254, 0, 2.8522682, -5.9266434)
-script = ExtResource("6_pxpqt")
-priority = 50
-tween_resource = SubResource("Resource_ix6w0")
-metadata/_custom_type_script = "uid://csjccrhj5wnx7"
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.9786735, 0.6, 4.823825)

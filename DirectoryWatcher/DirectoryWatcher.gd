@@ -7,6 +7,9 @@ class_name DirectoryWatcher extends Node
 @export var scan_delay := 1.0
 ## Files scanned per frame.
 @export var scan_step := 50
+## file pattern
+@export var file_pattern = ""
+
 ## List of directories to scan. They can be assigned from the inspect, as an alternative to [method add_scan_directory]. The folders are registered in [constant Node.NOTIFICATION_READY] and can't be modified afterwards via the property.
 @export_dir var directory_list: PackedStringArray
 
@@ -76,26 +79,21 @@ func _notification(what: int) -> void:
 					_current_directory_name = ""
 					_directory.list_dir_end()
 					
-					if directory.first_scan:
+					if not directory.new.is_empty():
+						files_created.emit(directory.new)
 						directory.new.clear()
+					
+					if not directory.modified.is_empty():
+						files_modified.emit(directory.modified)
 						directory.modified.clear()
-						directory.first_scan = false
-					else:
-						if not directory.new.is_empty():
-							files_created.emit(directory.new)
-							directory.new.clear()
-						
-						if not directory.modified.is_empty():
-							files_modified.emit(directory.modified)
-							directory.modified.clear()
-						
-						var deleted: PackedStringArray
-						for path in directory.previous:
-							if not path in directory.current:
-								deleted.append(_directory.get_current_dir().path_join(path))
-						
-						if not deleted.is_empty():
-							files_deleted.emit(deleted)
+					
+					var deleted: PackedStringArray
+					for path in directory.previous:
+						if not path in directory.current:
+							deleted.append(_directory.get_current_dir().path_join(path))
+					
+					if not deleted.is_empty():
+						files_deleted.emit(deleted)
 					
 					directory.previous = directory.current
 					directory.current = {}
@@ -109,7 +107,7 @@ func _notification(what: int) -> void:
 						_current_directory_index = 0
 						break
 				else:
-					if _directory.current_is_dir():
+					if _directory.current_is_dir() or not file.ends_with(file_pattern):
 						continue
 					var full_file := _directory.get_current_dir().path_join(file)
 					

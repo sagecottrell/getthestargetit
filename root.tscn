@@ -6,13 +6,14 @@
 [ext_resource type="Script" uid="uid://btdvny6i4c55h" path="res://DirectoryWatcher/DirectoryWatcher.gd" id="4_28aoi"]
 [ext_resource type="Script" uid="uid://coe0x2enkov31" path="res://server/file_list.gd" id="4_jnlp7"]
 
-[node name="Node3D" type="Node3D" unique_id=790539646]
+[node name="root" type="Node3D" unique_id=790539646]
 script = ExtResource("1_pq8q7")
 
 [node name="Multiplayer" parent="." unique_id=307702401 instance=ExtResource("3_28aoi")]
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=1272565535]
-transform = Transform3D(1, 0, 0, 0, 0.93072426, 0.36572164, 0, -0.36572164, 0.93072426, 0, 1, 2)
+physics_interpolation_mode = 1
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.7296214, 2.3978338, 3.726759)
 top_level = true
 
 [node name="PhantomCameraHost" type="Node" parent="Camera3D" unique_id=894405397]
@@ -53,11 +54,16 @@ layer = 100
 layer = 200
 
 [node name="World" type="Node3D" parent="." unique_id=2112108601]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.17668295, 0, 0)
 
 [node name="DirectoryWatcher" type="Node" parent="." unique_id=549229135]
 script = ExtResource("4_28aoi")
+file_pattern = ".tscn"
 directory_list = PackedStringArray("res://watch_folder")
 metadata/_custom_type_script = "uid://btdvny6i4c55h"
+
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="." unique_id=587828040]
+_spawnable_scenes = PackedStringArray("uid://bf600sfpstu3e")
 
 [connection signal="on_client" from="Multiplayer" to="." method="_on_multiplayer_on_client"]
 [connection signal="on_host" from="Multiplayer" to="." method="_on_multiplayer_on_host"]

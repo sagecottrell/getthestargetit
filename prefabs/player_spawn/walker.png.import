@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://hlhtsp73ba7k"
-path="res://.godot/imported/walker.png-50ce90418043295f3bdf3006e39e7071.ctex"
+uid="uid://bx3gh8ls0ysya"
+path="res://.godot/imported/walker.png-e83a262264f452a1322ed59169b1f2f4.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://prefabs/player/walker.png"
-dest_files=["res://.godot/imported/walker.png-50ce90418043295f3bdf3006e39e7071.ctex"]
+source_file="res://prefabs/player_spawn/walker.png"
+dest_files=["res://.godot/imported/walker.png-e83a262264f452a1322ed59169b1f2f4.ctex"]
 
 [params]
 
