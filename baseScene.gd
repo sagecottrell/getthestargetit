@@ -6,14 +6,18 @@ func _enter_tree():
 func _ready():
 	if multiplayer.get_unique_id() == 1:
 		spawn_players()
+	
 
 func spawn_player(info: Dictionary):
 	var spawn: Node3D = get_node(info.at)
 	var player_scene = preload("res://prefabs/player/Player.tscn")
-	var player: Node3D = player_scene.instantiate()
+	var player: Player = player_scene.instantiate()
 	player.add_to_group("Player")
 	player.name = str(info.pid)
 	player.global_transform = spawn.global_transform
+	player.player_color = info.color
+	player.player_name = info.name
+	player.spawn_point = spawn
 	return player
 
 func spawn_players():
@@ -24,5 +28,6 @@ func spawn_players():
 	for pair in Zip.zip(spawns, Root.PlayerList, false):
 		var spawn: Node = pair[0]
 		var player_id: int = pair[1]
-		var info = {"at": spawn.get_path(), "pid": player_id}
+		var player_info = Root.PlayerIds[player_id]
+		var info = {"at": spawn.get_path(), "pid": player_id, "color": player_info.color, "name": player_info.name}
 		$MultiplayerSpawner.spawn(info)

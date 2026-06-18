@@ -23,6 +23,11 @@ extends FPSController3D
 				walk()
 		idling_ground = v
 
+@export var player_color: Color
+
+@export var player_name: String
+
+@export var spawn_point: Node3D
 
 func _enter_tree():
 	set_multiplayer_authority(str(name).to_int())
@@ -34,8 +39,20 @@ func _ready():
 		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 		$Head/FirstPersonCamera.priority = 100
 	
+	_apply_color($VisualRoot/model/Head/Skeleton3D/Head)
+	_apply_color($VisualRoot/model/Waist/Skeleton3D/Waist)
+	_apply_color($"VisualRoot/model/Right Leg/Skeleton3D/Right Leg")
+	_apply_color($"VisualRoot/model/Left Leg/Skeleton3D/Left Leg")
+	$Nametag.text = player_name
+	
 	#emerged.connect(_on_controller_emerged.bind())
 	#submerged.connect(_on_controller_subemerged.bind())
+
+func _apply_color(mesh: MeshInstance3D):
+	var mat: StandardMaterial3D = mesh.get_active_material(1).duplicate()
+	mat.albedo_color = player_color
+	mesh.set_surface_override_material(1, mat)
+	mesh.mesh.get_surface_count()
 
 func _physics_process(delta):
 	if not is_multiplayer_authority():
