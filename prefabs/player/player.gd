@@ -49,6 +49,7 @@ func _ready():
 	_apply_color($"VisualRoot/model/Right Leg/Skeleton3D/Right Leg")
 	_apply_color($"VisualRoot/model/Left Leg/Skeleton3D/Left Leg")
 	$Nametag.text = player_name
+	$Ranking.text = ""
 	
 	#emerged.connect(_on_controller_emerged.bind())
 	#submerged.connect(_on_controller_subemerged.bind())
@@ -58,6 +59,9 @@ func _apply_color(mesh: MeshInstance3D):
 	mat.albedo_color = player_color
 	mesh.set_surface_override_material(1, mat)
 	mesh.mesh.get_surface_count()
+
+func set_rank(rank: String):
+	$Ranking.text = rank
 
 func _physics_process(delta):
 	if not is_multiplayer_authority():

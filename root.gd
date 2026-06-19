@@ -6,6 +6,7 @@ static var PlayerIds: Dictionary[int, PlayerInfo] = {}
 static var PlayerList: Array[int] = []
 
 static var rankings: Array[int] = []
+var current_level: BaseScene
 
 func _ready() -> void:
 	$ServerGUI.visible = false
@@ -46,6 +47,7 @@ func change_scene(scene: BaseScene):
 		child.queue_free()
 	scene.on_win.connect(func(): player_win.rpc_id(1))
 	world.add_child(scene)
+	current_level = scene
 
 func _on_multiplayer_on_client() -> void:
 	# on the client side, when the client starts up
@@ -75,11 +77,17 @@ func player_win():
 	var sender_id = multiplayer.get_remote_sender_id()
 	if sender_id in rankings:
 		return
-	var index = rankings.size()
+	var n = rankings.size() + 1
 	rankings.append(sender_id)
 	var child: PlayerInfoDisplay = %PlayerList.find_child(str(sender_id), false, false)
-	child.set_place(index + 1)
-	
+	child.set_place(n)
+	set_rank.rpc(sender_id, n)
+
+
+@rpc("call_local")
+func set_rank(sender_id: int, place: int):
+	var player: Player = current_level.player_list[sender_id]
+	player.set_rank({place: str(place) + "th", 1: "1st", 2: "2nd", 3: "3rd"}[place])
 
 func _on_client_connect(id: int):
 	prints("client connected:", id)

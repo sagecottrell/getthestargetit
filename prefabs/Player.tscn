@@ -166,7 +166,14 @@ billboard = 1
 no_depth_test = true
 text = "Tester"
 
-[node name="VisualRoot" type="Node3D" parent="." index="11" unique_id=1340713338]
+[node name="Ranking" type="Label3D" parent="." index="11" unique_id=165637101]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6034306, 0)
+billboard = 1
+no_depth_test = true
+text = "loser"
+font_size = 92
+
+[node name="VisualRoot" type="Node3D" parent="." index="12" unique_id=1340713338]
 
 [node name="model" parent="VisualRoot" index="0" unique_id=1858941949 instance=ExtResource("5_70wo7")]
 process_mode = 3
@@ -183,8 +190,8 @@ bone = 0
 forward_axis = 5
 
 [node name="Skeleton3D" parent="VisualRoot/model/Waist" parent_id_path=PackedInt32Array(1858941949, 1631955175) index="0" unique_id=818624400]
-bones/2/rotation = Quaternion(-0.060177773, 0, 0, 0.9981877)
-bones/3/rotation = Quaternion(0.060177773, 0, 0, 0.9981877)
+bones/2/rotation = Quaternion(-0.05887626, 0, 0, 0.9982654)
+bones/3/rotation = Quaternion(0.05887626, 0, 0, 0.9982654)
 
 [node name="AnimationPlayer" parent="VisualRoot/model" index="4" unique_id=632560122]
 process_mode = 3

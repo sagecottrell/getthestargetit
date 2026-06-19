@@ -1,6 +1,8 @@
 class_name BaseScene
 extends Node3D
 
+var player_list: Dictionary[int, Player] = {}
+
 signal on_win()
 
 func _enter_tree():
@@ -21,6 +23,7 @@ func spawn_player(info: Dictionary):
 	player.player_color = info.color
 	player.player_name = info.name
 	player.spawn_point = spawn
+	player_list[info.pid] = player
 	return player
 
 func spawn_players():
