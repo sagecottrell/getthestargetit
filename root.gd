@@ -8,18 +8,28 @@ static var PlayerList: Array[int] = []
 func _ready() -> void:
 	$ServerGUI.visible = false
 	$ClientGUI.visible = false
+	$LevelSwitch.visible = false
 	multiplayer.server_relay = true
 
 func pack_and_send(fp: String):
 	var file = FileAccess.open(fp, FileAccess.READ)
+	pre_level_push.rpc()
+	
+	await get_tree().create_timer(0.5).timeout
+	
 	push_scene_to_all.rpc(file.get_as_text())
 	
 	var world = Str2Node.tscn_string_to_node(file.get_as_text())
 	change_scene(world)
 
 @rpc()
+func pre_level_push():
+	$LevelSwitch.visible = true
+
+@rpc()
 func push_scene_to_all(txt: String):
 	change_scene(Str2Node.tscn_string_to_node(txt))
+	$LevelSwitch.visible = false
 
 func change_scene(scene: Node):
 	var world = $World
