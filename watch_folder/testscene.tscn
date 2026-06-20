@@ -34,6 +34,9 @@ script/source = "extends MultiplayerSpawner
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_1nuv2"]
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_k8yl0"]
+size = Vector3(50, 50, 60)
+
 [node name="Testscene" type="Node3D" unique_id=1867083525]
 script = ExtResource("1_k8yl0")
 
@@ -86,9 +89,6 @@ debug_color = Color(0.99215686, 0, 0.27058825, 1)
 
 [node name="Octagon" parent="." unique_id=879052091 instance=ExtResource("7_pxpqt")]
 
-[node name="Octagon3" parent="." unique_id=1572519344 instance=ExtResource("7_pxpqt")]
-transform = Transform3D(0.8660254, -2.1855694e-08, -0.5, -0.5, -3.7855173e-08, -0.8660254, 0, 1, -4.371139e-08, 0, 85, 0)
-
 [node name="Octagon2" parent="." unique_id=1691761476 instance=ExtResource("7_pxpqt")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 84)
 
@@ -100,6 +100,18 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 99.44984, 0)
 
 [node name="3x3Platform3" parent="." unique_id=1643658215 instance=ExtResource("8_k8yl0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 99.44984, 0)
+
+[node name="Area3D" type="Area3D" parent="." unique_id=1362371637]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 101.88252, 43)
+collision_mask = 3
+priority = 1
+gravity_space_override = 3
+gravity_point_center = Vector3(0, 0, 1)
+gravity_direction = Vector3(0, 0, 1)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=1406324228]
+shape = SubResource("BoxShape3D_k8yl0")
+debug_color = Color(0.99326307, 0, 0.24691096, 0.41960785)
 
 [connection signal="collide" from="Star" to="." method="_on_star_collide"]
 [connection signal="body_entered" from="deathplane" to="." method="_on_deathplane_body_entered"]

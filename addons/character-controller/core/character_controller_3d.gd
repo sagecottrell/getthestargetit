@@ -163,9 +163,6 @@ var _horizontal_velocity : Vector3
 ## Used to differentiate fly mode/swim moves from regular character movement.
 var _direction_base_node : Node3D
 
-## Get the gravity from the project settings to be synced with RigidDynamicBody nodes.
-@onready var gravity: float = (ProjectSettings.get_setting("physics/3d/default_gravity") * gravity_multiplier)
-
 ## Collision of character controller.
 @onready var collision: CollisionShape3D = get_node(NodePath("Collision"))
 
@@ -220,7 +217,7 @@ func move(_delta: float, input_axis := Vector2.ZERO, input_jump := false, input_
 	if not swim_ability.is_floating():
 		_check_landed()
 	if not jump_ability.is_actived() and not is_fly_mode() and not is_submerged() and not is_floating():
-		velocity.y -= gravity * _delta
+		velocity += get_gravity() * 3 * _delta
 		
 	if is_on_floor():
 		_last_time_on_floor_tickms = Time.get_ticks_msec()
