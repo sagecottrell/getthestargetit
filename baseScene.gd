@@ -1,10 +1,6 @@
 class_name BaseScene
 extends Node3D
 
-var player_list: Dictionary[int, Player] = {}
-
-signal on_win()
-
 func _enter_tree():
 	$MultiplayerSpawner.spawn_function = spawn_player
 
@@ -23,7 +19,6 @@ func spawn_player(info: Dictionary):
 	player.player_color = info.color
 	player.player_name = info.name
 	player.spawn_point = spawn
-	player_list[info.pid] = player
 	return player
 
 func spawn_players():
@@ -48,5 +43,5 @@ func _on_star_collide(player: Player) -> void:
 	if player.name.to_int() != multiplayer.get_unique_id():
 		return
 	$Star.queue_free()
-	on_win.emit()
+	SignalBus.local_win()
 	

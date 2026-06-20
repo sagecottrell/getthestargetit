@@ -13,6 +13,8 @@ func _ready() -> void:
 	$ClientGUI.visible = false
 	$LevelSwitch.visible = false
 	multiplayer.server_relay = true
+	
+	SignalBus.on_local_win.connect(player_win.rpc_id.bind(1))
 
 
 func pack_and_send(fp: String):
@@ -46,7 +48,6 @@ func change_scene(scene: BaseScene):
 	for child in world.get_children():
 		world.remove_child(child)
 		child.queue_free()
-	scene.on_win.connect(func(): player_win.rpc_id(1))
 	world.add_child(scene)
 	current_level = scene
 
@@ -87,8 +88,8 @@ func player_win():
 
 @rpc("call_local")
 func set_rank(sender_id: int, place: int):
-	var player: Player = current_level.player_list[sender_id]
-	player.set_rank({place: str(place) + "th", 1: "1st", 2: "2nd", 3: "3rd"}[place])
+	var n = {place: str(place) + "th", 1: "1st", 2: "2nd", 3: "3rd"}[place]
+	SignalBus.any_win(sender_id, n)
 
 func _on_client_connect(id: int):
 	prints("client connected:", id)

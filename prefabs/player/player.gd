@@ -47,10 +47,14 @@ func _ready():
 	$Nametag.text = player_name
 	$Ranking.text = ""
 	
+	SignalBus.on_any_win.connect(set_rank)
+	
 	#emerged.connect(_on_controller_emerged.bind())
 	#submerged.connect(_on_controller_subemerged.bind())
 
-func set_rank(rank: String):
+func set_rank(pid: int, rank: String):
+	if pid != name.to_int():
+		return
 	$Ranking.text = rank
 
 func _physics_process(delta):
@@ -95,11 +99,9 @@ func walk(blendtime: float = 0.3):
 	var tween = get_tree().create_tween()
 	tween.tween_property(anim_tree, "parameters/Blend2/blend_amount", 1.0, blendtime)
 	
-func spin():
-	var tween = get_tree().create_tween()
-	$Head/ThirdPersonCamera.priority_override = true
-	tween.tween_property(self, "rotation", Vector3(0, 720, 0), 0.5)
-	get_node(anim_tree.anim_player).play("")
-
-func reset_spin():
+func on_win():
+	$Head/FirstPersonCamera.priority_override = true
+	var anim: AnimationPlayer = get_node(anim_tree.anim_player)
+	anim.play("win")
+	await anim.animation_finished
 	$Head/FirstPersonCamera.priority_override = false
