@@ -5,7 +5,6 @@ signal c_on_player_setup(pid: int, json: String)
 signal s_on_file_press_send(fp: String)
 signal on_recieve_scene_text(node: String)
 signal on_change_scene(node: BaseScene)
-signal on_pre_level_push()
 
 ## when the user selects "connect", this signal is emitted to tell things that we are now a client
 signal on_self_is_client()
@@ -39,6 +38,9 @@ signal on_countdown(display: String, length: float, final: bool)
 ## for level cameras, increase to move to next, otherwise prev
 signal on_cam_switch(pid: int, increase: bool)
 
+## let the clients know that the server is planning on changing the level
+signal on_server_changing_level()
+
 @rpc("any_peer")
 func c_player_setup(json: String):
 	var pid = multiplayer.get_remote_sender_id()
@@ -53,10 +55,6 @@ func recieve_scene_text(node: String):
 	
 func change_scene(node: BaseScene):
 	on_change_scene.emit(node)
-
-@rpc()
-func pre_level_push():
-	on_pre_level_push.emit()
 
 func self_is_client():
 	on_self_is_client.emit()
@@ -87,3 +85,7 @@ func countdown(display: String, length: float, final: bool):
 
 func cam_switch(pid: int, increase: bool):
 	on_cam_switch.emit(pid, increase)
+
+@rpc("call_local")
+func server_changing_level():
+	on_server_changing_level.emit()

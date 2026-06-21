@@ -2,10 +2,11 @@ extends Node3D
 
 func _ready() -> void:
 	SignalBus.on_change_scene.connect(change_scene)
+	SignalBus.on_server_changing_level.connect(server_changing_level)
 
 func change_scene(scene: BaseScene):
-	var world = $World
-	for child in world.get_children():
-		world.remove_child(child)
+	add_child(scene)
+
+func server_changing_level():
+	for child in get_children():
 		child.queue_free()
-	world.add_child(scene)

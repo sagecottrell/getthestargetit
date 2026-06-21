@@ -63,7 +63,7 @@ func pack_and_send(fp: String):
 	gui.clear_places()
 	
 	var file = FileAccess.open(fp, FileAccess.READ)
-	SignalBus.pre_level_push.rpc()
+	SignalBus.server_changing_level.rpc()
 	
 	await get_tree().create_timer(1).timeout
 	
