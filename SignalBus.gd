@@ -28,6 +28,11 @@ signal on_unstuck()
 ## when the local player should die
 signal on_die()
 
+## show a countdown in the middle of the screen. will be called multiple times
+## length is the maximum mount of time to display this text. must greater than zero. newer countdowns will hide this early
+## final=true for the last part of the countdown (usually a "GO!" or something)
+signal on_countdown(display: String, length: float, final: bool)
+
 ## when the server wants to switch to a camera
 ## pid 1 to switch level cameras, otherwise to get player cameras
 ## for players, increase=true to get fp, false to get freecam
@@ -64,6 +69,10 @@ func unstuck():
 
 func die():
 	on_die.emit()
+
+@rpc("call_local")
+func countdown(display: String, length: float, final: bool):
+	on_countdown.emit(display, length, final)
 
 func cam_switch(pid: int, increase: bool):
 	on_cam_switch.emit(pid, increase)

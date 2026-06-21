@@ -15,4 +15,5 @@
 	- [X] level cameras
 	- [ ] player first person camera
 	- [X] player freecam
-- [ ] countdown
+- [X] countdown
+	- [X] player unlock button

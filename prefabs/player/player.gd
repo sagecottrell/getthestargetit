@@ -41,7 +41,8 @@ extends FPSController3D
 
 @export var spawn_point: Node3D
 
-var movement_locked : bool = false
+var movement_locked : bool
+var camera_locked : bool
 var is_self: bool
 
 func _reset():
@@ -58,7 +59,9 @@ func _ready():
 	
 	if is_multiplayer_authority():
 		SignalBus.on_local_win.connect(on_win.rpc)
+		SignalBus.on_countdown.connect(on_countdown)
 		switch_to_fp_or_tp_cam()
+		movement_locked = true  # start locked, the server will send an unlock signal
 	else:
 		SignalBus.on_cam_switch.connect(on_cam_switch)
 	
@@ -103,7 +106,7 @@ func _physics_process(delta):
 
 
 func _input(event: InputEvent) -> void:
-	if not is_multiplayer_authority() or movement_locked:
+	if not is_multiplayer_authority():
 		return
 		
 	# 1. Capture on click
@@ -117,7 +120,7 @@ func _input(event: InputEvent) -> void:
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	
 	# Mouse look (only if the mouse is captured).
-	if event is InputEventMouseMotion and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
+	if not camera_locked and event is InputEventMouseMotion and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
 		rotate_head(event.screen_relative)
 
 func idle(blendtime: float = 0.3):
@@ -128,6 +131,8 @@ func walk(blendtime: float = 0.3):
 	var tween = get_tree().create_tween()
 	tween.tween_property(anim_tree, "parameters/Blend2/blend_amount", 1.0, blendtime)
 
+func on_countdown(_display: String, _length: float, final: bool):
+	movement_locked = not final
 
 func disable_cams():
 	free_cam.priority = 0
@@ -166,6 +171,7 @@ func switch_to_win_cam():
 func on_win():
 	if is_self:
 		switch_to_win_cam()
+		camera_locked = true
 		movement_locked = true
 		head.actual_rotation.x = 0
 		head.rotation = Vector3.ZERO
@@ -173,6 +179,7 @@ func on_win():
 	anim.play("win")
 	await anim.animation_finished
 	if is_self:
+		camera_locked = false
 		movement_locked = false
 		switch_to_fp_or_tp_cam()
 

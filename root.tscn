@@ -10,6 +10,19 @@
 [ext_resource type="Script" uid="uid://dom5pfgtcwuwg" path="res://client/client.gd" id="8_bf3um"]
 [ext_resource type="Script" uid="uid://boe7jhe4h7lc" path="res://server/server.gd" id="9_huihk"]
 [ext_resource type="Texture2D" uid="uid://k2t5doe0gv7e" path="res://icons/Camera3D.svg" id="9_tw3kd"]
+[ext_resource type="Texture2D" uid="uid://b4lt16320ro3x" path="res://icons/Unlock.svg" id="11_gd4vy"]
+[ext_resource type="Texture2D" uid="uid://dk3dxhfyrei1f" path="res://icons/Play.svg" id="11_qw60f"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_vccua"]
+font_size = 272
+outline_size = 28
+outline_color = Color(0.011764706, 0, 0, 1)
+shadow_size = 85
+shadow_color = Color(0, 0, 0, 0.09411765)
+shadow_offset = Vector2(10.735, 10.83)
+
+[sub_resource type="LabelSettings" id="LabelSettings_qw60f"]
+font_color = Color(0, 1, 1, 1)
 
 [node name="root" type="Node3D" unique_id=790539646]
 script = ExtResource("1_pq8q7")
@@ -39,23 +52,65 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.17668295, 0, 0)
 [node name="client" type="Node" parent="." unique_id=271196623]
 script = ExtResource("8_bf3um")
 
-[node name="LevelSwitch" type="CanvasLayer" parent="client" unique_id=332940098]
-layer = 20
-visible = false
+[node name="ClientGUI" type="CanvasLayer" parent="client" unique_id=586921557]
 
-[node name="PanelContainer" type="Control" parent="client/LevelSwitch" unique_id=1365118419]
+[node name="ingame" type="Control" parent="client/ClientGUI" unique_id=740846991]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Label" type="Label" parent="client/ClientGUI/ingame" unique_id=685905885]
+layout_mode = 0
+offset_right = 1152.0
+offset_bottom = 648.0
+label_settings = SubResource("LabelSettings_vccua")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="waitingroom" type="Control" parent="client/ClientGUI" unique_id=701864361]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="client/ClientGUI/waitingroom" unique_id=388235931]
+layout_mode = 0
+offset_right = 1152.0
+offset_bottom = 648.0
+stretch = true
+
+[node name="SubViewport" type="SubViewport" parent="client/ClientGUI/waitingroom/SubViewportContainer" unique_id=1082476330]
+own_world_3d = true
+handle_input_locally = false
+size = Vector2i(1152, 648)
+render_target_update_mode = 0
+
+[node name="Spinnycube" parent="client/ClientGUI/waitingroom/SubViewportContainer/SubViewport" unique_id=1896426331 instance=ExtResource("5_vyht1")]
+
+[node name="Label" type="Label" parent="client/ClientGUI/waitingroom" unique_id=2042897658]
+layout_mode = 0
+offset_left = 518.0
+offset_top = 541.0
+offset_right = 651.0
+offset_bottom = 564.0
+text = "waiting on host..."
+
+[node name="levelswitch" type="Control" parent="client/ClientGUI" unique_id=1365118419]
+visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_right = 1152.0
 offset_bottom = 648.0
 
-[node name="TextureRect" type="TextureRect" parent="client/LevelSwitch/PanelContainer" unique_id=1802193344]
+[node name="TextureRect" type="TextureRect" parent="client/ClientGUI/levelswitch" unique_id=1802193344]
 layout_mode = 0
 offset_right = 1152.0
 offset_bottom = 648.0
 texture = ExtResource("6_vyht1")
 
-[node name="PanelContainer" type="PanelContainer" parent="client/LevelSwitch/PanelContainer" unique_id=70211816]
+[node name="PanelContainer" type="PanelContainer" parent="client/ClientGUI/levelswitch" unique_id=70211816]
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
@@ -69,41 +124,10 @@ grow_vertical = 0
 offset_transform_enabled = true
 offset_transform_position = Vector2(-50, -50)
 
-[node name="Label" type="Label" parent="client/LevelSwitch/PanelContainer/PanelContainer" unique_id=863171781]
+[node name="Label" type="Label" parent="client/ClientGUI/levelswitch/PanelContainer" unique_id=863171781]
 layout_mode = 2
 text = "Server is changing level..."
 horizontal_alignment = 1
-
-[node name="ClientGUI" type="CanvasLayer" parent="client" unique_id=586921557]
-visible = false
-
-[node name="Control" type="Control" parent="client/ClientGUI" unique_id=701864361]
-layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="SubViewportContainer" type="SubViewportContainer" parent="client/ClientGUI/Control" unique_id=388235931]
-layout_mode = 0
-offset_right = 1152.0
-offset_bottom = 648.0
-stretch = true
-
-[node name="SubViewport" type="SubViewport" parent="client/ClientGUI/Control/SubViewportContainer" unique_id=1082476330]
-own_world_3d = true
-handle_input_locally = false
-size = Vector2i(1152, 648)
-render_target_update_mode = 0
-
-[node name="Spinnycube" parent="client/ClientGUI/Control/SubViewportContainer/SubViewport" unique_id=1896426331 instance=ExtResource("5_vyht1")]
-
-[node name="Label" type="Label" parent="client/ClientGUI/Control" unique_id=2042897658]
-layout_mode = 0
-offset_left = 518.0
-offset_top = 541.0
-offset_right = 651.0
-offset_bottom = 564.0
-text = "waiting on host..."
 
 [node name="server" type="Node" parent="." unique_id=974502911]
 script = ExtResource("9_huihk")
@@ -118,30 +142,8 @@ metadata/_custom_type_script = "uid://btdvny6i4c55h"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="server/ServerGUI" unique_id=1115444209]
 offset_right = 1152.0
-offset_bottom = 51.0
+offset_bottom = 648.0
 size_flags_horizontal = 3
-
-[node name="CameraController" type="PanelContainer" parent="server/ServerGUI/VBoxContainer" unique_id=1059785071]
-unique_name_in_owner = true
-layout_mode = 2
-
-[node name="HBoxContainer2" type="HBoxContainer" parent="server/ServerGUI/VBoxContainer/CameraController" unique_id=225605090]
-layout_mode = 2
-
-[node name="PrevCameraButton" type="Button" parent="server/ServerGUI/VBoxContainer/CameraController/HBoxContainer2" unique_id=1480083269]
-layout_mode = 2
-text = "Prev"
-icon = ExtResource("9_tw3kd")
-
-[node name="Control" type="Control" parent="server/ServerGUI/VBoxContainer/CameraController/HBoxContainer2" unique_id=546201618]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="NextCameraButton" type="Button" parent="server/ServerGUI/VBoxContainer/CameraController/HBoxContainer2" unique_id=811781853]
-layout_mode = 2
-text = "Next"
-icon = ExtResource("9_tw3kd")
-icon_alignment = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="server/ServerGUI/VBoxContainer" unique_id=788133445]
 layout_mode = 2
@@ -174,14 +176,70 @@ layout_mode = 2
 size_flags_horizontal = 3
 placeholder_text = "C:/projects/godot"
 
+[node name="LevelController" type="HBoxContainer" parent="server/ServerGUI/VBoxContainer" unique_id=225605090]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="server/ServerGUI/VBoxContainer/LevelController" unique_id=1059785071]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="server/ServerGUI/VBoxContainer/LevelController/PanelContainer" unique_id=543879235]
+layout_mode = 2
+
+[node name="PrevCameraButton" type="Button" parent="server/ServerGUI/VBoxContainer/LevelController/PanelContainer/HBoxContainer" unique_id=1480083269]
+layout_mode = 2
+text = "Prev"
+icon = ExtResource("9_tw3kd")
+
+[node name="NextCameraButton" type="Button" parent="server/ServerGUI/VBoxContainer/LevelController/PanelContainer/HBoxContainer" unique_id=811781853]
+layout_mode = 2
+text = "Next"
+icon = ExtResource("9_tw3kd")
+icon_alignment = 2
+
+[node name="Control" type="Control" parent="server/ServerGUI/VBoxContainer/LevelController" unique_id=546201618]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="PanelContainer2" type="PanelContainer" parent="server/ServerGUI/VBoxContainer/LevelController" unique_id=134280299]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="server/ServerGUI/VBoxContainer/LevelController/PanelContainer2" unique_id=426807357]
+layout_mode = 2
+
+[node name="CountdownDisplay" type="Label" parent="server/ServerGUI/VBoxContainer/LevelController/PanelContainer2/HBoxContainer" unique_id=210341157]
+unique_name_in_owner = true
+layout_mode = 2
+label_settings = SubResource("LabelSettings_qw60f")
+
+[node name="CountdownSequenceInput" type="LineEdit" parent="server/ServerGUI/VBoxContainer/LevelController/PanelContainer2/HBoxContainer" unique_id=770618517]
+unique_name_in_owner = true
+layout_mode = 2
+text = "3,2,1,Go!"
+placeholder_text = "countdown sequence, comma delimited"
+expand_to_text_length = true
+
+[node name="StartCountdownButton" type="Button" parent="server/ServerGUI/VBoxContainer/LevelController/PanelContainer2/HBoxContainer" unique_id=1563651529]
+unique_name_in_owner = true
+layout_mode = 2
+tooltip_text = "Start Countdown"
+icon = ExtResource("11_qw60f")
+
+[node name="UnlockPlayersButton" type="Button" parent="server/ServerGUI/VBoxContainer/LevelController/PanelContainer2/HBoxContainer" unique_id=139301276]
+layout_mode = 2
+tooltip_text = "Unlock Player Movement"
+icon = ExtResource("11_gd4vy")
+
 [connection signal="on_client" from="Multiplayer" to="client" method="_on_multiplayer_on_client"]
 [connection signal="on_host" from="Multiplayer" to="server" method="_on_multiplayer_on_host"]
 [connection signal="files_created" from="server/DirectoryWatcher" to="server/ServerGUI/VBoxContainer/HBoxContainer/FileList" method="_on_directory_watcher_files_created"]
 [connection signal="files_deleted" from="server/DirectoryWatcher" to="server/ServerGUI/VBoxContainer/HBoxContainer/FileList" method="_on_directory_watcher_files_deleted"]
 [connection signal="files_modified" from="server/DirectoryWatcher" to="server/ServerGUI/VBoxContainer/HBoxContainer/FileList" method="_on_directory_watcher_files_modified"]
-[connection signal="pressed" from="server/ServerGUI/VBoxContainer/CameraController/HBoxContainer2/PrevCameraButton" to="server" method="_on_prev_camera_button_pressed"]
-[connection signal="pressed" from="server/ServerGUI/VBoxContainer/CameraController/HBoxContainer2/NextCameraButton" to="server" method="_on_next_camera_button_pressed"]
 [connection signal="on_press_send" from="server/ServerGUI/VBoxContainer/HBoxContainer/FileList" to="server" method="_on_file_list_on_press_send"]
 [connection signal="text_submitted" from="server/ServerGUI/VBoxContainer/HBoxContainer/FileList/PanelContainer/HBoxContainer/WatchPath" to="." method="_on_watch_path_text_submitted"]
+[connection signal="pressed" from="server/ServerGUI/VBoxContainer/LevelController/PanelContainer/HBoxContainer/PrevCameraButton" to="server" method="_on_prev_camera_button_pressed"]
+[connection signal="pressed" from="server/ServerGUI/VBoxContainer/LevelController/PanelContainer/HBoxContainer/NextCameraButton" to="server" method="_on_next_camera_button_pressed"]
+[connection signal="pressed" from="server/ServerGUI/VBoxContainer/LevelController/PanelContainer2/HBoxContainer/StartCountdownButton" to="server" method="_on_start_countdown_button_pressed"]
+[connection signal="pressed" from="server/ServerGUI/VBoxContainer/LevelController/PanelContainer2/HBoxContainer/UnlockPlayersButton" to="server" method="_on_unlock_players_button_pressed"]
 
 [editable path="Multiplayer"]
