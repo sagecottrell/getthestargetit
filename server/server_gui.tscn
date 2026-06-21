@@ -1,0 +1,120 @@
+[gd_scene format=3 uid="uid://dor25swfhlk40"]
+
+[ext_resource type="Script" uid="uid://coe0x2enkov31" path="res://server/file_list.gd" id="1_6o480"]
+[ext_resource type="Script" uid="uid://dfolnthowridy" path="res://server/server_gui.gd" id="1_oj2u2"]
+[ext_resource type="Texture2D" uid="uid://k2t5doe0gv7e" path="res://icons/Camera3D.svg" id="2_oj2u2"]
+[ext_resource type="Texture2D" uid="uid://dk3dxhfyrei1f" path="res://icons/Play.svg" id="3_4v36p"]
+[ext_resource type="Texture2D" uid="uid://b4lt16320ro3x" path="res://icons/Unlock.svg" id="4_xmmr6"]
+[ext_resource type="Script" uid="uid://btdvny6i4c55h" path="res://DirectoryWatcher/DirectoryWatcher.gd" id="6_4v36p"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_qw60f"]
+font_color = Color(0, 1, 1, 1)
+
+[node name="ServerGUI" type="CanvasLayer" unique_id=810692013]
+script = ExtResource("1_oj2u2")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=570355092]
+offset_right = 1152.0
+offset_bottom = 648.0
+size_flags_horizontal = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer" unique_id=1514551365]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="PlayerList" type="VBoxContainer" parent="VBoxContainer/HBoxContainer" unique_id=449186604]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="FileList" type="VBoxContainer" parent="VBoxContainer/HBoxContainer" unique_id=155450928]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+script = ExtResource("1_6o480")
+
+[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer/HBoxContainer/FileList" unique_id=817714834]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/HBoxContainer/FileList/PanelContainer" unique_id=1202615737]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer/FileList/PanelContainer/HBoxContainer" unique_id=833813074]
+layout_mode = 2
+text = "Watch:"
+
+[node name="WatchPath" type="LineEdit" parent="VBoxContainer/HBoxContainer/FileList/PanelContainer/HBoxContainer" unique_id=1976430601]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "C:/projects/godot"
+
+[node name="LevelController" type="HBoxContainer" parent="VBoxContainer" unique_id=1488700109]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer/LevelController" unique_id=1708201888]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/LevelController/PanelContainer" unique_id=36555455]
+layout_mode = 2
+
+[node name="PrevCameraButton" type="Button" parent="VBoxContainer/LevelController/PanelContainer/HBoxContainer" unique_id=975725488]
+layout_mode = 2
+text = "Prev"
+icon = ExtResource("2_oj2u2")
+
+[node name="NextCameraButton" type="Button" parent="VBoxContainer/LevelController/PanelContainer/HBoxContainer" unique_id=1145800913]
+layout_mode = 2
+text = "Next"
+icon = ExtResource("2_oj2u2")
+icon_alignment = 2
+
+[node name="Control" type="Control" parent="VBoxContainer/LevelController" unique_id=1854453961]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="PanelContainer2" type="PanelContainer" parent="VBoxContainer/LevelController" unique_id=1255149746]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/LevelController/PanelContainer2" unique_id=2120764800]
+layout_mode = 2
+
+[node name="CountdownDisplay" type="Label" parent="VBoxContainer/LevelController/PanelContainer2/HBoxContainer" unique_id=594556007]
+unique_name_in_owner = true
+layout_mode = 2
+label_settings = SubResource("LabelSettings_qw60f")
+
+[node name="CountdownSequenceInput" type="LineEdit" parent="VBoxContainer/LevelController/PanelContainer2/HBoxContainer" unique_id=1171385636]
+unique_name_in_owner = true
+layout_mode = 2
+text = "3,2,1,Go!"
+placeholder_text = "countdown sequence, comma delimited"
+expand_to_text_length = true
+
+[node name="StartCountdownButton" type="Button" parent="VBoxContainer/LevelController/PanelContainer2/HBoxContainer" unique_id=1796348325]
+unique_name_in_owner = true
+layout_mode = 2
+tooltip_text = "Start Countdown"
+icon = ExtResource("3_4v36p")
+
+[node name="UnlockPlayersButton" type="Button" parent="VBoxContainer/LevelController/PanelContainer2/HBoxContainer" unique_id=1016623735]
+layout_mode = 2
+tooltip_text = "Unlock Player Movement"
+icon = ExtResource("4_xmmr6")
+
+[node name="DirectoryWatcher" type="Node" parent="." unique_id=1763890103]
+script = ExtResource("6_4v36p")
+file_pattern = ".tscn"
+directory_list = PackedStringArray("res://watch_folder")
+metadata/_custom_type_script = "uid://btdvny6i4c55h"
+
+[connection signal="on_press_send" from="VBoxContainer/HBoxContainer/FileList" to="." method="_on_file_list_on_press_send"]
+[connection signal="text_submitted" from="VBoxContainer/HBoxContainer/FileList/PanelContainer/HBoxContainer/WatchPath" to="." method="_on_watch_path_text_submitted"]
+[connection signal="pressed" from="VBoxContainer/LevelController/PanelContainer/HBoxContainer/PrevCameraButton" to="." method="_on_prev_camera_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/LevelController/PanelContainer/HBoxContainer/NextCameraButton" to="." method="_on_next_camera_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/LevelController/PanelContainer2/HBoxContainer/StartCountdownButton" to="." method="_on_start_countdown_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/LevelController/PanelContainer2/HBoxContainer/UnlockPlayersButton" to="." method="_on_unlock_players_button_pressed"]
+[connection signal="files_created" from="DirectoryWatcher" to="VBoxContainer/HBoxContainer/FileList" method="_on_directory_watcher_files_created"]
+[connection signal="files_deleted" from="DirectoryWatcher" to="VBoxContainer/HBoxContainer/FileList" method="_on_directory_watcher_files_deleted"]
+[connection signal="files_modified" from="DirectoryWatcher" to="VBoxContainer/HBoxContainer/FileList" method="_on_directory_watcher_files_modified"]

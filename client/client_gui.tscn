@@ -1,0 +1,89 @@
+[gd_scene format=3 uid="uid://c3hs8hse84wha"]
+
+[ext_resource type="Script" uid="uid://64jhduej8yio" path="res://client/client_gui.gd" id="1_6i4td"]
+[ext_resource type="PackedScene" uid="uid://do4twu8peuk88" path="res://client/spinnycube.tscn" id="1_258n8"]
+[ext_resource type="Texture2D" uid="uid://c6ahqcj8kboeq" path="res://prefabs/player/player.png" id="2_50si4"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_vccua"]
+font_size = 272
+outline_size = 28
+outline_color = Color(0.011764706, 0, 0, 1)
+shadow_size = 85
+shadow_color = Color(0, 0, 0, 0.09411765)
+shadow_offset = Vector2(10.735, 10.83)
+
+[node name="ClientGUI" type="CanvasLayer" unique_id=489950663]
+script = ExtResource("1_6i4td")
+
+[node name="ingame" type="Control" parent="." unique_id=969123230]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Label" type="Label" parent="ingame" unique_id=1753596854]
+layout_mode = 0
+offset_right = 1152.0
+offset_bottom = 648.0
+label_settings = SubResource("LabelSettings_vccua")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="waitingroom" type="Control" parent="." unique_id=1738976274]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="waitingroom" unique_id=1617710978]
+layout_mode = 0
+offset_right = 1152.0
+offset_bottom = 648.0
+stretch = true
+
+[node name="SubViewport" type="SubViewport" parent="waitingroom/SubViewportContainer" unique_id=1021625128]
+own_world_3d = true
+handle_input_locally = false
+size = Vector2i(1152, 648)
+render_target_update_mode = 4
+
+[node name="Spinnycube" parent="waitingroom/SubViewportContainer/SubViewport" unique_id=1896426331 instance=ExtResource("1_258n8")]
+
+[node name="Label" type="Label" parent="waitingroom" unique_id=174306079]
+layout_mode = 0
+offset_left = 518.0
+offset_top = 541.0
+offset_right = 651.0
+offset_bottom = 564.0
+text = "waiting on host..."
+
+[node name="levelswitch" type="Control" parent="." unique_id=727852054]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1152.0
+offset_bottom = 648.0
+
+[node name="TextureRect" type="TextureRect" parent="levelswitch" unique_id=361417662]
+layout_mode = 0
+offset_right = 1152.0
+offset_bottom = 648.0
+texture = ExtResource("2_50si4")
+
+[node name="PanelContainer" type="PanelContainer" parent="levelswitch" unique_id=1940325808]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -299.0
+offset_top = -146.0
+grow_horizontal = 0
+grow_vertical = 0
+offset_transform_enabled = true
+offset_transform_position = Vector2(-50, -50)
+
+[node name="Label" type="Label" parent="levelswitch/PanelContainer" unique_id=167635546]
+layout_mode = 2
+text = "Server is changing level..."
+horizontal_alignment = 1

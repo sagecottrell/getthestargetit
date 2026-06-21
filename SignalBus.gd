@@ -1,6 +1,9 @@
 extends Node
 
-signal on_recieve_scene(node: BaseScene)
+signal c_on_player_setup(pid: int, json: String)
+
+signal s_on_file_press_send(fp: String)
+signal on_recieve_scene_text(node: String)
 signal on_change_scene(node: BaseScene)
 signal on_pre_level_push()
 
@@ -9,9 +12,6 @@ signal on_self_is_client()
 
 ## when the user selects "host", this signal is emitted to tell things that we are now a host
 signal on_self_is_server()
-
-## a client setup
-signal on_client_setup(info: PlayerInfo)
 
 ## when the local player first reaches the goal
 signal on_local_win()
@@ -39,10 +39,22 @@ signal on_countdown(display: String, length: float, final: bool)
 ## for level cameras, increase to move to next, otherwise prev
 signal on_cam_switch(pid: int, increase: bool)
 
-func recieve_scene(node: BaseScene):
-	on_recieve_scene.emit(node)
+@rpc("any_peer")
+func c_player_setup(json: String):
+	var pid = multiplayer.get_remote_sender_id()
+	c_on_player_setup.emit(pid, json)
+
+func s_file_press_send(fp: String):
+	s_on_file_press_send.emit(fp)
+
+@rpc("call_local")
+func recieve_scene_text(node: String):
+	on_recieve_scene_text.emit(node)
+	
 func change_scene(node: BaseScene):
 	on_change_scene.emit(node)
+
+@rpc()
 func pre_level_push():
 	on_pre_level_push.emit()
 
@@ -52,15 +64,14 @@ func self_is_client():
 func self_is_server():
 	on_self_is_server.emit()
 
-func client_setup(info: PlayerInfo):
-	on_client_setup.emit(info)
-
 func local_win():
 	on_local_win.emit()
 
-func client_won(pid: int):
-	on_client_won.emit(pid)
+@rpc("any_peer")
+func client_won():
+	on_client_won.emit(multiplayer.get_remote_sender_id())
 
+@rpc("call_local")
 func any_win(pid: int, place: String):
 	on_any_win.emit(pid, place)
 
