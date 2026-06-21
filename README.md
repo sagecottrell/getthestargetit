@@ -17,3 +17,4 @@
 	- [X] player freecam
 - [X] countdown
 	- [X] player unlock button
+- [ ] client disconnect logic

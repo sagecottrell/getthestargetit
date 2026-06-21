@@ -59,5 +59,5 @@ func _on_cam_switch(pid: int, increase: bool):
 	else:
 		cameras[server_camera_index].priority = 0
 		var dir = 1 if increase else -1
-		server_camera_index = (server_camera_index + dir) % cameras.size()
+		server_camera_index = posmod(server_camera_index + dir, cameras.size())
 	cameras[server_camera_index].priority = 200
