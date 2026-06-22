@@ -1,0 +1,37 @@
+[gd_scene format=3 uid="uid://dy84oa60r7n18"]
+
+[ext_resource type="Script" uid="uid://dlgvu2lqedjcx" path="res://prefabs/nuclearcube.gd" id="1_53ql6"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_d5pe6"]
+albedo_color = Color(1, 0, 0, 1)
+emission_enabled = true
+emission = Color(1, 0, 0, 1)
+emission_energy_multiplier = 16.0
+
+[sub_resource type="BoxMesh" id="BoxMesh_0yskd"]
+material = SubResource("StandardMaterial3D_d5pe6")
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_2h4p6"]
+data = PackedVector3Array(-0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, -0.5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_f0rtv"]
+size = Vector3(1.1, 1.1, 1.1)
+
+[node name="Nuclearcube" type="StaticBody3D" unique_id=559031872]
+script = ExtResource("1_53ql6")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=662804250]
+mesh = SubResource("BoxMesh_0yskd")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1094645427]
+shape = SubResource("ConcavePolygonShape3D_2h4p6")
+
+[node name="deathplane2" type="Area3D" parent="." unique_id=151382533]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="deathplane2" unique_id=1831970060]
+shape = SubResource("BoxShape3D_f0rtv")
+debug_color = Color(0.99215686, 0, 0.27058825, 1)
+
+[connection signal="body_entered" from="deathplane2" to="." method="_on_deathplane_body_entered"]

@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://h4ks4xpce6t7"]
+
+[ext_resource type="Shader" uid="uid://cy6y7ymantv1w" path="res://prefabs/cube/cube.gdshader" id="1_gwnug"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vs584"]
+render_priority = 0
+shader = ExtResource("1_gwnug")
+
+[sub_resource type="BoxMesh" id="BoxMesh_vccua"]
+material = SubResource("ShaderMaterial_vs584")
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_gwnug"]
+data = PackedVector3Array(-0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, -0.5)
+
+[node name="Cube" type="StaticBody3D" unique_id=2129962462]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=484902220]
+mesh = SubResource("BoxMesh_vccua")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=2023434633]
+shape = SubResource("ConcavePolygonShape3D_gwnug")

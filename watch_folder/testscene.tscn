@@ -8,6 +8,10 @@
 [ext_resource type="Script" uid="uid://8umksf8e80fw" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="7_k8yl0"]
 [ext_resource type="PackedScene" uid="uid://c0akl332hihh1" path="res://prefabs/octagon.tscn" id="7_pxpqt"]
 [ext_resource type="PackedScene" uid="uid://bgnb5bwdh3a5b" path="res://prefabs/3x3Platform.tscn" id="8_k8yl0"]
+[ext_resource type="PackedScene" uid="uid://wibtes6m0u1h" path="res://prefabs/tree.tscn" id="9_ix6w0"]
+[ext_resource type="PackedScene" uid="uid://cw4cypd2q7pdr" path="res://prefabs/rock1.tscn" id="10_oewem"]
+[ext_resource type="PackedScene" uid="uid://h4ks4xpce6t7" path="res://prefabs/cube.tscn" id="11_6ea13"]
+[ext_resource type="PackedScene" uid="uid://dy84oa60r7n18" path="res://prefabs/nuclearcube.tscn" id="12_t7qil"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_0kh3j"]
 panorama = ExtResource("2_df8lk")
@@ -32,7 +36,7 @@ duration = 0.0
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_1nuv2"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_k8yl0"]
-size = Vector3(50, 50, 60)
+size = Vector3(50, 50, 48.19922)
 
 [node name="Testscene" type="Node3D" unique_id=1867083525]
 script = ExtResource("1_k8yl0")
@@ -48,7 +52,7 @@ shadow_enabled = true
 directional_shadow_max_distance = 250.0
 
 [node name="Star" parent="." unique_id=1036149878 instance=ExtResource("1_bqvsh")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 103, 84)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 105.75519, 84)
 
 [node name="PlayerSpawn" parent="." unique_id=1298073336 instance=ExtResource("5_pxpqt")]
 transform = Transform3D(-0.9986523, 0, -0.051900335, 0, 1, 0, 0.051900335, 0, -0.9986523, 0, 101, 0)
@@ -120,8 +124,28 @@ gravity_point_center = Vector3(0, 0, 1)
 gravity_direction = Vector3(0, 0, 1)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=1406324228]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5.9003906)
 shape = SubResource("BoxShape3D_k8yl0")
 debug_color = Color(0.99326307, 0, 0.24691096, 0.41960785)
 
+[node name="Tree" parent="." unique_id=2143920079 instance=ExtResource("9_ix6w0")]
+transform = Transform3D(1, 0, 0, 0, 0.2277886, -0.97371054, 0, 0.97371054, 0.2277886, 0, 97.94835, 14.868952)
+
+[node name="Tree2" parent="." unique_id=300625443 instance=ExtResource("9_ix6w0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 94, 21.880476)
+
+[node name="Rock1" parent="." unique_id=2035656748 instance=ExtResource("10_oewem")]
+transform = Transform3D(-3.15, 2.7538175e-07, 0, -2.7538175e-07, -3.15, 0, 0, 0, 3.15, -3, 94, 21.880476)
+
+[node name="Rock2" parent="." unique_id=1666786258 instance=ExtResource("10_oewem")]
+transform = Transform3D(2.255, 0, 0, 0, 2.255, 0, 0, 0, 2.255, 0, 99.57921, 84)
+
+[node name="Cube" parent="." unique_id=2129962462 instance=ExtResource("11_6ea13")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 100.6106, 75)
+
+[node name="Nuclearcube" parent="." unique_id=559031872 instance=ExtResource("12_t7qil")]
+transform = Transform3D(25.53, 0, 0, 0, 25.53, 0, 0, 0, 25.53, 0, 86.96615, 84.00561)
+
 [connection signal="collide" from="Star" to="." method="_on_star_collide"]
 [connection signal="body_entered" from="deathplane" to="." method="_on_deathplane_body_entered"]
+[connection signal="player_collide" from="Nuclearcube" to="." method="_on_deathplane_body_entered"]
