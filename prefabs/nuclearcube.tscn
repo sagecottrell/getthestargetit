@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://dy84oa60r7n18"]
 
-[ext_resource type="Script" uid="uid://dlgvu2lqedjcx" path="res://prefabs/nuclearcube.gd" id="1_53ql6"]
+[ext_resource type="Script" uid="uid://dlgvu2lqedjcx" path="res://prefabs/nuclearcube/nuclearcube.gd" id="1_53ql6"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_d5pe6"]
 albedo_color = Color(1, 0, 0, 1)

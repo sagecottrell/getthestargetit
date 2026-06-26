@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://ck23wxn4q834b"]
+
+[ext_resource type="PackedScene" uid="uid://dnok8ihpiy8f1" path="res://prefabs/simpleEnemy/simpleEnemy.gltf" id="1_0ce06"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_vccua"]
+height = 1.0
+
+[node name="SimpleEnemy" type="CharacterBody3D" unique_id=508805129]
+
+[node name="blockbench_export" parent="." unique_id=1399087127 instance=ExtResource("1_0ce06")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1332645728]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("CapsuleShape3D_vccua")
