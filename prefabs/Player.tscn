@@ -56,6 +56,7 @@ node_connections = [&"output", 0, &"Blend2", &"Blend2", 0, &"Animation", &"Blend
 
 [node name="Player" unique_id=1167805719 node_paths=PackedStringArray("anim_tree") instance=ExtResource("1_dgc4i")]
 collision_layer = 2
+collision_mask = 5
 script = ExtResource("2_1kmib")
 first_person = true
 input_back_action_name = "move_backward"
@@ -146,9 +147,9 @@ metadata/_custom_type_script = "uid://c4mo7inp0b5q0"
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
 
 [node name="Right Arm2" parent="PlayerVisualRoot/blockbench_export/root/Waist" parent_id_path=PackedInt32Array(2079496628, 532435951) index="2" unique_id=1418564043]
-transform = Transform3D(1, 0, 0, 0, 0.9947487, 0.10234434, 0, -0.10234434, 0.9947487, 0.3125, 0.625, 0)
+transform = Transform3D(1, 0, 0, 0, 0.98714113, 0.15984932, 0, -0.15984932, 0.98714113, 0.3125, 0.625, 0)
 
 [node name="Left Arm2" parent="PlayerVisualRoot/blockbench_export/root/Waist" parent_id_path=PackedInt32Array(2079496628, 532435951) index="3" unique_id=889369645]
-transform = Transform3D(1, 0, 0, 0, 0.9947487, -0.10234434, 0, 0.10234434, 0.9947487, -0.3125, 0.625, 0)
+transform = Transform3D(1, 0, 0, 0, 0.98714113, -0.15984932, 0, 0.15984932, 0.98714113, -0.3125, 0.625, 0)
 
 [editable path="PlayerVisualRoot/blockbench_export"]

@@ -46,14 +46,18 @@ func _process(delta: float) -> void:
 				turning_direction = [-1, 1].pick_random() * (randf() + 0.5)
 		State.turning:
 			if lookbeforeleap.is_colliding():
-				turning_time += delta
-				rotate_y(turning_direction * delta)
-				if turning_time >= continue_turning_time_current:
-					turning_time = 0
-					continue_turning_time_current = continue_turning_time
-					var d: Vector3 = lookbeforeleap.get_collision_point() - global_position
-					var g = get_gravity().normalized()
-					velocity += (-g + d.normalized()) * 4
+				if target == null:
+					turning_time += delta
+					rotate_y(turning_direction * delta)
+					if turning_time >= continue_turning_time_current:
+						turning_time = 0
+						continue_turning_time_current = continue_turning_time
+						jump()
+				else:
+					var target_pos = target.global_position
+					target_pos.y = global_position.y
+					global_transform = global_transform.looking_at(target_pos, Vector3.UP)
+					jump()
 			else:
 				continue_turning_time_current += delta / 2
 				turning_time = 0
@@ -72,8 +76,11 @@ func _physics_process(delta: float) -> void:
 	if is_on_floor():
 		var friction = Physics.get_friction(self, FRICTION_GROUPS)
 		velocity -= velocity * pow(friction, 1/delta)
-	else:
-		state = State.jump
+
+func jump():
+	var g = get_gravity().normalized()
+	velocity += (-g + -global_transform.basis.z.normalized()) * 4
+	state = State.jump
 
 func kill():
 	state = State.dead
@@ -95,9 +102,11 @@ func _on_hurtbox_body_entered(body: Node3D) -> void:
 
 func _on_hitbox_body_entered(body: Node3D) -> void:
 	if body is Player and body.is_multiplayer_authority():
+		body.velocity += Vector3.UP * 25
 		kill()
 
 
 func _on_animation_tree_animation_finished(anim_name: StringName) -> void:
 	if not Engine.is_editor_hint() and anim_name == "die":
+		await get_tree().create_timer(1).timeout
 		queue_free()

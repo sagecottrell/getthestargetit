@@ -93,6 +93,12 @@ move_fly_mode={
 ]
 }
 
+[layer_names]
+
+3d_physics/layer_1="levelgeometry"
+3d_physics/layer_2="players"
+3d_physics/layer_3="enemies"
+
 [physics]
 
 3d/physics_engine="Jolt Physics"

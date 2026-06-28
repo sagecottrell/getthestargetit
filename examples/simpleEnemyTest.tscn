@@ -17,7 +17,7 @@ transform = Transform3D(-0.8193514, 0, -0.5732917, 0, 1, 0, 0.5732917, 0, -0.819
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="SimpleEnemy" unique_id=1751017309]
 transform = Transform3D(1, 0, 0, 0, -0.50000006, 0.8660254, 0, -0.8660254, -0.50000006, 0, 6.6487455, -13.489605)
 
-[node name="Octagon" parent="." unique_id=879052091 groups=["icy"] instance=ExtResource("2_subvc")]
+[node name="Octagon" parent="." unique_id=879052091 instance=ExtResource("2_subvc")]
 transform = Transform3D(0.92638206, 0, -0.37658498, 0, 1, 0, 0.37658498, 0, 0.92638206, 0, -100, 0)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=316997999]

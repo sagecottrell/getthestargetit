@@ -9,6 +9,11 @@ top_radius = 0.0
 bottom_radius = 0.2
 height = 0.8886719
 
+[sub_resource type="CylinderMesh" id="CylinderMesh_7c6qd"]
+top_radius = 0.09326172
+bottom_radius = 0.09326172
+height = 0.5786133
+
 [node name="PlayerSpawn" type="Node3D" unique_id=1298073336]
 script = ExtResource("1_jef56")
 
@@ -19,7 +24,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.6987872, 0)
 surface_material_override/0 = ExtResource("3_err2u")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="blockbench_export" unique_id=671395896]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0.68679225, -0.55566406)
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0.93622625, -1.0432057)
 mesh = SubResource("CylinderMesh_vccua")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="blockbench_export/MeshInstance3D" unique_id=1893941623]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.71069336, 0)
+mesh = SubResource("CylinderMesh_7c6qd")
 
 [editable path="blockbench_export"]
