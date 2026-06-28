@@ -26,15 +26,6 @@ extends FPSController3D
 
 @export var underwater_env: Environment
 
-@export var idling_ground: bool = false:
-	set(v):
-		if is_node_ready():
-			if v and not idling_ground:
-				idle()
-			elif not v and idling_ground:
-				walk()
-		idling_ground = v
-
 @export var player_color: Color
 
 @export var player_name: String
@@ -44,16 +35,53 @@ extends FPSController3D
 var movement_locked : bool
 var camera_locked : bool
 var is_self: bool
+enum State {
+	idle=0,
+	walk=1,
+	dead=3,
+	swim=5,
+	sprint=6,
+}
+
+@export_category("State")
+
+@export var crouch: bool:
+	set(value):
+		crouch = value
+		if not is_node_ready():
+			return
+		anim_tree.set("parameters/BlendCrouch/blend_amount", int(value))
+	get:
+		return crouch
+@export var hurt: bool:
+	set(value):
+		hurt = value
+		if not is_node_ready():
+			return
+		anim_tree.set("parameters/BlendHurt/blend_amount", int(value))
+	get:
+		return hurt
+
+@export var state: State = State.idle:
+	set(value):
+		state = value
+		if not is_node_ready():
+			return
+		anim_tree.set("parameters/state-trans/transition_request", State.find_key(value))
+	get:
+		return state
 
 func _reset():
 	head.actual_rotation.x = 0
 	global_transform = spawn_point.global_transform
 	velocity = Vector3.ZERO
+	state = State.idle
 
 func _enter_tree():
 	set_multiplayer_authority(str(name).to_int())
 
 func _ready():
+	state = State.idle
 	setup()
 	is_self = name.to_int() == multiplayer.get_unique_id()
 	
@@ -62,6 +90,11 @@ func _ready():
 		SignalBus.on_countdown.connect(on_countdown)
 		switch_to_fp_or_tp_cam()
 		movement_locked = true  # start locked, the server will send an unlock signal
+		
+		crouched.connect(func(): crouch = true)
+		uncrouched.connect(func(): crouch = false)
+		sprinted.connect(func(): state = State.sprint)
+		submerged.connect(func(): state = State.swim)
 	else:
 		SignalBus.on_cam_switch.connect(on_cam_switch)
 	
@@ -93,11 +126,12 @@ func _physics_process(delta):
 		var input_swim_down = Input.is_action_pressed(input_crouch_action_name)
 		var input_swim_up = Input.is_action_pressed(input_jump_action_name)
 		
-		if input_axis.is_zero_approx() and not idling_ground:
-			idling_ground = true
-		elif not input_axis.is_zero_approx() and idling_ground:
-			idling_ground = false
-		
+		if input_axis.is_zero_approx():
+			if not is_submerged():
+				state = State.idle
+		elif not input_sprint:
+			state = State.walk
+
 		move(delta, input_axis, input_jump, input_crouch, input_sprint, input_swim_down, input_swim_up)
 	else:
 		# NOTE: It is important to always call move() even if we have no inputs 
@@ -122,14 +156,6 @@ func _input(event: InputEvent) -> void:
 	# Mouse look (only if the mouse is captured).
 	if not camera_locked and event is InputEventMouseMotion and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
 		rotate_head(event.screen_relative)
-
-func idle(blendtime: float = 0.3):
-	var tween = get_tree().create_tween()
-	tween.tween_property(anim_tree, "parameters/Blend2/blend_amount", 0, blendtime)
-
-func walk(blendtime: float = 0.3):
-	var tween = get_tree().create_tween()
-	tween.tween_property(anim_tree, "parameters/Blend2/blend_amount", 1.0, blendtime)
 
 func on_countdown(_display: String, _length: float, final: bool):
 	movement_locked = not final

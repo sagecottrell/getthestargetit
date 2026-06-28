@@ -1,0 +1,97 @@
+[gd_resource type="AnimationNodeBlendTree" format=3 uid="uid://dk2kgdbwdv8d4"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_64pgi"]
+animation = &"die"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_0ep8a"]
+animation = &"walk"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_70wo7"]
+animation = &"idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_rwuho"]
+animation = &"walk"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_yhksc"]
+animation = &"swim"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_edvlc"]
+animation = &"crouch"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_8mhax"]
+animation = &"hurt"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_1nynx"]
+animation = &"win"
+
+[sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_8mhax"]
+filter_enabled = true
+filters = ["root/Waist"]
+
+[sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_edvlc"]
+filter_enabled = true
+filters = ["root/Waist/Left Arm2", "root/Waist/Right Arm2"]
+
+[sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_634ti"]
+
+[sub_resource type="Curve" id="Curve_64pgi"]
+_data = [Vector2(0, 0), 0.0, 1.0, 0, 1, Vector2(1, 1), 1.0, 0.0, 1, 0]
+point_count = 2
+
+[sub_resource type="AnimationNodeTransition" id="AnimationNodeTransition_1nynx"]
+xfade_time = 0.3
+xfade_curve = SubResource("Curve_64pgi")
+allow_transition_to_self = true
+input_0/name = "idle"
+input_0/auto_advance = false
+input_0/break_loop_at_end = false
+input_0/reset = true
+input_1/name = "walk"
+input_1/auto_advance = false
+input_1/break_loop_at_end = false
+input_1/reset = true
+input_2/name = "swim"
+input_2/auto_advance = false
+input_2/break_loop_at_end = false
+input_2/reset = true
+input_3/name = "sprint"
+input_3/auto_advance = false
+input_3/break_loop_at_end = false
+input_3/reset = true
+input_4/name = "dead"
+input_4/auto_advance = false
+input_4/break_loop_at_end = false
+input_4/reset = true
+input_5/name = "win"
+input_5/auto_advance = false
+input_5/break_loop_at_end = false
+input_5/reset = true
+
+[resource]
+graph_offset = Vector2(-177.87012, -70.76703)
+nodes/output/position = Vector2(1460, 100)
+nodes/state-trans/node = SubResource("AnimationNodeTransition_1nynx")
+nodes/state-trans/position = Vector2(640, 100)
+nodes/Animation/node = SubResource("AnimationNodeAnimation_1nynx")
+nodes/Animation/position = Vector2(40, 480)
+"nodes/Animation 2/node" = SubResource("AnimationNodeAnimation_64pgi")
+"nodes/Animation 2/position" = Vector2(-20, 300)
+"nodes/Animation 3/node" = SubResource("AnimationNodeAnimation_0ep8a")
+"nodes/Animation 3/position" = Vector2(-160, 180)
+nodes/TimeScale/node = SubResource("AnimationNodeTimeScale_634ti")
+nodes/TimeScale/position = Vector2(140, 160)
+"nodes/Animation 4/node" = SubResource("AnimationNodeAnimation_70wo7")
+"nodes/Animation 4/position" = Vector2(140, -160)
+"nodes/Animation 5/node" = SubResource("AnimationNodeAnimation_rwuho")
+"nodes/Animation 5/position" = Vector2(-160, -100)
+"nodes/Animation 6/node" = SubResource("AnimationNodeAnimation_yhksc")
+"nodes/Animation 6/position" = Vector2(0, 40)
+"nodes/Animation 7/node" = SubResource("AnimationNodeAnimation_edvlc")
+"nodes/Animation 7/position" = Vector2(640, 580)
+"nodes/Animation 8/node" = SubResource("AnimationNodeAnimation_8mhax")
+"nodes/Animation 8/position" = Vector2(900, 600)
+nodes/BlendCrouch/node = SubResource("AnimationNodeBlend2_8mhax")
+nodes/BlendCrouch/position = Vector2(900, 120)
+nodes/BlendHurt/node = SubResource("AnimationNodeBlend2_edvlc")
+nodes/BlendHurt/position = Vector2(1160, 120)
+node_connections = [&"output", 0, &"BlendHurt", &"state-trans", 0, &"Animation 4", &"state-trans", 1, &"Animation 5", &"state-trans", 2, &"Animation 6", &"state-trans", 3, &"TimeScale", &"state-trans", 4, &"Animation 2", &"state-trans", 5, &"Animation", &"TimeScale", 0, &"Animation 3", &"BlendCrouch", 0, &"state-trans", &"BlendCrouch", 1, &"Animation 7", &"BlendHurt", 0, &"BlendCrouch", &"BlendHurt", 1, &"Animation 8"]
