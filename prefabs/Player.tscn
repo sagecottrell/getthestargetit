@@ -146,9 +146,9 @@ metadata/_custom_type_script = "uid://c4mo7inp0b5q0"
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
 
 [node name="Right Arm2" parent="PlayerVisualRoot/blockbench_export/root/Waist" parent_id_path=PackedInt32Array(2079496628, 532435951) index="2" unique_id=1418564043]
-transform = Transform3D(1, 0, 0, 0, 0.999708, 0.024152908, 0, -0.024152908, 0.999708, 0.3125, 0.625, 0)
+transform = Transform3D(1, 0, 0, 0, 0.9947487, 0.10234434, 0, -0.10234434, 0.9947487, 0.3125, 0.625, 0)
 
 [node name="Left Arm2" parent="PlayerVisualRoot/blockbench_export/root/Waist" parent_id_path=PackedInt32Array(2079496628, 532435951) index="3" unique_id=889369645]
-transform = Transform3D(1, 0, 0, 0, 0.999708, -0.024152908, 0, 0.024152908, 0.999708, -0.3125, 0.625, 0)
+transform = Transform3D(1, 0, 0, 0, 0.9947487, -0.10234434, 0, 0.10234434, 0.9947487, -0.3125, 0.625, 0)
 
 [editable path="PlayerVisualRoot/blockbench_export"]

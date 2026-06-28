@@ -12,6 +12,7 @@ class_name WalkAbility3D
 ## Sets control in the air
 @export_range(0.0, 1.0, 0.05) var air_control := 0.3
 
+const FRICTION_GROUPS = {"icy": 0.1}
 
 ## Takes direction of movement from input and turns it into horizontal velocity
 func apply(velocity: Vector3, speed : float, is_on_floor : bool, direction : Vector3, delta: float) -> Vector3:
@@ -25,13 +26,17 @@ func apply(velocity: Vector3, speed : float, is_on_floor : bool, direction : Vec
 	var temp_accel: float
 	var target: Vector3 = direction * speed
 	
+	var friction = Physics.get_friction(body, FRICTION_GROUPS)
+	
 	if direction.dot(temp_vel) > 0:
 		temp_accel = acceleration
 	else:
 		temp_accel = deceleration
-	
+		
 	if not is_on_floor:
 		temp_accel *= air_control
+	else:
+		temp_accel *= friction
 	
 	temp_vel = temp_vel.lerp(target, temp_accel * delta)
 	

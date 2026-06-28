@@ -289,6 +289,7 @@ func _load_nodes(nodePaths: Array) -> Array[MovementAbility3D]:
 		var node := get_node(nodePath)
 		if node != null:
 			var ability = node as MovementAbility3D
+			ability.body = self
 			nodes.append(ability)
 	return nodes
 

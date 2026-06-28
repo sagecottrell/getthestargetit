@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://cw4cypd2q7pdr" path="res://prefabs/rock1.tscn" id="10_oewem"]
 [ext_resource type="PackedScene" uid="uid://h4ks4xpce6t7" path="res://prefabs/cube.tscn" id="11_6ea13"]
 [ext_resource type="PackedScene" uid="uid://dy84oa60r7n18" path="res://prefabs/nuclearcube.tscn" id="12_t7qil"]
+[ext_resource type="PackedScene" uid="uid://ck23wxn4q834b" path="res://prefabs/SimpleEnemy.tscn" id="13_f0rtv"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_0kh3j"]
 panorama = ExtResource("2_df8lk")
@@ -101,9 +102,9 @@ collision_mask = 2
 shape = SubResource("WorldBoundaryShape3D_1nuv2")
 debug_color = Color(0.99215686, 0, 0.27058825, 1)
 
-[node name="Octagon" parent="." unique_id=879052091 instance=ExtResource("7_pxpqt")]
+[node name="Octagon" parent="." unique_id=879052091 groups=["icy"] instance=ExtResource("7_pxpqt")]
 
-[node name="Octagon2" parent="." unique_id=1691761476 instance=ExtResource("7_pxpqt")]
+[node name="Octagon2" parent="." unique_id=1691761476 groups=["icy"] instance=ExtResource("7_pxpqt")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 84)
 
 [node name="3x3Platform" parent="." unique_id=23620910 instance=ExtResource("8_k8yl0")]
@@ -145,6 +146,9 @@ transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 100.6106, 75)
 
 [node name="Nuclearcube" parent="." unique_id=559031872 instance=ExtResource("12_t7qil")]
 transform = Transform3D(25.53, 0, 0, 0, 25.53, 0, 0, 0, 25.53, 0, 86.96615, 84.00561)
+
+[node name="SimpleEnemy" parent="." unique_id=508805129 instance=ExtResource("13_f0rtv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5232582, 99.61269, 8.506216)
 
 [connection signal="collide" from="Star" to="." method="_on_star_collide"]
 [connection signal="body_entered" from="deathplane" to="." method="_on_deathplane_body_entered"]
