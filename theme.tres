@@ -1,5 +1,7 @@
 [gd_resource type="Theme" format=3 uid="uid://cor1vkpwxjcx6"]
 
+[ext_resource type="FontFile" uid="uid://c7xg1csk1d27f" path="res://fonts/VCR_OSD_MONO_1.001.ttf" id="1_e1x85"]
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wvktn"]
 content_margin_left = 10.0
 content_margin_top = 10.0
@@ -13,4 +15,5 @@ corner_radius_bottom_left = 3
 corner_detail = 5
 
 [resource]
+default_font = ExtResource("1_e1x85")
 PanelContainer/styles/panel = SubResource("StyleBoxFlat_wvktn")

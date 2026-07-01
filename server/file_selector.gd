@@ -10,7 +10,7 @@ func _ready() -> void:
 	
 func display():
 	if is_node_ready():
-		%Label.text = "%s %s" % [file_path, fmt_status()]
+		%Label.text = "%s %s" % [file_path.get_file(), fmt_status()]
 
 func _on_send_pressed() -> void:
 	pressed.emit(file_path)

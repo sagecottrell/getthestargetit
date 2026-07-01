@@ -23,7 +23,7 @@ func _on_directory_watcher_files_deleted(files: PackedStringArray) -> void:
 
 func _on_directory_watcher_files_created(files: PackedStringArray) -> void:
 	prints("created", files)
-	for file_path in files:\
+	for file_path in files:
 		_create_fileselector(file_path)
 
 func _create_fileselector(fp: String):
