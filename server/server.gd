@@ -12,7 +12,6 @@ static var rankings: Array[int] = []
 
 func _ready() -> void:
 	multiplayer.server_relay = true
-	SignalBus.on_self_is_client.connect(_on_self_is_client)
 
 func _on_multiplayer_on_host() -> void:
 	# on the server side, when the server starts up
@@ -30,9 +29,6 @@ func _on_multiplayer_on_host() -> void:
 	SignalBus.on_recieve_scene_text.connect(_on_recieve_scene_text)
 	SignalBus.s_on_file_press_send.connect(pack_and_send)
 	SignalBus.c_on_player_setup.connect(_on_client_info)
-
-func _on_self_is_client():
-	gui.dir_watcher.queue_free()
 
 func _on_client_connect(id: int):
 	prints("client connected:", id)
