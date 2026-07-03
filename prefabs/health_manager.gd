@@ -41,7 +41,7 @@ func hurt(amount: int = 1, ignore_invuln: bool = false):
 		on_die.emit()
 
 var invuln_timer: SceneTreeTimer
-func _on_invuln(add_time: float):
+func set_invulnerable(add_time: float):
 	invulnerable = true
 	if add_time < 0:
 		invuln_timer.timeout.disconnect(_end_invuln)

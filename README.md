@@ -38,4 +38,3 @@
 - [ ] client disconnect logic
 
 ## bugs
-- [ ] enemy hurt player only on first contact, not prolonged contact

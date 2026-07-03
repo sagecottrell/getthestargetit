@@ -278,4 +278,5 @@ shape = SubResource("ConcavePolygonShape3D_1nuv2")
 [connection signal="body_entered" from="deathplane" to="." method="_on_deathplane_body_entered"]
 [connection signal="ready" from="bridge" to="bridge/setfaraway" method="animate"]
 [connection signal="player_collide" from="Nuclearcube" to="." method="_on_deathplane_body_entered"]
+[connection signal="button_pressed" from="pedestal/spawnBridgeButton" to="bridge/comeback" method="animate"]
 [connection signal="button_pressed" from="pedestal2/activateStar" to="Star/PropSignalsComponent" method="activate"]

@@ -23,7 +23,7 @@ const FRICTION_GROUPS = {"icy": 0.93}
 const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
 
-var target: Player = null
+var target: Node3D = null
 var rest_time: float = 0
 var turning_direction = 1
 var continue_turning_time_current: float = 0

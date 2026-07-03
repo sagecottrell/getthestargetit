@@ -98,7 +98,7 @@ func _ready():
 		SignalBus.on_teleport_player_to.connect(func(target): global_position = target.global_position)
 		SignalBus.on_set_player_v.connect(func(v): velocity = v)
 		SignalBus.on_player_set_physics_lock.connect(_on_set_physics_locked)
-		SignalBus.on_player_invulnerable.connect(func (b): hp.invulnerable = b)
+		SignalBus.on_player_invulnerable.connect(hp.set_invulnerable)
 		
 		SignalBus.on_force_firstperson.connect(switch_to_first_person)
 		SignalBus.on_force_thirdperson.connect(switch_to_third_person)
@@ -260,9 +260,10 @@ func _on_die():
 	var tween = create_tween()
 	tween.tween_method(func (v): SignalBus.respawn_timer(v, 2.0), 2.0, 0.0, 2)
 	await tween.finished
+	SignalBus.respawn()
+	await get_tree().create_timer(0.1).timeout
 	SignalBus.restore_movement()
 	SignalBus.player_set_physics_lock(false)
-	SignalBus.respawn()
 
 func on_win():
 	switch_to_win_cam()
