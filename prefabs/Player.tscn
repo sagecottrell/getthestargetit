@@ -58,6 +58,7 @@ anim_tree = NodePath("AnimationTree")
 underwater_env = null
 player_color = Color(0, 0, 0, 1)
 player_name = ""
+invuln_length = 1.0
 crouch = false
 hurt = false
 state = 0
@@ -107,6 +108,12 @@ remote_path = NodePath("../../PlayerVisualRoot/blockbench_export/root/Waist/Head
 update_position = false
 update_scale = false
 
+[node name="RayCast3D" type="RayCast3D" parent="Head" parent_id_path=PackedInt32Array(1782836025) index="4" unique_id=653178753]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.3552361)
+target_position = Vector3(0, 0, -1.5)
+collision_mask = 8
+collide_with_areas = true
+
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." index="12" unique_id=967940243]
 delta_interval = 0.01
 replication_config = SubResource("SceneReplicationConfig_elntb")
@@ -145,10 +152,10 @@ metadata/_custom_type_script = "uid://c4mo7inp0b5q0"
 [node name="blockbench_export" parent="PlayerVisualRoot" index="0" unique_id=2079496628 instance=ExtResource("6_xgtsh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
 
-[node name="Right Arm2" parent="PlayerVisualRoot/blockbench_export/root/Waist" parent_id_path=PackedInt32Array(2079496628, 849633976) index="2" unique_id=992030720]
-transform = Transform3D(1, 0, 0, 0, 0.9875094, 0.15755768, 0, -0.15755768, 0.9875094, 0.3125, 0.625, 0)
+[node name="Right Arm2" parent="PlayerVisualRoot/blockbench_export/root/Waist" parent_id_path=PackedInt32Array(2079496628, 1113985881) index="2" unique_id=1363812366]
+transform = Transform3D(1, 0, 0, 0, 0.9941941, 0.10759815, 0, -0.10759815, 0.9941941, 0.3125, 0.625, 0)
 
-[node name="Left Arm2" parent="PlayerVisualRoot/blockbench_export/root/Waist" parent_id_path=PackedInt32Array(2079496628, 849633976) index="3" unique_id=1953802395]
-transform = Transform3D(1, 0, 0, 0, 0.9875094, -0.15755768, 0, 0.15755768, 0.9875094, -0.3125, 0.625, 0)
+[node name="Left Arm2" parent="PlayerVisualRoot/blockbench_export/root/Waist" parent_id_path=PackedInt32Array(2079496628, 1113985881) index="3" unique_id=106449799]
+transform = Transform3D(1, 0, 0, 0, 0.9941941, -0.10759815, 0, 0.10759815, 0.9941941, -0.3125, 0.625, 0)
 
 [editable path="PlayerVisualRoot/blockbench_export"]

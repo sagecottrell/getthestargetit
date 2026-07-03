@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://suvyr4b7yflf"]
+
+[ext_resource type="Script" uid="uid://crlmxgrv638cv" path="res://prefabs/InteractableButton.gd" id="1_fmo1x"]
+[ext_resource type="Script" uid="uid://d31fb4ihe08c" path="res://prefabs/tweens/tweener.gd" id="2_nj3em"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_vccua"]
+radius = 0.23761651
+
+[node name="PushButtonOnce" type="Area3D" unique_id=597924799]
+collision_layer = 9
+script = ExtResource("1_fmo1x")
+metadata/_custom_type_script = "uid://crlmxgrv638cv"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1169012529]
+shape = SubResource("SphereShape3D_vccua")
+
+[node name="tweendown" type="Node" parent="." unique_id=789101660]
+script = ExtResource("2_nj3em")
+duration = 0.5
+final_value = -0.1
+property = "position:y"
+relative = 1
+metadata/_custom_type_script = "uid://d31fb4ihe08c"
+
+[connection signal="button_pressed" from="." to="." method="disable"]
+[connection signal="button_pressed" from="." to="tweendown" method="animate"]

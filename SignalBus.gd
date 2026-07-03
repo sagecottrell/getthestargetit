@@ -49,14 +49,14 @@ func unstuck():
 	on_unstuck.emit()
 
 ## when the local player should die
-signal on_die()
-func die():
-	on_die.emit()
+signal on_killed()
+func kill():
+	on_killed.emit()
 	
 ## when the local player gets hurt
-signal on_hurt(amount: int)
-func hurt(amount: int = 1):
-	on_hurt.emit(amount)
+signal on_hurt(amount: int, ignore_invuln: bool)
+func hurt(amount: int = 1, ignore_invuln: bool = false):
+	on_hurt.emit(amount, ignore_invuln)
 	
 ## when the player hp changes, use this to inform the rest of the application and other clients
 signal on_client_player_hp(max_hp: int, amount: int)
@@ -70,6 +70,55 @@ func respawn_timer(time_left: float, max_time: float):
 signal on_respawn()
 func respawn():
 	on_respawn.emit()
+
+## emit to restore player movement
+signal restored_movement()
+func restore_movement():
+	restored_movement.emit()
+
+## emit to restrict player movement
+signal restricted_movement()
+func restrict_movement():
+	restricted_movement.emit()
+
+## emitted after the player jumps
+signal on_jumped()
+func jumped():
+	on_jumped.emit()
+
+signal on_teleport_player_to(target: Node3D)
+func teleport_player_to(target: Node3D):
+	if target.is_inside_tree():
+		on_teleport_player_to.emit(target)
+
+signal on_set_player_v(v: Vector3)
+func set_player_v(v: Vector3):
+	on_set_player_v.emit(v)
+
+signal on_force_thirdperson()
+func force_thirdperson():
+	on_force_thirdperson.emit()
+	
+signal on_force_firstperson()
+func force_firstperson():
+	on_force_firstperson.emit()
+
+signal on_player_show_hint(hint: String, time: float)
+func player_show_hint(hint: String, time: float = 3.0):
+	on_player_show_hint.emit(hint, time)
+
+signal on_player_show_interactable_text(hint: String, time: float)
+func player_show_interactable_text(hint: String, time: float = .1):
+	on_player_show_interactable_text.emit(hint, time)
+
+## set if player physics are locked (gravity, collision)
+signal on_player_set_physics_lock(locked: bool)
+func player_set_physics_lock(locked: bool):
+	on_player_set_physics_lock.emit(locked)
+
+signal on_player_invulnerable(add_time: float)
+func player_set_invulnerable(add_time: float = 3):
+	on_player_invulnerable.emit(add_time)
 
 # ================================================================================================
 # RPC auth-client to server
@@ -91,6 +140,22 @@ func client_won():
 # RPC server to auth-client
 # ================================================================================================
 
+@rpc()
+func s_force_thirdperson():
+	force_thirdperson()
+	
+@rpc()
+func s_force_firstperson():
+	force_firstperson()
+
+@rpc()
+func s_show_hint(hint: String, time: float = 3.0):
+	player_show_hint(hint, time)
+
+@rpc()
+func s_player_set_physics_lock(locked: bool):
+	on_player_set_physics_lock.emit(locked)
+	
 # ================================================================================================
 # RPC server to all clients
 # ================================================================================================

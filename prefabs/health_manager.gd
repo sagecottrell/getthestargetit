@@ -5,6 +5,9 @@ signal on_die()
 signal on_hurt(amount: int)
 signal current_hp(max: int, amount: int)
 
+signal on_invuln_start()
+signal on_invuln_end()
+
 @export var invulnerable: bool = false
 
 @export var BaseMaxHP: int = 3
@@ -22,8 +25,13 @@ func reset():
 	CurrentHP = MaxHP
 	publish_current()
 
-func hurt(amount: int = 1):
-	if invulnerable:
+func heal(amount: int = 1, exceed_max: bool = false):
+	pass
+
+func hurt(amount: int = 1, ignore_invuln: bool = false):
+	if not ignore_invuln and invulnerable:
+		return
+	if amount <= 0:
 		return
 	CurrentHP -= amount
 	on_hurt.emit(amount)
@@ -31,3 +39,23 @@ func hurt(amount: int = 1):
 	if CurrentHP <= 0:
 		CurrentHP = 0
 		on_die.emit()
+
+var invuln_timer: SceneTreeTimer
+func _on_invuln(add_time: float):
+	invulnerable = true
+	if add_time < 0:
+		invuln_timer.timeout.disconnect(_end_invuln)
+		invuln_timer.time_left = 0
+		return
+	if invuln_timer:
+		invuln_timer.time_left += add_time
+		return
+	on_invuln_start.emit()
+	invuln_timer = get_tree().create_timer(add_time)
+	invuln_timer.timeout.connect(_end_invuln)
+
+func _end_invuln():
+	on_invuln_end.emit()
+	SignalBus.player_set_invulnerable(false)
+	invulnerable = false
+	invuln_timer = null

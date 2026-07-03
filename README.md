@@ -13,12 +13,18 @@
 - [X] player HP
 - [ ] sounds
 - [X] player death animation
+- [ ] timer
+- [ ] checkpoints
 - [ ] more prefabs
 	- [ ] static obstacles of various shapes
 		- [X] trees
 		- [X] rocks
 		- [X] cubes
 		- [X] nuclear cube
+	- [ ] interactables
+		- [ ] button
+		- [ ] red coins
+		- [X] signal relays (source engine style)
 - [ ] example scenes
 	- [X] gravity area
 	- [ ] CSG cave using path3d

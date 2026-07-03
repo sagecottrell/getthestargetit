@@ -2,6 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://dnok8ihpiy8f1" path="res://prefabs/simpleEnemy/simpleEnemy.gltf" id="1_0ce06"]
 [ext_resource type="Script" uid="uid://bdk2a1ic3ytvm" path="res://prefabs/simpleEnemy/simple_enemy.gd" id="1_iphls"]
+[ext_resource type="Script" uid="uid://dw84lkpg0jm4n" path="res://prefabs/DamageField.gd" id="3_0qmr4"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_kgcq4"]
 
@@ -63,13 +64,13 @@ states/jumping/position = Vector2(574, 148)
 transitions = ["jump", "jumping", SubResource("AnimationNodeStateMachineTransition_uuyo2"), "idle", "jump", SubResource("AnimationNodeStateMachineTransition_p26sh"), "jumping", "idle", SubResource("AnimationNodeStateMachineTransition_ndv40"), "Start", "idle", SubResource("AnimationNodeStateMachineTransition_iphls"), "idle", "die", SubResource("AnimationNodeStateMachineTransition_tcom7"), "jump", "die", SubResource("AnimationNodeStateMachineTransition_0qmr4"), "jumping", "die", SubResource("AnimationNodeStateMachineTransition_yxovl")]
 graph_offset = Vector2(-115, -54)
 
-[sub_resource type="CylinderShape3D" id="CylinderShape3D_0qmr4"]
-height = 0.3696289
-radius = 0.77734375
-
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_iphls"]
 height = 0.34350586
 radius = 0.22998047
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_0qmr4"]
+height = 0.3696289
+radius = 0.77734375
 
 [node name="SimpleEnemy" type="CharacterBody3D" unique_id=508805129]
 collision_layer = 4
@@ -78,11 +79,8 @@ script = ExtResource("1_iphls")
 
 [node name="blockbench_export" parent="." unique_id=1399087127 instance=ExtResource("1_0ce06")]
 
-[node name="root" parent="blockbench_export" index="0" unique_id=1829007539]
-transform = Transform3D(1.2, 0, 0, 0, 0.3, 0, 0, 0, 1.2, 0, 0, 0)
-
-[node name="head" parent="blockbench_export/root" index="2" unique_id=653088348]
-transform = Transform3D(1, 0, 0, 0, 0.9999998, 0, 0, 0, 0.9999998, 0, 0.125, 0.1875)
+[node name="head" parent="blockbench_export/root" parent_id_path=PackedInt32Array(1399087127, 1829007539) index="2" unique_id=653088348]
+transform = Transform3D(1, 0, 0, 0, 0.9999846, -0.0055153533, 0, 0.0055153533, 0.9999846, 0, 0.125, 0.1875)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1332645728]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
@@ -104,17 +102,7 @@ tree_root = SubResource("AnimationNodeStateMachine_iphls")
 advance_expression_base_node = NodePath("..")
 anim_player = NodePath("../blockbench_export/AnimationPlayer")
 
-[node name="Hurtbox" type="Area3D" parent="." unique_id=359533166]
-collision_mask = 2
-metadata/_edit_lock_ = true
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Hurtbox" unique_id=1810136343]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.29393923, 0)
-shape = SubResource("CylinderShape3D_0qmr4")
-debug_color = Color(0.99887115, 0, 0.14270037, 0.41960785)
-metadata/_edit_lock_ = true
-
-[node name="Hitbox" type="Area3D" parent="." unique_id=870898431]
+[node name="Hitbox" type="Area3D" parent="." unique_id=2028242177]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.985, 0)
 collision_mask = 2
 metadata/_edit_lock_ = true
@@ -131,10 +119,21 @@ target_position = Vector3(0, -1, -1)
 debug_shape_custom_color = Color(1, 0, 0, 1)
 debug_shape_thickness = 5
 
+[node name="DamageField" type="Area3D" parent="." unique_id=273391096]
+collision_mask = 2
+script = ExtResource("3_0qmr4")
+metadata/_custom_type_script = "uid://dw84lkpg0jm4n"
+metadata/_edit_lock_ = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DamageField" unique_id=1966084319]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.29393923, 0)
+shape = SubResource("CylinderShape3D_0qmr4")
+debug_color = Color(0.99887115, 0, 0.14270037, 0.41960785)
+metadata/_edit_lock_ = true
+
 [connection signal="body_entered" from="Aggro" to="." method="_on_aggro_body_entered"]
 [connection signal="body_exited" from="Aggro" to="." method="_on_aggro_body_exited"]
 [connection signal="animation_finished" from="AnimationTree" to="." method="_on_animation_tree_animation_finished"]
-[connection signal="body_entered" from="Hurtbox" to="." method="_on_hurtbox_body_entered"]
 [connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]
 
 [editable path="blockbench_export"]

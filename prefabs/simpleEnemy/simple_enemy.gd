@@ -18,9 +18,6 @@ enum State {
 ## time spent in idle after jumping, before turning to jump again
 @export var resting_time: float = 1
 
-@export_category("Damage")
-@export var player_damage: int = 1
-
 const FRICTION_GROUPS = {"icy": 0.93}
 
 const SPEED = 5.0
@@ -93,11 +90,6 @@ func _on_aggro_body_entered(body: Node3D) -> void:
 func _on_aggro_body_exited(body: Node3D) -> void:
 	if body == target:
 		target = null
-
-
-func _on_hurtbox_body_entered(body: Node3D) -> void:
-	if body is Player and body.is_multiplayer_authority():
-		SignalBus.hurt(player_damage)
 
 
 func _on_hitbox_body_entered(body: Node3D) -> void:

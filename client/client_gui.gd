@@ -7,6 +7,8 @@ extends CanvasLayer
 @onready var countdownlabel = $ingame/countdownDisplay
 @onready var urdead = $ingame/urdead
 @onready var respawn_timer_display = %RespawnTimerDisplay
+@onready var hint_display = %HintDisplay
+@onready var interactable_display = %InteractableDisplay
 
 func _ready() -> void:
 	levelswitch.visible = false
@@ -16,8 +18,10 @@ func _ready() -> void:
 	urdead.visible = false
 	SignalBus.on_countdown.connect(_on_countdown)
 	SignalBus.on_respawn_timer.connect(_on_respawn_timer)
-	SignalBus.on_die.connect(on_playerdead)
+	SignalBus.on_killed.connect(on_playerdead)
 	SignalBus.on_respawn.connect(on_playerlive)
+	SignalBus.on_player_show_hint.connect(_manage_hint)
+	SignalBus.on_player_show_interactable_text.connect(_manage_interactable)
 
 func on_waiting_room():
 	levelswitch.visible = false
@@ -65,3 +69,31 @@ func on_playerlive():
 func _on_respawn_timer(left: float, max_time: float):
 	respawn_timer_display.max_value = max_time * 100
 	respawn_timer_display.value = (max_time - left) * 100
+
+
+# ============================================================================
+# hint
+# ============================================================================
+
+var hint_timer: SceneTreeTimer
+var interactable_timer: SceneTreeTimer
+
+func _manage_interactable(hint: String, time: float):
+	interactable_display.text = hint
+	if interactable_timer:
+		interactable_timer.time_left = time
+		return
+	interactable_timer = get_tree().create_timer(time)
+	await interactable_timer.timeout
+	interactable_display.text = ""
+	interactable_timer = null
+
+func _manage_hint(hint: String, time: float):
+	hint_display.text = hint
+	if hint_timer:
+		hint_timer.time_left = time
+		return
+	hint_timer = get_tree().create_timer(time)
+	await hint_timer.timeout
+	hint_display.text = ""
+	hint_timer = null
