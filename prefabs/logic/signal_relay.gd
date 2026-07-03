@@ -1,2 +1,2 @@
 class_name SignalRelayLogic
-extends Node
+extends BaseLogic

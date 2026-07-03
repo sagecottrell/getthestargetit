@@ -255,6 +255,7 @@ func _on_die():
 	if state == State.dead:
 		return
 	state = State.dead
+	camera_locked = true
 	SignalBus.restrict_movement()
 	SignalBus.player_set_physics_lock(true)
 	var tween = create_tween()
@@ -262,6 +263,7 @@ func _on_die():
 	await tween.finished
 	SignalBus.respawn()
 	await get_tree().create_timer(0.1).timeout
+	camera_locked = false
 	SignalBus.restore_movement()
 	SignalBus.player_set_physics_lock(false)
 

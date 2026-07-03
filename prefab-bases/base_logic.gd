@@ -1,3 +1,4 @@
+class_name BaseLogic
 extends Node
 
 signal deactivated()

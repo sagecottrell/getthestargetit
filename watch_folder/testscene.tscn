@@ -89,6 +89,9 @@ metadata/_custom_type_script = "uid://2a77n8l854rc"
 script = ExtResource("19_kciqv")
 metadata/_custom_type_script = "uid://8wro8myvb4sw"
 
+[node name="Star2" parent="." unique_id=30554338 instance=ExtResource("1_bqvsh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 100.32045, -8)
+
 [node name="PlayerSpawn" parent="." unique_id=1298073336 instance=ExtResource("5_pxpqt")]
 transform = Transform3D(-0.9986523, 0, -0.051900335, 0, 1, 0, 0.051900335, 0, -0.9986523, 0, 101, 0)
 
@@ -272,9 +275,9 @@ mesh = SubResource("BoxMesh_7c6qd")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="pedestal2" unique_id=1175493073]
 shape = SubResource("ConcavePolygonShape3D_1nuv2")
 
-[connection signal="collide" from="Star" to="." method="_on_star_collide"]
 [connection signal="activated" from="Star/PropSignalsComponent" to="Star/PlayerEventsLogic" method="show_hint" binds= ["Star Activated", 3.0]]
 [connection signal="deactivated" from="Star/PropSignalsComponent" to="Star/PlayerEventsLogic" method="show_hint" binds= ["Star Deactivated", 3.0]]
+[connection signal="collide" from="Star2" to="." method="_on_star_collide"]
 [connection signal="body_entered" from="deathplane" to="." method="_on_deathplane_body_entered"]
 [connection signal="ready" from="bridge" to="bridge/setfaraway" method="animate"]
 [connection signal="player_collide" from="Nuclearcube" to="." method="_on_deathplane_body_entered"]

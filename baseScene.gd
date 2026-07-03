@@ -45,12 +45,6 @@ func _on_deathplane_body_entered(body: Node3D) -> void:
 	elif body is CharacterBody3D:
 		body.queue_free()
 
-
-func _on_star_collide(player: Player) -> void:
-	if player.name.to_int() != multiplayer.get_unique_id():
-		return
-	$Star.queue_free()
-	SignalBus.local_win()
 	
 func _on_cam_switch(pid: int, increase: bool):
 	if pid != 1:

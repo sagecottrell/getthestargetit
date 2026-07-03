@@ -1,6 +1,6 @@
 extends Node3D
 
-signal collide(player: Player)
+signal collide()
 
 # radians per second
 @export var rotate_speed : float = 4
@@ -12,6 +12,8 @@ func on_collide(area: Node3D):
 	if area is Player:
 		if area.is_multiplayer_authority():
 			collide.emit(area)
+			SignalBus.local_win()
+			queue_free()
 		else:
 			spinfast()
 
