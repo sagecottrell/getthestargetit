@@ -26,7 +26,10 @@ func reset():
 	publish_current()
 
 func heal(amount: int = 1, exceed_max: bool = false):
-	CurrentHP += amount
+	if amount < 0:
+		CurrentHP = MaxHP
+	else:
+		CurrentHP += amount
 	if not exceed_max:
 		CurrentHP = min(CurrentHP, MaxHP)
 	current_hp.emit(MaxHP, CurrentHP)

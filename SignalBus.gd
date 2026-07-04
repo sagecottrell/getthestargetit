@@ -49,15 +49,23 @@ func unstuck():
 	on_unstuck.emit()
 
 ## when the local player should die
-signal on_killed()
 func kill():
+	hurt(100, true)
+
+## when the local player has died
+signal on_killed()
+func killed():
 	on_killed.emit()
-	
+
 ## when the local player gets hurt
 signal on_hurt(amount: int, ignore_invuln: bool)
 func hurt(amount: int = 1, ignore_invuln: bool = false):
 	on_hurt.emit(amount, ignore_invuln)
-	
+
+signal on_heal(amount: int, ignore_max:bool)
+func heal(amount: int, ignore_max: bool = false):
+	on_heal.emit(amount, ignore_max)
+
 ## when the player hp changes, use this to inform the rest of the application and other clients
 signal on_client_player_hp(max_hp: int, amount: int)
 func client_player_hp(max_hp: int, amount: int):
@@ -159,7 +167,15 @@ func s_player_set_physics_lock(locked: bool):
 @rpc()
 func s_kill():
 	kill()
+
+@rpc()
+func s_hurt(amount: int = -1, ignore_invuln: bool = false):
+	hurt(amount, ignore_invuln)
 	
+@rpc()
+func s_heal(amount: int = -1, ignore_max: bool = false):
+	heal(amount, ignore_max)
+
 # ================================================================================================
 # RPC server to all clients
 # ================================================================================================

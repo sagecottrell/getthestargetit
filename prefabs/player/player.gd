@@ -115,11 +115,12 @@ func _ready():
 		submerged.connect(func(): state = State.swim)
 		jumped.connect(SignalBus.jumped)
 		
+		SignalBus.on_heal.connect(hp.heal)
 		SignalBus.on_hurt.connect(hp.hurt)
-		SignalBus.on_killed.connect(_on_die)
+		SignalBus.on_killed.connect(_on_killed)
 		SignalBus.on_respawn.connect(_reset)
 		hp.on_hurt.connect(_on_hurt)
-		hp.on_die.connect(SignalBus.kill) ## these signals may seem redundant, but it's important to include the signal bus in the process
+		hp.on_die.connect(SignalBus.killed) ## these signals may seem redundant, but it's important to include the signal bus in the process
 		hp.current_hp.connect(SignalBus.client_player_hp)
 	else:
 		SignalBus.on_cam_switch.connect(on_cam_switch)
@@ -251,7 +252,7 @@ func _on_hurt(_amount: int):
 	hurt = false
 	hurt_timer = null
 
-func _on_die():
+func _on_killed():
 	if state == State.dead:
 		return
 	state = State.dead

@@ -1,6 +1,8 @@
 [gd_scene format=3 uid="uid://bowsms3lopllo"]
 
 [ext_resource type="Script" uid="uid://cfx55ujo0n6m5" path="res://server/admin/playerControls.gd" id="1_s8g6v"]
+[ext_resource type="Texture2D" uid="uid://bdn2edovu1wc2" path="res://textures/heart.png" id="2_cbn0g"]
+[ext_resource type="Texture2D" uid="uid://b5gdm1kog47wh" path="res://textures/heart-empty.png" id="3_iuq62"]
 
 [node name="PlayerControls" type="VBoxContainer" unique_id=286028301]
 offset_right = 1152.0
@@ -12,9 +14,51 @@ metadata/_tab_index = 1
 layout_mode = 2
 text = "Kick"
 
+[node name="HSeparator" type="HSeparator" parent="." unique_id=1239390003]
+layout_mode = 2
+
 [node name="respawn" type="Button" parent="." unique_id=1042821832]
 layout_mode = 2
 text = "Respawn"
 
+[node name="HSeparator2" type="HSeparator" parent="." unique_id=1625220737]
+layout_mode = 2
+
+[node name="Heal" type="HBoxContainer" parent="." unique_id=1050906112]
+layout_mode = 2
+alignment = 1
+
+[node name="heal" type="Button" parent="Heal" unique_id=1282377437]
+layout_mode = 2
+text = "Heal"
+icon = ExtResource("2_cbn0g")
+
+[node name="healamt" type="SpinBox" parent="Heal" unique_id=888591020]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="overmax" type="CheckBox" parent="Heal" unique_id=1739494437]
+layout_mode = 2
+text = "over max"
+
+[node name="Hurt" type="HBoxContainer" parent="." unique_id=1282609048]
+layout_mode = 2
+alignment = 1
+
+[node name="hurt" type="Button" parent="Hurt" unique_id=856905034]
+layout_mode = 2
+text = "Hurt"
+icon = ExtResource("3_iuq62")
+
+[node name="hurtamt" type="SpinBox" parent="Hurt" unique_id=1946518224]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="ignoreinvuln" type="CheckBox" parent="Hurt" unique_id=1371656480]
+layout_mode = 2
+text = "ignore invuln"
+
 [connection signal="pressed" from="kick" to="." method="kick"]
 [connection signal="pressed" from="respawn" to="." method="respawn"]
+[connection signal="pressed" from="Heal/heal" to="." method="_on_heal_pressed"]
+[connection signal="pressed" from="Hurt/hurt" to="." method="_on_hurt_pressed"]

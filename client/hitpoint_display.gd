@@ -10,6 +10,8 @@ func _ready():
 
 func _on_player_hp(max_hp: int, amount: int):
 	var m = get_child_count() - 1
+	if amount > max_hp:
+		max_hp = amount
 	if max_hp < m:
 		for i in range(m, max_hp, -1):
 			var child = get_child(i)
