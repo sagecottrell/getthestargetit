@@ -9,6 +9,7 @@ extends CanvasLayer
 @onready var respawn_timer_display = %RespawnTimerDisplay
 @onready var hint_display = %HintDisplay
 @onready var interactable_display = %InteractableDisplay
+@onready var timer_display = $ingame/TimerDisplay
 
 func _ready() -> void:
 	levelswitch.visible = false
@@ -22,6 +23,8 @@ func _ready() -> void:
 	SignalBus.on_respawn.connect(on_playerlive)
 	SignalBus.on_player_show_hint.connect(_manage_hint)
 	SignalBus.on_player_show_interactable_text.connect(_manage_interactable)
+	SignalBus.on_timer_change.connect(func (t): timer_display.text = TimeHelpers.format_seconds(t))
+	SignalBus.on_game_over.connect(func (s): timer_display.text = s)
 
 func on_waiting_room():
 	levelswitch.visible = false

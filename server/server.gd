@@ -4,7 +4,6 @@ extends Node
 var server_gui_scene = preload("res://server/server_gui.tscn")
 var gui: ServerGUI
 
-
 static var PlayerIds: Dictionary[int, PlayerInfo] = {}
 static var PlayerList: Array[int] = []
 

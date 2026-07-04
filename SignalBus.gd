@@ -29,6 +29,19 @@ signal on_cam_switch(pid: int, increase: bool)
 func cam_switch(pid: int, increase: bool):
 	on_cam_switch.emit(pid, increase)
 
+## set the starting timer
+signal s_on_set_time(amt: int)
+func s_set_time(amt: int):
+	s_on_set_time.emit(amt)
+
+signal s_on_pause_timer()
+func s_pause_timer():
+	s_on_pause_timer.emit()
+
+signal s_on_resume_timer()
+func s_resume_timer():
+	s_on_resume_timer.emit()
+
 # ================================================================================================
 # NORPC auth-client to auth-client
 # ================================================================================================
@@ -210,6 +223,17 @@ signal on_server_changing_level()
 func server_changing_level():
 	on_server_changing_level.emit()
 
+## update the level timer
+signal on_timer_change(time: int)
+@rpc("call_local")
+func timer_change(time: int):
+	on_timer_change.emit(time)
+
+## when the server ends the game, with text to display
+signal on_game_over(text: String)
+@rpc("call_local")
+func s_game_over(text: String):
+	on_game_over.emit(text)
 
 # ================================================================================================
 # ================================================================================================

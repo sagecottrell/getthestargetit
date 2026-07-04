@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://btdvny6i4c55h" path="res://DirectoryWatcher/DirectoryWatcher.gd" id="4_g50to"]
 [ext_resource type="PackedScene" uid="uid://bowsms3lopllo" path="res://server/admin/player_controls.tscn" id="4_j5oqv"]
 [ext_resource type="PackedScene" uid="uid://dha8jhuvjl4ip" path="res://server/admin/confirmation.tscn" id="5_j5oqv"]
+[ext_resource type="PackedScene" uid="uid://dokktyw18e5ar" path="res://server/admin/timer_settings.tscn" id="6_iwhow"]
 
 [node name="AdminPanel" type="Control" unique_id=1489788693]
 layout_mode = 3
@@ -89,6 +90,17 @@ metadata/_tab_index = 1
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
+
+[node name="Level" type="VBoxContainer" parent="HBoxContainer/TabContainer" unique_id=880137255]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 2
+
+[node name="timerSettings" parent="HBoxContainer/TabContainer/Level" unique_id=571621338 instance=ExtResource("6_iwhow")]
+layout_mode = 2
+
+[node name="HSeparator" type="HSeparator" parent="HBoxContainer/TabContainer/Level" unique_id=717154871]
+layout_mode = 2
 
 [node name="Confirmation" parent="." unique_id=679267712 instance=ExtResource("5_j5oqv")]
 visible = false

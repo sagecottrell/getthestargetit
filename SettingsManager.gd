@@ -23,6 +23,7 @@ func save_default_settings() -> void:
 	config.set_value("Graphics", "resolution", Vector2i(1920, 1080))
 	config.set_value("Audio", "master_volume", 0.8)
 	config.set_value("Server", "watch_path", "")
+	config.set_value("Server", "timer_start_value", 60)
 	config.save(SETTINGS_FILE_PATH)
 
 # Load the file from disk

@@ -5,6 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://svijnbaaeuol" path="res://textures/Free DEMO Pixel Skies Background pack by Digital Moons/demo01_PixelSky.png" id="2_df8lk"]
 [ext_resource type="Script" uid="uid://d31fb4ihe08c" path="res://prefabs/tweens/tweener.gd" id="5_1nuv2"]
 [ext_resource type="PackedScene" uid="uid://x18ax2thkbko" path="res://prefabs/PlayerSpawn.tscn" id="5_pxpqt"]
+[ext_resource type="Script" uid="uid://dpvmykf43bjky" path="res://prefabs/logic/game_events.gd" id="6_gbrv7"]
 [ext_resource type="Script" uid="uid://csjccrhj5wnx7" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_3d.gd" id="6_pxpqt"]
 [ext_resource type="Script" uid="uid://8umksf8e80fw" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="7_k8yl0"]
 [ext_resource type="PackedScene" uid="uid://c0akl332hihh1" path="res://prefabs/octagon.tscn" id="7_pxpqt"]
@@ -89,8 +90,9 @@ metadata/_custom_type_script = "uid://2a77n8l854rc"
 script = ExtResource("19_kciqv")
 metadata/_custom_type_script = "uid://8wro8myvb4sw"
 
-[node name="Star2" parent="." unique_id=30554338 instance=ExtResource("1_bqvsh")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 100.32045, -8)
+[node name="GameEvents" type="Node" parent="Star" unique_id=605610734]
+script = ExtResource("6_gbrv7")
+metadata/_custom_type_script = "uid://dpvmykf43bjky"
 
 [node name="PlayerSpawn" parent="." unique_id=1298073336 instance=ExtResource("5_pxpqt")]
 transform = Transform3D(-0.9986523, 0, -0.051900335, 0, 1, 0, 0.051900335, 0, -0.9986523, 0, 101, 0)
@@ -277,7 +279,7 @@ shape = SubResource("ConcavePolygonShape3D_1nuv2")
 
 [connection signal="activated" from="Star/PropSignalsComponent" to="Star/PlayerEventsLogic" method="show_hint" binds= ["Star Activated", 3.0]]
 [connection signal="deactivated" from="Star/PropSignalsComponent" to="Star/PlayerEventsLogic" method="show_hint" binds= ["Star Deactivated", 3.0]]
-[connection signal="collide" from="Star2" to="." method="_on_star_collide"]
+[connection signal="on_game_over" from="Star/GameEvents" to="Star/PropSignalsComponent" method="deactivate"]
 [connection signal="body_entered" from="deathplane" to="." method="_on_deathplane_body_entered"]
 [connection signal="ready" from="bridge" to="bridge/setfaraway" method="animate"]
 [connection signal="player_collide" from="Nuclearcube" to="." method="_on_deathplane_body_entered"]

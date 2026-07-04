@@ -1,0 +1,46 @@
+[gd_scene format=3 uid="uid://dokktyw18e5ar"]
+
+[ext_resource type="Script" uid="uid://c5bj8y0ptftf" path="res://server/admin/timer_settings.gd" id="1_kvkd5"]
+[ext_resource type="Texture2D" uid="uid://dk3dxhfyrei1f" path="res://icons/Play.svg" id="2_o61ck"]
+
+[node name="timerSettings" type="HBoxContainer" unique_id=1477046432]
+offset_right = 1152.0
+offset_bottom = 24.0
+size_flags_horizontal = 3
+script = ExtResource("1_kvkd5")
+
+[node name="Label2" type="Label" parent="." unique_id=1055835205]
+layout_mode = 2
+text = "Current Starting Timer:"
+
+[node name="CurrentStartingTimer" type="Label" parent="." unique_id=1394763227]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="timeInput" type="LineEdit" parent="." unique_id=797076287]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_vertical = 4
+max_length = 5
+select_all_on_focus = true
+
+[node name="VSeparator" type="VSeparator" parent="." unique_id=1542830707]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=617911473]
+layout_mode = 2
+
+[node name="TimerCurrent" type="Label" parent="HBoxContainer" unique_id=1280893185]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+text = "3:00"
+horizontal_alignment = 2
+
+[node name="pauseresume" type="Button" parent="HBoxContainer" unique_id=1704160824]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 4
+text = "Pause"
+icon = ExtResource("2_o61ck")
