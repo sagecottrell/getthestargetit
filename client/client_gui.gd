@@ -9,12 +9,13 @@ extends CanvasLayer
 @onready var respawn_timer_display = %RespawnTimerDisplay
 @onready var hint_display = %HintDisplay
 @onready var interactable_display = %InteractableDisplay
-@onready var timer_display = $ingame/TimerDisplay
+@onready var timer_display = %TimerDisplay
 
 func _ready() -> void:
 	levelswitch.visible = false
 	waitingroom.visible = false
 	ingame.visible = false
+	%TimerDisplay.text = ""
 	
 	urdead.visible = false
 	SignalBus.on_countdown.connect(_on_countdown)
@@ -47,7 +48,7 @@ func on_levelswitch():
 
 
 var countdown_tween: Tween
-func _on_countdown(display: String, length: float, _final: bool):
+func _on_countdown(display: String, length: float):
 	countdownlabel.visible = true
 	countdownlabel.text = display
 	if countdown_tween:

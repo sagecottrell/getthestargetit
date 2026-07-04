@@ -13,8 +13,9 @@
 - [X] player HP
 - [ ] sounds
 - [X] player death animation
-- [ ] timer
+- [X] timer
 - [ ] checkpoints
+- [ ] powerups
 - [ ] more prefabs
 	- [ ] static obstacles of various shapes
 		- [X] trees

@@ -14,6 +14,8 @@ func _ready() -> void:
 	SignalBus.on_change_scene.connect(_on_change_scene)
 	SignalBus.on_timer_change.connect(func (t): timer_display.text = TimeHelpers.format_seconds(t))
 	SignalBus.on_game_over.connect(func (s): timer_display.text = s)
+	%PrevCameraButton.pressed.connect(_on_prev_camera_button_pressed)
+	%NextCameraButton.pressed.connect(_on_next_camera_button_pressed)
 	level_controller.visible = false
 	pausemenu.visible = true
 
@@ -52,13 +54,14 @@ func _on_start_countdown_button_pressed() -> void:
 	for i in range(parts.size()):
 		var part = parts[i]
 		var is_last = i == parts.size() - 1
-		SignalBus.countdown.rpc(part, 1.0 if is_last else 3.0, is_last)
+		SignalBus.s_countdown.rpc(part, 1.0 if is_last else 3.0)
 		await tree.create_timer(1.0).timeout
+	SignalBus.s_game_start.rpc()
 	SignalBus.s_resume_timer()
 
 
 var countdown_tween: Tween
-func _on_countdown(display: String, length: float, _final: bool):
+func _on_countdown(display: String, length: float):
 	countdownlabel.text = display
 	if countdown_tween:
 		countdown_tween.kill()
@@ -71,4 +74,5 @@ func _on_countdown_finish():
 
 
 func _on_unlock_players_button_pressed() -> void:
-	SignalBus.countdown.rpc("go!", 1.0, true)
+	SignalBus.s_countdown.rpc("go!", 1.0)
+	SignalBus.s_game_start.rpc()

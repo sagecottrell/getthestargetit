@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://dokktyw18e5ar"]
 
 [ext_resource type="Script" uid="uid://c5bj8y0ptftf" path="res://server/admin/timer_settings.gd" id="1_kvkd5"]
-[ext_resource type="Texture2D" uid="uid://dk3dxhfyrei1f" path="res://icons/Play.svg" id="2_o61ck"]
 
 [node name="timerSettings" type="HBoxContainer" unique_id=1477046432]
 offset_right = 1152.0
@@ -15,13 +14,16 @@ text = "Current Starting Timer:"
 
 [node name="CurrentStartingTimer" type="Label" parent="." unique_id=1394763227]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(60, 0)
 layout_mode = 2
+text = "00:60"
 
 [node name="timeInput" type="LineEdit" parent="." unique_id=797076287]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 size_flags_vertical = 4
+placeholder_text = "set time"
 max_length = 5
 select_all_on_focus = true
 
@@ -35,7 +37,7 @@ layout_mode = 2
 unique_name_in_owner = true
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
-text = "3:00"
+text = "00:00"
 horizontal_alignment = 2
 
 [node name="pauseresume" type="Button" parent="HBoxContainer" unique_id=1704160824]
@@ -43,4 +45,3 @@ unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 4
 text = "Pause"
-icon = ExtResource("2_o61ck")

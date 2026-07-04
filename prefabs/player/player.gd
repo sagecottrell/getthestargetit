@@ -104,7 +104,7 @@ func _ready():
 		SignalBus.on_force_thirdperson.connect(switch_to_third_person)
 		
 		SignalBus.on_local_win.connect(on_win)
-		SignalBus.on_countdown.connect(on_countdown)
+		SignalBus.on_game_start.connect(_on_game_start)
 		switch_to_fp_or_tp_cam()
 		movement_locked = true  # start locked, the server will send an unlock signal
 		_on_set_physics_locked(true)
@@ -199,13 +199,9 @@ func _input(event: InputEvent) -> void:
 	if not camera_locked and event is InputEventMouseMotion and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
 		rotate_head(event.screen_relative)
 
-func on_countdown(_display: String, _length: float, final: bool):
-	if movement_locked and final:
-		SignalBus.restore_movement()
-		SignalBus.player_set_physics_lock(false)
-	elif not movement_locked and not final:
-		SignalBus.restrict_movement()
-		SignalBus.player_set_physics_lock(true)
+func _on_game_start():
+	SignalBus.restore_movement()
+	SignalBus.player_set_physics_lock(false)
 
 func disable_cams():
 	free_cam.priority = 0

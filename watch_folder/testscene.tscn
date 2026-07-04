@@ -5,7 +5,6 @@
 [ext_resource type="Texture2D" uid="uid://svijnbaaeuol" path="res://textures/Free DEMO Pixel Skies Background pack by Digital Moons/demo01_PixelSky.png" id="2_df8lk"]
 [ext_resource type="Script" uid="uid://d31fb4ihe08c" path="res://prefabs/tweens/tweener.gd" id="5_1nuv2"]
 [ext_resource type="PackedScene" uid="uid://x18ax2thkbko" path="res://prefabs/PlayerSpawn.tscn" id="5_pxpqt"]
-[ext_resource type="Script" uid="uid://dpvmykf43bjky" path="res://prefabs/logic/game_events.gd" id="6_gbrv7"]
 [ext_resource type="Script" uid="uid://csjccrhj5wnx7" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_3d.gd" id="6_pxpqt"]
 [ext_resource type="Script" uid="uid://8umksf8e80fw" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="7_k8yl0"]
 [ext_resource type="PackedScene" uid="uid://c0akl332hihh1" path="res://prefabs/octagon.tscn" id="7_pxpqt"]
@@ -90,10 +89,6 @@ metadata/_custom_type_script = "uid://2a77n8l854rc"
 script = ExtResource("19_kciqv")
 metadata/_custom_type_script = "uid://8wro8myvb4sw"
 
-[node name="GameEvents" type="Node" parent="Star" unique_id=605610734]
-script = ExtResource("6_gbrv7")
-metadata/_custom_type_script = "uid://dpvmykf43bjky"
-
 [node name="PlayerSpawn" parent="." unique_id=1298073336 instance=ExtResource("5_pxpqt")]
 transform = Transform3D(-0.9986523, 0, -0.051900335, 0, 1, 0, 0.051900335, 0, -0.9986523, 0, 101, 0)
 
@@ -124,7 +119,7 @@ tween_resource = SubResource("Resource_ix6w0")
 metadata/_custom_type_script = "uid://csjccrhj5wnx7"
 
 [node name="PhantomCamera3D3" type="Node3D" parent="." unique_id=133932300]
-transform = Transform3D(-0.052848548, -0.37060046, 0.92728764, -0.021087252, 0.92879236, 0.37, -0.9983798, 4.3879634e-08, -0.056900263, 67.48776, 106.148346, 45.04531)
+transform = Transform3D(-0.1991381, -0.36656874, 0.9088297, -0.02108725, 0.92879224, 0.36999997, -0.97974443, 0.054516412, -0.19268787, 49.487762, 106.148346, 4.045311)
 script = ExtResource("6_pxpqt")
 priority = 50
 tween_resource = SubResource("Resource_ix6w0")
@@ -205,7 +200,7 @@ metadata/_custom_type_script = "uid://d31fb4ihe08c"
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 100.6106, 76)
 
 [node name="Nuclearcube" parent="." unique_id=559031872 instance=ExtResource("12_t7qil")]
-transform = Transform3D(25.53, 0, 0, 0, 25.53, 0, 0, 0, 25.53, 0, 86.96615, 85.005615)
+transform = Transform3D(24, 0, 0, 0, 24, 0, 0, 0, 24, 0, 86.96615, 85.005615)
 
 [node name="SimpleEnemy" parent="." unique_id=508805129 instance=ExtResource("13_f0rtv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 31.476742, 99.61269, 19.506218)
@@ -279,7 +274,6 @@ shape = SubResource("ConcavePolygonShape3D_1nuv2")
 
 [connection signal="activated" from="Star/PropSignalsComponent" to="Star/PlayerEventsLogic" method="show_hint" binds= ["Star Activated", 3.0]]
 [connection signal="deactivated" from="Star/PropSignalsComponent" to="Star/PlayerEventsLogic" method="show_hint" binds= ["Star Deactivated", 3.0]]
-[connection signal="on_game_over" from="Star/GameEvents" to="Star/PropSignalsComponent" method="deactivate"]
 [connection signal="body_entered" from="deathplane" to="." method="_on_deathplane_body_entered"]
 [connection signal="ready" from="bridge" to="bridge/setfaraway" method="animate"]
 [connection signal="player_collide" from="Nuclearcube" to="." method="_on_deathplane_body_entered"]

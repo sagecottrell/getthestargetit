@@ -211,11 +211,10 @@ func reset_rankings():
 
 ## show a countdown in the middle of the screen. will be called multiple times
 ## length is the maximum mount of time to display this text. must greater than zero. newer countdowns will hide this early
-## final=true for the last part of the countdown (usually a "GO!" or something)
-signal on_countdown(display: String, length: float, final: bool)
+signal on_countdown(display: String, length: float)
 @rpc("call_local")
-func countdown(display: String, length: float, final: bool):
-	on_countdown.emit(display, length, final)
+func s_countdown(display: String, length: float):
+	on_countdown.emit(display, length)
 
 ## let the clients know that the server is planning on changing the level
 signal on_server_changing_level()
@@ -235,6 +234,12 @@ signal on_game_over(text: String)
 func s_game_over(text: String):
 	on_game_over.emit(text)
 
+## when the server starts the game
+signal on_game_start()
+@rpc("call_local")
+func s_game_start():
+	on_game_start.emit()
+	
 # ================================================================================================
 # ================================================================================================
 

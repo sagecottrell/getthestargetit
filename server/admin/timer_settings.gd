@@ -8,10 +8,10 @@ extends Control
 var paused: bool = true
 
 func _ready():
-	SignalBus.on_timer_change.connect(func (time): timercurrent.text = TimeHelpers.format_seconds(time))
-	SignalBus.on_game_over.connect(func (): timercurrent.text = '--')
+	SignalBus.on_timer_change.connect(func (time): timercurrent.text = TimeHelpers.format_seconds(time, true))
+	SignalBus.on_game_over.connect(func (t): timercurrent.text = t)
 	setTime.text_submitted.connect(_on_set_time_input_text_submitted)
-	SignalBus.s_on_set_time.connect(func (t): startingTimer.text = TimeHelpers.format_seconds(t))
+	SignalBus.s_on_set_time.connect(func (t): startingTimer.text = TimeHelpers.format_seconds(t, true))
 	
 	_on_pause()
 	pausebutton.pressed.connect(toggle_pause)

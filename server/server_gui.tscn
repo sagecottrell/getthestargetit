@@ -29,6 +29,14 @@ offset_top = -1.0
 offset_right = 40.0
 offset_bottom = 39.0
 
+[node name="PlayerList" type="VBoxContainer" parent="LevelControls" unique_id=449186604]
+unique_name_in_owner = true
+layout_mode = 0
+offset_top = 1.0
+offset_right = 242.0
+offset_bottom = 649.0
+script = ExtResource("5_418g5")
+
 [node name="LevelController" type="HBoxContainer" parent="LevelControls" unique_id=1488700109]
 unique_name_in_owner = true
 layout_mode = 0
@@ -43,11 +51,13 @@ layout_mode = 2
 layout_mode = 2
 
 [node name="PrevCameraButton" type="Button" parent="LevelControls/LevelController/PanelContainer/HBoxContainer" unique_id=975725488]
+unique_name_in_owner = true
 layout_mode = 2
 text = "Prev"
 icon = ExtResource("2_oj2u2")
 
 [node name="NextCameraButton" type="Button" parent="LevelControls/LevelController/PanelContainer/HBoxContainer" unique_id=1145800913]
+unique_name_in_owner = true
 layout_mode = 2
 text = "Next"
 icon = ExtResource("2_oj2u2")
@@ -86,14 +96,6 @@ layout_mode = 2
 tooltip_text = "Unlock Player Movement"
 icon = ExtResource("4_xmmr6")
 
-[node name="PlayerList" type="VBoxContainer" parent="LevelControls" unique_id=449186604]
-unique_name_in_owner = true
-layout_mode = 0
-offset_top = 1.0
-offset_right = 242.0
-offset_bottom = 649.0
-script = ExtResource("5_418g5")
-
 [node name="TimerDisplay" type="Label" parent="LevelControls" unique_id=1431125609]
 unique_name_in_owner = true
 layout_mode = 0
@@ -117,7 +119,5 @@ layout_mode = 1
 process_callback = 0
 script = ExtResource("7_xmmr6")
 
-[connection signal="pressed" from="LevelControls/LevelController/PanelContainer/HBoxContainer/PrevCameraButton" to="." method="_on_prev_camera_button_pressed"]
-[connection signal="pressed" from="LevelControls/LevelController/PanelContainer/HBoxContainer/NextCameraButton" to="." method="_on_next_camera_button_pressed"]
 [connection signal="pressed" from="LevelControls/LevelController/PanelContainer2/HBoxContainer/StartCountdownButton" to="." method="_on_start_countdown_button_pressed"]
 [connection signal="pressed" from="LevelControls/LevelController/PanelContainer2/HBoxContainer/UnlockPlayersButton" to="." method="_on_unlock_players_button_pressed"]
