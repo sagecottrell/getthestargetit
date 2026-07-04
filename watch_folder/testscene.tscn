@@ -19,6 +19,7 @@
 [ext_resource type="Texture2D" uid="uid://m5us13vug6au" path="res://textures/rock.png" id="17_eq453"]
 [ext_resource type="PackedScene" uid="uid://suvyr4b7yflf" path="res://prefabs/PushButtonOnce.tscn" id="19_gbrv7"]
 [ext_resource type="Script" uid="uid://8wro8myvb4sw" path="res://prefabs/logic/player_events.gd" id="19_kciqv"]
+[ext_resource type="PackedScene" uid="uid://b01kqj2o2ige6" path="res://prefabs/Checkpoint.tscn" id="20_gbrv7"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_0kh3j"]
 panorama = ExtResource("2_df8lk")
@@ -41,9 +42,6 @@ script = ExtResource("7_k8yl0")
 duration = 0.0
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_1nuv2"]
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_k8yl0"]
-size = Vector3(50, 50, 48.19922)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gbrv7"]
 albedo_color = Color(1, 0, 0.07058824, 1)
@@ -141,9 +139,6 @@ debug_color = Color(0.99215686, 0, 0.27058825, 1)
 [node name="Octagon3" parent="." unique_id=1133224250 instance=ExtResource("7_pxpqt")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32, 0, 11)
 
-[node name="Octagon2" parent="." unique_id=1691761476 instance=ExtResource("7_pxpqt")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 85)
-
 [node name="3x3Platform" parent="." unique_id=23620910 instance=ExtResource("8_k8yl0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 99.44984, 0)
 
@@ -152,19 +147,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 99.44984, 0)
 
 [node name="3x3Platform3" parent="." unique_id=1643658215 instance=ExtResource("8_k8yl0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 99.44984, 0)
-
-[node name="Area3D" type="Area3D" parent="." unique_id=1362371637]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 101.88252, 43)
-collision_mask = 3
-priority = 1
-gravity_space_override = 3
-gravity_point_center = Vector3(0, 0, 1)
-gravity_direction = Vector3(0, 0, 1)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=1406324228]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5.9003906)
-shape = SubResource("BoxShape3D_k8yl0")
-debug_color = Color(0.99326307, 0, 0.24691096, 0.41960785)
 
 [node name="bridge" type="Node3D" parent="." unique_id=1307490053]
 
@@ -197,7 +179,7 @@ relative = 1
 metadata/_custom_type_script = "uid://d31fb4ihe08c"
 
 [node name="Cube" parent="." unique_id=2129962462 instance=ExtResource("11_6ea13")]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 100.6106, 76)
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 100.6106, 77)
 
 [node name="Nuclearcube" parent="." unique_id=559031872 instance=ExtResource("12_t7qil")]
 transform = Transform3D(24, 0, 0, 0, 24, 0, 0, 0, 24, 0, 86.96615, 85.005615)
@@ -231,13 +213,19 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23.476742, 99.61269, 12.50621
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.234447, 98, -17.154594)
 
 [node name="IceCube2" parent="." unique_id=953216176 instance=ExtResource("14_yexxi")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -49.828266, 98, 33.4791)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.17173386, 98, 33.4791)
 
 [node name="IceCube3" parent="." unique_id=219118062 instance=ExtResource("14_yexxi")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -49.828266, 98, 42.4791)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.17173386, 99, 42.4791)
 
 [node name="IceCube4" parent="." unique_id=1018189911 instance=ExtResource("14_yexxi")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -49.828266, 98, 52.4791)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.17173386, 100, 52.4791)
+
+[node name="IceCube6" parent="." unique_id=457615464 instance=ExtResource("14_yexxi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.17173386, 101, 61.479095)
+
+[node name="IceCube7" parent="." unique_id=1032265432 instance=ExtResource("14_yexxi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.17173386, 102, 69.479095)
 
 [node name="IceCube5" parent="." unique_id=589309088 instance=ExtResource("14_yexxi")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13, 98, -24)
@@ -271,6 +259,12 @@ mesh = SubResource("BoxMesh_7c6qd")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="pedestal2" unique_id=1175493073]
 shape = SubResource("ConcavePolygonShape3D_1nuv2")
+
+[node name="Checkpoint" parent="." unique_id=2037637097 instance=ExtResource("20_gbrv7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.034197807, 101.6118, 77.06252)
+
+[node name="Checkpoint2" parent="." unique_id=461311173 instance=ExtResource("20_gbrv7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.6433125, 99.606445, 8.583353)
 
 [connection signal="activated" from="Star/PropSignalsComponent" to="Star/PlayerEventsLogic" method="show_hint" binds= ["Star Activated", 3.0]]
 [connection signal="deactivated" from="Star/PropSignalsComponent" to="Star/PlayerEventsLogic" method="show_hint" binds= ["Star Deactivated", 3.0]]

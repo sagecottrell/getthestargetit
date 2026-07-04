@@ -9,6 +9,8 @@ static var PlayerList: Array[int] = []
 
 static var rankings: Array[int] = []
 
+static var cooperative: bool = false
+
 func _ready() -> void:
 	multiplayer.server_relay = true
 
@@ -24,6 +26,8 @@ func _on_multiplayer_on_host() -> void:
 	SignalBus.on_recieve_scene_text.connect(_on_recieve_scene_text)
 	SignalBus.s_on_file_press_send.connect(pack_and_send)
 	SignalBus.on_player_setup.connect(_on_client_info)
+	SignalBus.on_set_game_coop.connect(_on_coop)
+	SignalBus.on_set_game_versus.connect(_on_versus)
 
 func _on_client_connect(id: int):
 	prints("client connected:", id)
@@ -40,6 +44,14 @@ func _on_client_info(sender_id: int, info: PlayerInfo):
 	PlayerIds[sender_id] = info
 	PlayerList.append(sender_id)
 
+func _on_versus():
+	cooperative = false
+	SignalBus.s_server_message.rpc("Cooperative Disabled")
+
+func _on_coop():
+	cooperative = true
+	SignalBus.s_server_message.rpc("Cooperative Enabled")
+		
 # ============================================================================
 # setup level
 # ============================================================================
@@ -58,6 +70,9 @@ func pack_and_send(fp: String):
 	
 	SignalBus.recieve_scene_text.rpc(file.get_as_text())
 	gui.level_controller.visible = true
+	
+	if cooperative:
+		SignalBus.s_set_game_coop.rpc()
 
 # ============================================================================
 # player reach goal

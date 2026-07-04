@@ -1,6 +1,7 @@
 extends Control
 
 @onready var player_controls = %PlayerControls
+@onready var cooptoggle = %CooperativeToggle
 
 var player_list: Dictionary[int, PlayerInfo] = {}
 var selected_player: int 
@@ -14,6 +15,10 @@ func _ready():
 	player_controls.on_respawn.connect(respawn)
 	player_controls.on_heal.connect(heal)
 	player_controls.on_hurt.connect(hurt)
+	
+	cooptoggle.toggled.connect(_on_coop_toggled)
+	
+	$HBoxContainer/TabContainer.current_tab = 0
 	
 
 func _on_player_setup(pid: int, info: PlayerInfo):
@@ -49,6 +54,14 @@ func respawn():
 	if selected_player not in player_list:
 		return
 	SignalBus.s_kill.rpc_id(selected_player)
+	
+# =================================================================
+
+func _on_coop_toggled(on: bool):
+	if on:
+		SignalBus.s_set_game_coop.rpc()
+	else:
+		SignalBus.s_set_game_versus.rpc()
 
 # =================================================================
 
@@ -58,3 +71,5 @@ func cancel_confirmation():
 func hide_confirmation():
 	$Confirmation.visible = false
 	$Confirmation.disconnect_all_from_confirm()
+
+# =================================================================

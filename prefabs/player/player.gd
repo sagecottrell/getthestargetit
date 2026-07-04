@@ -100,6 +100,8 @@ func _ready():
 		SignalBus.on_player_set_physics_lock.connect(_on_set_physics_locked)
 		SignalBus.on_player_invulnerable.connect(hp.set_invulnerable)
 		
+		SignalBus.on_checkpoint_collected.connect(func (cp): spawn_point = cp)
+		
 		SignalBus.on_force_firstperson.connect(switch_to_first_person)
 		SignalBus.on_force_thirdperson.connect(switch_to_third_person)
 		
@@ -122,6 +124,8 @@ func _ready():
 		hp.on_hurt.connect(_on_hurt)
 		hp.on_die.connect(SignalBus.killed) ## these signals may seem redundant, but it's important to include the signal bus in the process
 		hp.current_hp.connect(SignalBus.client_player_hp)
+		
+		add_to_group("player")
 	else:
 		SignalBus.on_cam_switch.connect(on_cam_switch)
 	

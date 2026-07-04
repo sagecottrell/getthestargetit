@@ -23,7 +23,7 @@
 		- [X] cubes
 		- [X] nuclear cube
 	- [ ] interactables
-		- [ ] button
+		- [X] button
 		- [ ] red coins
 		- [X] signal relays (source engine style)
 - [ ] example scenes

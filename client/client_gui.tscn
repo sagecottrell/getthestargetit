@@ -163,6 +163,19 @@ label_settings = SubResource("LabelSettings_0sjya")
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="ServerMessages" type="VBoxContainer" parent="ingame" unique_id=884863923]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -299.0
+offset_top = -415.0
+grow_horizontal = 0
+grow_vertical = 0
+
 [node name="waitingroom" type="Control" parent="." unique_id=1738976274]
 visible = false
 layout_mode = 3

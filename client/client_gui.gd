@@ -1,6 +1,9 @@
 class_name ClientGUI
 extends CanvasLayer
 
+# this thing should definitely be refactored
+
+
 @onready var levelswitch = $levelswitch
 @onready var waitingroom: Control = $waitingroom
 @onready var ingame: Control = $ingame
@@ -10,6 +13,7 @@ extends CanvasLayer
 @onready var hint_display = %HintDisplay
 @onready var interactable_display = %InteractableDisplay
 @onready var timer_display = %TimerDisplay
+@onready var server_messages = %ServerMessages
 
 func _ready() -> void:
 	levelswitch.visible = false
@@ -26,6 +30,7 @@ func _ready() -> void:
 	SignalBus.on_player_show_interactable_text.connect(_manage_interactable)
 	SignalBus.on_timer_change.connect(func (t): timer_display.text = TimeHelpers.format_seconds(t))
 	SignalBus.on_game_over.connect(func (s): timer_display.text = s)
+	SignalBus.on_server_message.connect(_on_server_msg)
 
 func on_waiting_room():
 	levelswitch.visible = false
@@ -101,3 +106,12 @@ func _manage_hint(hint: String, time: float):
 	await hint_timer.timeout
 	hint_display.text = ""
 	hint_timer = null
+	
+# ============================================================================
+# ============================================================================
+func _on_server_msg(msg: String):
+	var label = Label.new()
+	label.text = msg
+	server_messages.add_child(label)
+	await get_tree().create_timer(2).timeout
+	label.queue_free()

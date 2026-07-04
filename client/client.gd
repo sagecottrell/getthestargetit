@@ -1,6 +1,8 @@
 class_name Client
 extends Node
 
+static var PlayerInformation: PlayerInfo
+
 var client_gui_scene = preload("res://client/client_gui.tscn")
 var gui: ClientGUI
 
@@ -8,6 +10,7 @@ func _on_multiplayer_on_client(info: PlayerInfo) -> void:
 	# on the client side, when the client starts up
 	gui = client_gui_scene.instantiate()
 	add_child(gui)
+	PlayerInformation = info
 	
 	gui.on_waiting_room()
 	

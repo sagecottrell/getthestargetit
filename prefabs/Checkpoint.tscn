@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://b01kqj2o2ige6"]
+
+[ext_resource type="Script" uid="uid://ck5juac4a8v8y" path="res://prefabs/checkpoint/checkpoint.gd" id="1_pm1em"]
+[ext_resource type="PackedScene" uid="uid://dagetov3rjbw3" path="res://prefabs/checkpoint/checkpoint.gltf" id="1_x8iep"]
+[ext_resource type="Material" uid="uid://bu4as83qpdmyb" path="res://prefabs/checkpoint/owned-material.tres" id="2_a60b8"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_vccua"]
+
+[node name="Checkpoint" type="Node3D" unique_id=2037637097]
+script = ExtResource("1_pm1em")
+owned_material = ExtResource("2_a60b8")
+
+[node name="Area3D" type="Area3D" parent="." unique_id=446374576]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=1836004931]
+shape = SubResource("CylinderShape3D_vccua")
+
+[node name="blockbench_export" parent="." unique_id=1870796430 instance=ExtResource("1_x8iep")]
+
+[editable path="blockbench_export"]

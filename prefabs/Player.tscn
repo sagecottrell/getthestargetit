@@ -64,28 +64,40 @@ hurt = false
 state = 0
 
 [node name="CameraOnWin" type="Node3D" parent="." index="0" unique_id=2068749882]
-transform = Transform3D(1, 0, 0, 0, 0.9659258, 0.25881904, 0, -0.25881904, 0.9659258, 0, 2, 5)
+transform = Transform3D(1, 0, 0, 0, 0.9659258, 0.25881904, 0, -0.25881904, 0.9659258, 0, 3, 5)
 script = ExtResource("3_mamfr")
 tween_resource = SubResource("Resource_1nynx")
 metadata/_custom_type_script = "uid://csjccrhj5wnx7"
 
 [node name="FreeCam" type="Node3D" parent="." index="1" unique_id=1205535065]
-transform = Transform3D(1, 0, 0, 0, 0.9659258, 0.25881904, 0, -0.25881904, 0.9659258, 0, 2, 5)
+transform = Transform3D(1, 0, 0, 0, 0.9659258, 0.25881904, 0, -0.25881904, 0.9659258, 0, 3, 5)
 script = ExtResource("3_mamfr")
 tween_resource = SubResource("Resource_1nynx")
 metadata/_custom_type_script = "uid://csjccrhj5wnx7"
 
+[node name="Collision" parent="." index="2" unique_id=727390688]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+
 [node name="HealthManager" type="Node" parent="." index="3" unique_id=968631098]
 script = ExtResource("5_0ep8a")
+
+[node name="Head Check" parent="." index="4" unique_id=1466819994]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 
 [node name="Crouch Ability 3D" parent="." index="7" unique_id=1541717803 node_paths=PackedStringArray("collision", "head_check")]
 collision = NodePath("../Collision")
 head_check = NodePath("../Head Check")
 
-[node name="Head Bob" parent="Head" parent_id_path=PackedInt32Array(1782836025) index="0" unique_id=1006493639 node_paths=PackedStringArray("head")]
+[node name="Swim Ability 3D" parent="." index="10" unique_id=1022382486]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+
+[node name="Head" parent="." index="11" unique_id=1782836025]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.64, 0)
+
+[node name="Head Bob" parent="Head" index="0" unique_id=1006493639 node_paths=PackedStringArray("head")]
 head = NodePath("../FirstPersonCamera")
 
-[node name="FirstPersonCamera" type="Node3D" parent="Head" parent_id_path=PackedInt32Array(1782836025) index="1" unique_id=770272565]
+[node name="FirstPersonCamera" type="Node3D" parent="Head" index="1" unique_id=770272565]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.34620988)
 script = ExtResource("3_mamfr")
@@ -95,7 +107,7 @@ tween_resource = SubResource("Resource_70wo7")
 tween_on_load = false
 metadata/_custom_type_script = "uid://csjccrhj5wnx7"
 
-[node name="ThirdPersonCamera" type="Node3D" parent="Head" parent_id_path=PackedInt32Array(1782836025) index="2" unique_id=475707984]
+[node name="ThirdPersonCamera" type="Node3D" parent="Head" index="2" unique_id=475707984]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 0.8926156, 0.4508186, 0, -0.4508186, 0.8926156, 0, 1.87333, 4.654275)
 script = ExtResource("3_mamfr")
@@ -103,12 +115,12 @@ tween_resource = SubResource("Resource_0ep8a")
 tween_on_load = false
 metadata/_custom_type_script = "uid://csjccrhj5wnx7"
 
-[node name="RemoteTransform3D" type="RemoteTransform3D" parent="Head" parent_id_path=PackedInt32Array(1782836025) index="3" unique_id=2137948890]
+[node name="RemoteTransform3D" type="RemoteTransform3D" parent="Head" index="3" unique_id=2137948890]
 remote_path = NodePath("../../PlayerVisualRoot/blockbench_export/root/Waist/Head2")
 update_position = false
 update_scale = false
 
-[node name="RayCast3D" type="RayCast3D" parent="Head" parent_id_path=PackedInt32Array(1782836025) index="4" unique_id=653178753]
+[node name="RayCast3D" type="RayCast3D" parent="Head" index="4" unique_id=653178753]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.3552361)
 target_position = Vector3(0, 0, -1.5)
 collision_mask = 8
@@ -119,13 +131,13 @@ delta_interval = 0.01
 replication_config = SubResource("SceneReplicationConfig_elntb")
 
 [node name="Nametag" type="Label3D" parent="." index="13" unique_id=787512276]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2554885, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.2554884, 0)
 billboard = 1
 no_depth_test = true
 text = "Tester"
 
 [node name="Ranking" type="Label3D" parent="." index="14" unique_id=948623207]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6710804, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.6710804, 0)
 billboard = 1
 no_depth_test = true
 text = "loser"
@@ -145,6 +157,7 @@ parameters/BlendCrouch/blend_amount = 0.0
 parameters/BlendHurt/blend_amount = 0.0
 
 [node name="PlayerVisualRoot" type="Node3D" parent="." index="16" unique_id=2025236611 node_paths=PackedStringArray("color_meshes")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 script = ExtResource("5_xgtsh")
 color_meshes = [NodePath("blockbench_export/root/Waist/Head2/Hat Layer"), NodePath("blockbench_export/root/Waist/Body2/Body Layer"), NodePath("blockbench_export/root/Waist/Right Arm2/Right Arm Layer"), NodePath("blockbench_export/root/Waist/Left Arm2/Left Arm Layer"), NodePath("blockbench_export/root/Right Leg2/Right Leg Layer"), NodePath("blockbench_export/root/Left Leg2/Left Leg Layer")]
 metadata/_custom_type_script = "uid://c4mo7inp0b5q0"
@@ -153,9 +166,9 @@ metadata/_custom_type_script = "uid://c4mo7inp0b5q0"
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
 
 [node name="Right Arm2" parent="PlayerVisualRoot/blockbench_export/root/Waist" parent_id_path=PackedInt32Array(2079496628, 1113985881) index="2" unique_id=1363812366]
-transform = Transform3D(1, 0, 0, 0, 0.9993719, -0.03542835, 0, 0.03542835, 0.9993719, 0.3125, 0.625, 0)
+transform = Transform3D(1, 0, 0, 0, 0.9955199, -0.09454869, 0, 0.09454869, 0.9955199, 0.3125, 0.625, 0)
 
 [node name="Left Arm2" parent="PlayerVisualRoot/blockbench_export/root/Waist" parent_id_path=PackedInt32Array(2079496628, 1113985881) index="3" unique_id=106449799]
-transform = Transform3D(1, 0, 0, 0, 0.9993719, 0.03542835, 0, -0.03542835, 0.9993719, -0.3125, 0.625, 0)
+transform = Transform3D(1, 0, 0, 0, 0.9955199, 0.09454869, 0, -0.09454869, 0.9955199, -0.3125, 0.625, 0)
 
 [editable path="PlayerVisualRoot/blockbench_export"]

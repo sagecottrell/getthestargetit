@@ -141,6 +141,11 @@ signal on_player_invulnerable(add_time: float)
 func player_set_invulnerable(add_time: float = 3):
 	on_player_invulnerable.emit(add_time)
 
+# when a checkpoint has just been touched
+signal on_checkpoint_collected(cp: Node3D)
+func checkpoint_collected(cp: Node3D):
+	on_checkpoint_collected.emit(cp)
+	
 # ================================================================================================
 # RPC auth-client to server
 # ================================================================================================
@@ -239,7 +244,25 @@ signal on_game_start()
 @rpc("call_local")
 func s_game_start():
 	on_game_start.emit()
-	
+
+## when the server sets the game to cooperative
+signal on_set_game_coop()
+@rpc("call_local")
+func s_set_game_coop():
+	on_set_game_coop.emit()
+
+## when the server sets the game to versus/competitive
+signal on_set_game_versus()
+@rpc("call_local")
+func s_set_game_versus():
+	on_set_game_versus.emit()
+
+
+signal on_server_message(msg: String)
+@rpc()
+func s_server_message(msg: String):
+	on_server_message.emit(msg)
+
 # ================================================================================================
 # ================================================================================================
 
