@@ -14,7 +14,7 @@
 - [ ] sounds
 - [X] player death animation
 - [X] timer
-- [ ] checkpoints
+- [X] checkpoints
 - [ ] powerups
 - [ ] more prefabs
 	- [ ] static obstacles of various shapes
