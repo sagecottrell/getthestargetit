@@ -1,6 +1,23 @@
 extends VBoxContainer
 
-signal on_press_send(fp: String)
+@onready var watch_path = %WatchPath
+@onready var dir_watcher: DirectoryWatcher = $DirectoryWatcher
+
+func _ready():
+	dir_watcher.files_created.connect(_on_directory_watcher_files_created)
+	dir_watcher.files_deleted.connect(_on_directory_watcher_files_deleted)
+	dir_watcher.files_modified.connect(_on_directory_watcher_files_modified)
+	
+	var saved_watch_dir: String = SettingsManager.load_setting("Server", "watch_path", "")
+	if not saved_watch_dir.is_empty():
+		dir_watcher.add_scan_directory(saved_watch_dir)
+		watch_path.text = saved_watch_dir
+
+func _on_watch_path_text_submitted(new_text: String) -> void:
+	dir_watcher.remove_scan_directory(watch_path.text)
+	dir_watcher.add_scan_directory(new_text)
+	if not new_text.is_empty():
+		SettingsManager.save_setting("Server", "watch_path", new_text)
 
 func _on_directory_watcher_files_modified(files: PackedStringArray) -> void:
 	prints("modified", files)
@@ -31,5 +48,4 @@ func _create_fileselector(fp: String):
 	child.name = str(hash(fp))
 	child.file_path = fp
 	add_child(child)
-	child.pressed.connect(on_press_send.emit)
-	
+	child.pressed.connect(SignalBus.s_file_press_send)

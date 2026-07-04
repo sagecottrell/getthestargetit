@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://c8b5sc2p0yavu"]
+
+[ext_resource type="Script" uid="uid://bblk5qmeeoh58" path="res://server/admin/admin_player_info.gd" id="1_iuymy"]
+
+[node name="AdminPlayerInfo" type="PanelContainer" unique_id=982182669]
+self_modulate = Color(1, 1, 1, 0.44705883)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_iuymy")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=966999360]
+layout_mode = 2
+
+[node name="label" type="RichTextLabel" parent="HBoxContainer" unique_id=1580876119]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+bbcode_enabled = true
+fit_content = true
+vertical_alignment = 1

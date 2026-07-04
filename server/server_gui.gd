@@ -2,50 +2,23 @@ class_name ServerGUI
 extends CanvasLayer
 
 @onready var level_controller: Control = %LevelController
-@onready var player_list: Control = %PlayerList
+@onready var player_list = %PlayerList
 @onready var countdownlabel = %CountdownDisplay
 @onready var countdown_sequence_input = %CountdownSequenceInput
-@onready var watch_path = %WatchPath
-@onready var dir_watcher: DirectoryWatcher = $DirectoryWatcher
 
-var player_list_items: Dictionary[int, PlayerInfoDisplay] = {}
 
 func _ready() -> void:
 	SignalBus.on_countdown.connect(_on_countdown)
 	SignalBus.on_change_scene.connect(_on_change_scene)
-	SignalBus.on_any_win.connect(_on_any_won)
 	level_controller.visible = false
-
-func _on_watch_path_text_submitted(new_text: String) -> void:
-	dir_watcher.remove_scan_directory(watch_path.text)
-	dir_watcher.add_scan_directory(new_text)
-	if not new_text.is_empty():
-		SettingsManager.save_setting("Server", "watch_path", new_text)
-
-func _on_file_list_on_press_send(fp: String) -> void:
-	SignalBus.s_file_press_send(fp)
 
 func _on_change_scene(_node):
 	level_controller.visible = true
+	$PauseMenu.visible = false
 
-func add_player(pid: int, info: PlayerInfo):
-	var display: PlayerInfoDisplay = preload("res://server/PlayerInfoDisplay.tscn").instantiate()
-	display.set_info(info)
-	display.name = str(pid)
-	player_list.add_child(display)
-	player_list_items[pid] = display
-	
-# ============================================================================
-# rankings
-# ============================================================================
-
-func _on_any_won(pid: int, place: String):
-	player_list_items[pid].set_place(place)
-
-func clear_places():
-	for child in player_list_items.values():
-		child.hide_place()
-
+func _unhandled_key_input(event: InputEvent) -> void:
+	if event.is_action_pressed("ui_cancel"):
+		$PauseMenu.visible = not $PauseMenu.visible
 
 # ============================================================================
 # camera

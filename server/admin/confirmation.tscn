@@ -1,0 +1,51 @@
+[gd_scene format=3 uid="uid://dha8jhuvjl4ip"]
+
+[ext_resource type="Script" uid="uid://dt68tag3to58t" path="res://server/admin/confirmation.gd" id="1_6l3qv"]
+
+[node name="Confirmation" type="PanelContainer" unique_id=679267712]
+offset_right = 1152.0
+offset_bottom = 646.0
+script = ExtResource("1_6l3qv")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=202752228]
+layout_mode = 2
+
+[node name="Control2" type="Control" parent="VBoxContainer" unique_id=1785310732]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="action" type="RichTextLabel" parent="VBoxContainer" unique_id=1217685031]
+unique_name_in_owner = true
+layout_mode = 2
+text = "kicking"
+fit_content = true
+horizontal_alignment = 1
+
+[node name="HSeparator2" type="HSeparator" parent="VBoxContainer" unique_id=2077945529]
+layout_mode = 2
+
+[node name="ConfirmationLabel" type="Label" parent="VBoxContainer" unique_id=1142452616]
+layout_mode = 2
+text = "Are you sure????"
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer" unique_id=246811527]
+layout_mode = 2
+alignment = 1
+
+[node name="yes" type="Button" parent="VBoxContainer/HBoxContainer" unique_id=1234638200]
+unique_name_in_owner = true
+layout_mode = 2
+text = "yes"
+
+[node name="cancel" type="Button" parent="VBoxContainer/HBoxContainer" unique_id=1591762763]
+unique_name_in_owner = true
+layout_mode = 2
+text = "cancel"
+
+[node name="Control" type="Control" parent="VBoxContainer" unique_id=1378087454]
+layout_mode = 2
+size_flags_vertical = 3
+
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/yes" to="." method="confirm"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/cancel" to="." method="cancel"]

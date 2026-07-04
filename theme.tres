@@ -1,19 +1,13 @@
 [gd_resource type="Theme" format=3 uid="uid://cor1vkpwxjcx6"]
 
+[ext_resource type="StyleBox" uid="uid://cracjc6rrcpdm" path="res://theme/panel.tres" id="1_cjfk0"]
 [ext_resource type="FontFile" uid="uid://c7xg1csk1d27f" path="res://fonts/VCR_OSD_MONO_1.001.ttf" id="1_e1x85"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wvktn"]
-content_margin_left = 10.0
-content_margin_top = 10.0
-content_margin_right = 10.0
-content_margin_bottom = 10.0
-bg_color = Color(0.1, 0.1, 0.1, 0.6)
-corner_radius_top_left = 3
-corner_radius_top_right = 3
-corner_radius_bottom_right = 3
-corner_radius_bottom_left = 3
-corner_detail = 5
 
 [resource]
 default_font = ExtResource("1_e1x85")
-PanelContainer/styles/panel = SubResource("StyleBoxFlat_wvktn")
+MarginContainer/constants/margin_bottom = 5
+MarginContainer/constants/margin_left = 5
+MarginContainer/constants/margin_right = 5
+MarginContainer/constants/margin_top = 5
+PanelContainer/styles/panel = ExtResource("1_cjfk0")
+TabContainer/styles/panel = ExtResource("1_cjfk0")

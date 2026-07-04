@@ -1,0 +1,98 @@
+[gd_scene format=3 uid="uid://cl2ksopyji5qj"]
+
+[ext_resource type="Script" uid="uid://57wgwapkttps" path="res://server/admin/admin_player_list.gd" id="1_2apl2"]
+[ext_resource type="Script" uid="uid://cdc7f64tb064u" path="res://server/admin/admin_panel.gd" id="1_lfj7k"]
+[ext_resource type="Script" uid="uid://coe0x2enkov31" path="res://server/file_list.gd" id="2_7nq3f"]
+[ext_resource type="Script" uid="uid://btdvny6i4c55h" path="res://DirectoryWatcher/DirectoryWatcher.gd" id="4_g50to"]
+[ext_resource type="PackedScene" uid="uid://bowsms3lopllo" path="res://server/admin/player_controls.tscn" id="4_j5oqv"]
+[ext_resource type="PackedScene" uid="uid://dha8jhuvjl4ip" path="res://server/admin/confirmation.tscn" id="5_j5oqv"]
+
+[node name="AdminPanel" type="Control" unique_id=1489788693]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_lfj7k")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=690149238]
+layout_mode = 0
+offset_right = 1152.0
+offset_bottom = 648.0
+
+[node name="PanelContainer" type="PanelContainer" parent="HBoxContainer" unique_id=30458485]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/PanelContainer" unique_id=1326429944]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HBoxContainer/PanelContainer/VBoxContainer" unique_id=91190620]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+text = "Players"
+
+[node name="HSeparator" type="HSeparator" parent="HBoxContainer/PanelContainer/VBoxContainer" unique_id=852838615]
+layout_mode = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="HBoxContainer/PanelContainer/VBoxContainer" unique_id=568518143]
+layout_mode = 2
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+
+[node name="AdminPlayerList" type="VBoxContainer" parent="HBoxContainer/PanelContainer/VBoxContainer/ScrollContainer" unique_id=931141386]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_2apl2")
+
+[node name="TabContainer" type="TabContainer" parent="HBoxContainer" unique_id=1616605955]
+layout_mode = 2
+size_flags_horizontal = 3
+current_tab = 0
+
+[node name="Files" type="VBoxContainer" parent="HBoxContainer/TabContainer" unique_id=1376653732]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+script = ExtResource("2_7nq3f")
+metadata/_tab_index = 0
+
+[node name="PanelContainer" type="PanelContainer" parent="HBoxContainer/TabContainer/Files" unique_id=1986131541]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/TabContainer/Files/PanelContainer" unique_id=231919910]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HBoxContainer/TabContainer/Files/PanelContainer/HBoxContainer" unique_id=1592852069]
+layout_mode = 2
+text = "Watch:"
+
+[node name="WatchPath" type="LineEdit" parent="HBoxContainer/TabContainer/Files/PanelContainer/HBoxContainer" unique_id=258956522]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "C:/projects/godot"
+
+[node name="DirectoryWatcher" type="Node" parent="HBoxContainer/TabContainer/Files" unique_id=1742909210]
+script = ExtResource("4_g50to")
+file_pattern = ".tscn"
+directory_list = PackedStringArray("res://watch_folder")
+metadata/_custom_type_script = "uid://btdvny6i4c55h"
+
+[node name="Player" type="HBoxContainer" parent="HBoxContainer/TabContainer" unique_id=305882454]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 1
+
+[node name="PlayerControls" parent="HBoxContainer/TabContainer/Player" unique_id=286028301 instance=ExtResource("4_j5oqv")]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Confirmation" parent="." unique_id=679267712 instance=ExtResource("5_j5oqv")]
+visible = false
+layout_mode = 0
+
+[connection signal="player_selected" from="HBoxContainer/PanelContainer/VBoxContainer/ScrollContainer/AdminPlayerList" to="." method="select_player"]
+[connection signal="on_kick" from="HBoxContainer/TabContainer/Player/PlayerControls" to="." method="kick"]
+[connection signal="on_respawn" from="HBoxContainer/TabContainer/Player/PlayerControls" to="." method="respawn"]

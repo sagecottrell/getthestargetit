@@ -50,6 +50,7 @@ func _on_connect_pressed():
 		
 	multiplayer.multiplayer_peer = peer
 	multiplayer.connected_to_server.connect(client_start_game)
+	multiplayer.server_disconnected.connect(kicked)
 
 
 func host_start_game():
@@ -69,3 +70,13 @@ func client_start_game():
 func get_playerinfo() -> PlayerInfo:
 	var color: Color = %PlayerColor.color
 	return PlayerInfo.new(%PlayerName.text, Color.from_hsv(color.h, 1, 1))
+
+func reset():
+	$UI.show()
+	get_tree().paused = true
+	multiplayer.multiplayer_peer = null
+
+func kicked():
+	reset()
+	multiplayer.connected_to_server.disconnect(client_start_game)
+	multiplayer.server_disconnected.disconnect(kicked)

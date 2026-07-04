@@ -18,17 +18,13 @@ func _on_multiplayer_on_host() -> void:
 	gui = server_gui_scene.instantiate()
 	add_child(gui)
 	
-	var saved_watch_dir: String = SettingsManager.load_setting("Server", "watch_path", "")
-	if not saved_watch_dir.is_empty():
-		gui.dir_watcher.add_scan_directory(saved_watch_dir)
-		gui.watch_path.text = saved_watch_dir
 	multiplayer.peer_connected.connect(_on_client_connect)
 	multiplayer.peer_disconnected.connect(_on_client_disconnect)
 	
 	SignalBus.on_client_won.connect(_on_client_won)
 	SignalBus.on_recieve_scene_text.connect(_on_recieve_scene_text)
 	SignalBus.s_on_file_press_send.connect(pack_and_send)
-	SignalBus.c_on_player_setup.connect(_on_client_info)
+	SignalBus.on_player_setup.connect(_on_client_info)
 
 func _on_client_connect(id: int):
 	prints("client connected:", id)
@@ -39,13 +35,11 @@ func _on_client_disconnect(id: int):
 	PlayerList.erase(id)
 	rankings.erase(id)
 
-func _on_client_info(sender_id: int, json: String):
+func _on_client_info(sender_id: int, info: PlayerInfo):
 	# The server knows who sent the input.
-	var info: PlayerInfo = PlayerInfo.from_json(json)
 	prints("setting up player", sender_id)
 	PlayerIds[sender_id] = info
 	PlayerList.append(sender_id)
-	gui.add_player(sender_id, info)
 
 # ============================================================================
 # setup level
@@ -56,7 +50,7 @@ func _on_recieve_scene_text(text: String):
 	
 func pack_and_send(fp: String):
 	rankings.clear()
-	gui.clear_places()
+	SignalBus.reset_rankings.rpc()
 	
 	var file = FileAccess.open(fp, FileAccess.READ)
 	SignalBus.server_changing_level.rpc()

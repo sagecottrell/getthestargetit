@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://bowsms3lopllo"]
+
+[ext_resource type="Script" uid="uid://cfx55ujo0n6m5" path="res://server/admin/playerControls.gd" id="1_s8g6v"]
+
+[node name="PlayerControls" type="VBoxContainer" unique_id=286028301]
+offset_right = 1152.0
+offset_bottom = 648.0
+script = ExtResource("1_s8g6v")
+metadata/_tab_index = 1
+
+[node name="kick" type="Button" parent="." unique_id=1370897681]
+layout_mode = 2
+text = "Kick"
+
+[node name="respawn" type="Button" parent="." unique_id=1042821832]
+layout_mode = 2
+text = "Respawn"
+
+[connection signal="pressed" from="kick" to="." method="kick"]
+[connection signal="pressed" from="respawn" to="." method="respawn"]

@@ -20,7 +20,7 @@ func _on_multiplayer_on_client(info: PlayerInfo) -> void:
 	SignalBus.c_player_setup.rpc_id(1, info.to_json())
 
 func _on_server_disconnect():
-	print('server disconnect')
+	queue_free()
 
 func pre_level_push():
 	gui.on_levelswitch()
@@ -28,3 +28,7 @@ func pre_level_push():
 func _on_recieve_scene_text(text: String):
 	SignalBus.change_scene(Str2Node.tscn_string_to_node(text))
 	gui.on_ingame()
+
+func _unhandled_input(event: InputEvent) -> void:
+	if event.is_action_pressed("ui_end"):
+		SignalBus.pause()

@@ -124,11 +124,11 @@ func player_set_invulnerable(add_time: float = 3):
 # RPC auth-client to server
 # ================================================================================================
 
-signal c_on_player_setup(pid: int, json: String)
+signal on_player_setup(pid: int, info: PlayerInfo)
 @rpc("any_peer")
 func c_player_setup(json: String):
 	var pid = multiplayer.get_remote_sender_id()
-	c_on_player_setup.emit(pid, json)
+	on_player_setup.emit(pid, PlayerInfo.from_json(json))
 	
 ## when a client submits a win
 signal on_client_won(pid: int)
@@ -155,6 +155,10 @@ func s_show_hint(hint: String, time: float = 3.0):
 @rpc()
 func s_player_set_physics_lock(locked: bool):
 	on_player_set_physics_lock.emit(locked)
+
+@rpc()
+func s_kill():
+	kill()
 	
 # ================================================================================================
 # RPC server to all clients
@@ -170,6 +174,11 @@ signal on_any_win(pid: int, place: String)
 @rpc("call_local")
 func any_win(pid: int, place: String):
 	on_any_win.emit(pid, place)
+
+signal on_reset_rankings()
+@rpc("call_local")
+func reset_rankings():
+	on_reset_rankings.emit()
 
 ## show a countdown in the middle of the screen. will be called multiple times
 ## length is the maximum mount of time to display this text. must greater than zero. newer countdowns will hide this early
@@ -193,3 +202,11 @@ func server_changing_level():
 signal on_change_scene(node: BaseScene)
 func change_scene(node: BaseScene):
 	on_change_scene.emit(node)
+
+signal on_pause()
+func pause():
+	on_pause.emit()
+
+signal on_unpause()
+func unpause():
+	on_unpause.emit()

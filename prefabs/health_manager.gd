@@ -26,7 +26,10 @@ func reset():
 	publish_current()
 
 func heal(amount: int = 1, exceed_max: bool = false):
-	pass
+	CurrentHP += amount
+	if not exceed_max:
+		CurrentHP = min(CurrentHP, MaxHP)
+	current_hp.emit(MaxHP, CurrentHP)
 
 func hurt(amount: int = 1, ignore_invuln: bool = false):
 	if not ignore_invuln and invulnerable:

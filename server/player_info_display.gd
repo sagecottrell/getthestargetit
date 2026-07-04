@@ -13,7 +13,7 @@ func _on_changing_level():
 
 func set_info(info: PlayerInfo):
 	%place.visible = false
-	%label.text = "Connected Player: [color=#%s]%s[/color]" % [info.color.to_html(false), info.name]
+	%label.text = "Player: [color=#%s]%s[/color]" % [info.color.to_html(false), info.name]
 
 func set_place(n: String):
 	%place.visible = true
