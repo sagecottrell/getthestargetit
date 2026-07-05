@@ -72,7 +72,7 @@ func pack_and_send(fp: String):
 	gui.level_controller.visible = true
 	
 	if cooperative:
-		SignalBus.s_set_game_coop.rpc()
+		SignalBus.s_set_game_coop()
 
 # ============================================================================
 # player reach goal
@@ -82,6 +82,9 @@ func _on_client_won(pid: int):
 	if pid in rankings:
 		return
 	var n = rankings.size() + 1
+	if n == 1:
+		SignalBus.s_pause_timer()
+		SignalBus.s_game_over(PlayerIds[pid].name2bbcode() + " finished!")
 	rankings.append(pid)
 	var d = {n: str(n) + "th", 1: "1st", 2: "2nd", 3: "3rd"}[n]
-	SignalBus.any_win.rpc(pid, d)
+	SignalBus.s_any_win(pid, d)

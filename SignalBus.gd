@@ -209,6 +209,9 @@ signal on_any_win(pid: int, place: String)
 func any_win(pid: int, place: String):
 	on_any_win.emit(pid, place)
 
+func s_any_win(pid: int, place: String):
+	any_win.rpc(pid, place)
+
 signal on_reset_rankings()
 @rpc("call_local")
 func reset_rankings():
@@ -236,8 +239,11 @@ func timer_change(time: int):
 ## when the server ends the game, with text to display
 signal on_game_over(text: String)
 @rpc("call_local")
-func s_game_over(text: String):
+func game_over(text: String):
 	on_game_over.emit(text)
+
+func s_game_over(text: String):
+	game_over.rpc(text)
 
 ## when the server starts the game
 signal on_game_start()
@@ -248,8 +254,11 @@ func s_game_start():
 ## when the server sets the game to cooperative
 signal on_set_game_coop()
 @rpc("call_local")
-func s_set_game_coop():
+func set_game_coop():
 	on_set_game_coop.emit()
+
+func s_set_game_coop():
+	set_game_coop.rpc()
 
 ## when the server sets the game to versus/competitive
 signal on_set_game_versus()

@@ -24,7 +24,7 @@ func _gui_input(event: InputEvent) -> void:
 
 func set_info(info: PlayerInfo):
 	player_info = info
-	%label.text = "[color=#%s]%s[/color]" % [info.color.to_html(false), info.name]
+	%label.text = info.name2bbcode()
 
 func on_any_selected(pid: int):
 	if pid != name.to_int():

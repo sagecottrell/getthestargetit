@@ -59,7 +59,7 @@ func respawn():
 
 func _on_coop_toggled(on: bool):
 	if on:
-		SignalBus.s_set_game_coop.rpc()
+		SignalBus.s_set_game_coop()
 	else:
 		SignalBus.s_set_game_versus.rpc()
 

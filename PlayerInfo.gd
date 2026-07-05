@@ -13,3 +13,6 @@ func to_json() -> String:
 static func from_json(s: String) -> PlayerInfo:
 	var dict = JSON.parse_string(s)
 	return PlayerInfo.new(dict['name'], Color.from_string(dict['color'], Color.RED))
+
+func name2bbcode():
+	return "[color=#%s]%s[/color]" % [color.to_html(false), name]

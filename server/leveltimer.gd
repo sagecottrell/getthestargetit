@@ -38,6 +38,6 @@ func _on_timer_tick():
 	if level_time < 0:
 		stop()
 		timeout.disconnect(_on_timer_tick)
-		SignalBus.s_game_over.rpc("Time's Up!")
+		SignalBus.s_game_over("Time's Up!")
 	else:
 		SignalBus.timer_change.rpc(level_time)

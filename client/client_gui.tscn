@@ -36,14 +36,6 @@ gradient = SubResource("Gradient_0sjya")
 fill = 1
 fill_from = Vector2(0.517094, 0.47435898)
 
-[sub_resource type="LabelSettings" id="LabelSettings_0sjya"]
-font_size = 70
-outline_size = 8
-outline_color = Color(0.14117648, 0.078431375, 0.23529412, 1)
-shadow_size = 13
-shadow_color = Color(0, 0, 0, 0.654902)
-shadow_offset = Vector2(5.615, 2.71)
-
 [node name="ClientGUI" type="CanvasLayer" unique_id=489950663]
 script = ExtResource("1_6i4td")
 
@@ -161,12 +153,17 @@ anchor_right = 1.0
 offset_bottom = 62.0
 grow_horizontal = 2
 
-[node name="TimerDisplay" type="Label" parent="ingame/HBoxContainer" unique_id=1344355326]
+[node name="TimerDisplay" type="RichTextLabel" parent="ingame/HBoxContainer" unique_id=658617188]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 5
+theme_override_constants/shadow_offset_y = 5
+theme_override_constants/outline_size = 14
+theme_override_font_sizes/normal_font_size = 67
+bbcode_enabled = true
 text = "Time's Up!"
-label_settings = SubResource("LabelSettings_0sjya")
 horizontal_alignment = 1
 vertical_alignment = 1
 
