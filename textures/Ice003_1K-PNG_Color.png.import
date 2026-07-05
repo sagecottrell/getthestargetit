@@ -3,8 +3,8 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bwmfsca3rst66"
-path.bptc="res://.godot/imported/Ice003_1K-PNG_Color.png-1e68c507859bf873f083943fb9f2b41e.bptc.ctex"
-path.astc="res://.godot/imported/Ice003_1K-PNG_Color.png-1e68c507859bf873f083943fb9f2b41e.astc.ctex"
+path.bptc="res://.godot/imported/Ice003_1K-PNG_Color.png-67fb6c51433061a36e4653c931b366fb.bptc.ctex"
+path.astc="res://.godot/imported/Ice003_1K-PNG_Color.png-67fb6c51433061a36e4653c931b366fb.astc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
@@ -12,8 +12,8 @@ metadata={
 
 [deps]
 
-source_file="res://prefabs/ice_cube/Ice003_1K-PNG_Color.png"
-dest_files=["res://.godot/imported/Ice003_1K-PNG_Color.png-1e68c507859bf873f083943fb9f2b41e.bptc.ctex", "res://.godot/imported/Ice003_1K-PNG_Color.png-1e68c507859bf873f083943fb9f2b41e.astc.ctex"]
+source_file="res://textures/Ice003_1K-PNG_Color.png"
+dest_files=["res://.godot/imported/Ice003_1K-PNG_Color.png-67fb6c51433061a36e4653c931b366fb.bptc.ctex", "res://.godot/imported/Ice003_1K-PNG_Color.png-67fb6c51433061a36e4653c931b366fb.astc.ctex"]
 
 [params]
 

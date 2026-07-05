@@ -41,6 +41,7 @@ folder_colors={
 "res://prefab-bases/": "red",
 "res://prefabs/": "green",
 "res://prefabs/logic/": "purple",
+"res://prefabs/setpieces/": "orange",
 "res://prefabs/tweens/": "pink",
 "res://theme/": "yellow",
 "res://watch_folder/": "pink"

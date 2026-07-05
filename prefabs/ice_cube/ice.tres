@@ -1,7 +1,7 @@
 [gd_resource type="ShaderMaterial" format=3 uid="uid://bptsevueku40e"]
 
 [ext_resource type="Shader" uid="uid://chsqkn6fpo6sq" path="res://prefabs/ice_cube/IceCube.gdshader" id="1_ep4f3"]
-[ext_resource type="Texture2D" uid="uid://bwmfsca3rst66" path="res://prefabs/ice_cube/Ice003_1K-PNG_Color.png" id="2_wuq2p"]
+[ext_resource type="Texture2D" uid="uid://bwmfsca3rst66" path="res://textures/Ice003_1K-PNG_Color.png" id="2_wuq2p"]
 [ext_resource type="Texture2D" uid="uid://d3pf6wcjtcaxk" path="res://prefabs/ice_cube/Ice002_1K-PNG_Displacement.png" id="3_bcet4"]
 
 [resource]

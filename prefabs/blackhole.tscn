@@ -1,0 +1,86 @@
+[gd_scene format=3 uid="uid://bokv1c2ivakrm"]
+
+[ext_resource type="Script" uid="uid://dw84lkpg0jm4n" path="res://prefabs/DamageField.gd" id="1_baxed"]
+[ext_resource type="Texture2D" uid="uid://dxgxd8l7fp25r" path="res://textures/proto/texture_08.svg" id="2_rjea8"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7xt6h"]
+render_priority = 1
+transparency = 1
+shading_mode = 0
+albedo_color = Color(1, 1, 1, 0.63529414)
+grow = true
+grow_amount = 0.119
+stencil_mode = 3
+stencil_flags = 1
+stencil_compare = 5
+metadata/_stencil_owned = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rjea8"]
+next_pass = SubResource("StandardMaterial3D_7xt6h")
+shading_mode = 0
+albedo_color = Color(0, 0, 0, 1)
+uv1_triplanar = true
+uv1_triplanar_sharpness = 150.0
+uv1_world_triplanar = true
+distance_fade_mode = 3
+stencil_mode = 1
+stencil_flags = 2
+stencil_color = Color(1, 1, 1, 0.63529414)
+stencil_outline_thickness = 0.119
+
+[sub_resource type="TorusMesh" id="TorusMesh_7xt6h"]
+material = SubResource("StandardMaterial3D_rjea8")
+inner_radius = 0.001
+outer_radius = 1.074
+rings = 16
+ring_segments = 9
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_rjea8"]
+radius = 25.0
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_vccua"]
+radius = 1.0944873
+
+[sub_resource type="SphereMesh" id="SphereMesh_7c6qd"]
+flip_faces = true
+radius = 25.0
+height = 50.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_baxed"]
+albedo_texture = ExtResource("2_rjea8")
+
+[node name="Blackhole" type="Node3D" unique_id=1206704492]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=841162373]
+cast_shadow = 0
+gi_mode = 0
+mesh = SubResource("TorusMesh_7xt6h")
+
+[node name="Area3D" type="Area3D" parent="." unique_id=493636005]
+collision_mask = 3
+gravity_space_override = 3
+gravity_point = true
+gravity_point_unit_distance = 5.0
+gravity_point_center = Vector3(0, 0, 0)
+gravity_direction = Vector3(0, 0, 0)
+gravity = 10.0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=1126039366]
+shape = SubResource("SphereShape3D_rjea8")
+debug_color = Color(1, 0, 0.12941177, 1)
+
+[node name="DamageField" type="Area3D" parent="." unique_id=1223659736]
+collision_mask = 3
+script = ExtResource("1_baxed")
+player_damage = 1000
+ignore_invuln = true
+metadata/_custom_type_script = "uid://dw84lkpg0jm4n"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DamageField" unique_id=1699864900]
+shape = SubResource("SphereShape3D_vccua")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="." unique_id=238852113]
+transparency = 0.5
+cast_shadow = 0
+mesh = SubResource("SphereMesh_7c6qd")
+surface_material_override/0 = SubResource("StandardMaterial3D_baxed")

@@ -2,9 +2,9 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ctu0tv55em4e3"
-path.s3tc="res://.godot/imported/octagonmaterial_albedo.png-abbcb01bf9a38476e25847f9b118d5c7.s3tc.ctex"
-path.etc2="res://.godot/imported/octagonmaterial_albedo.png-abbcb01bf9a38476e25847f9b118d5c7.etc2.ctex"
+uid="uid://brt251gaidudg"
+path.s3tc="res://.godot/imported/texture_01.svg-41ade4d8ec34ac3ca67c14554754195a.s3tc.ctex"
+path.etc2="res://.godot/imported/texture_01.svg-41ade4d8ec34ac3ca67c14554754195a.etc2.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
@@ -12,8 +12,8 @@ metadata={
 
 [deps]
 
-source_file="res://prefabs/octagon/octagonmaterial_albedo.png"
-dest_files=["res://.godot/imported/octagonmaterial_albedo.png-abbcb01bf9a38476e25847f9b118d5c7.s3tc.ctex", "res://.godot/imported/octagonmaterial_albedo.png-abbcb01bf9a38476e25847f9b118d5c7.etc2.ctex"]
+source_file="res://textures/proto/texture_01.svg"
+dest_files=["res://.godot/imported/texture_01.svg-41ade4d8ec34ac3ca67c14554754195a.s3tc.ctex", "res://.godot/imported/texture_01.svg-41ade4d8ec34ac3ca67c14554754195a.etc2.ctex"]
 
 [params]
 
@@ -23,7 +23,7 @@ compress/lossy_quality=0.7
 compress/uastc_level=0
 compress/rdo_quality_loss=0.0
 compress/hdr_compression=1
-compress/normal_map=1
+compress/normal_map=0
 compress/channel_pack=0
 mipmaps/generate=true
 mipmaps/limit=-1
@@ -40,3 +40,6 @@ process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
 detect_3d/compress_to=0
+svg/scale=1.0
+editor/scale_with_editor_scale=false
+editor/convert_colors_with_editor_theme=false

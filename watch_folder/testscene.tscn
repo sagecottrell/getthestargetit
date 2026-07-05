@@ -20,6 +20,7 @@
 [ext_resource type="PackedScene" uid="uid://suvyr4b7yflf" path="res://prefabs/PushButtonOnce.tscn" id="19_gbrv7"]
 [ext_resource type="Script" uid="uid://8wro8myvb4sw" path="res://prefabs/logic/player_events.gd" id="19_kciqv"]
 [ext_resource type="PackedScene" uid="uid://b01kqj2o2ige6" path="res://prefabs/Checkpoint.tscn" id="20_gbrv7"]
+[ext_resource type="PackedScene" uid="uid://bokv1c2ivakrm" path="res://prefabs/blackhole.tscn" id="21_j7jrj"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_0kh3j"]
 panorama = ExtResource("2_df8lk")
@@ -148,6 +149,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 99.44984, 0)
 [node name="3x3Platform3" parent="." unique_id=1643658215 instance=ExtResource("8_k8yl0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 99.44984, 0)
 
+[node name="3x3Platform4" parent="." unique_id=1304054501 instance=ExtResource("8_k8yl0")]
+transform = Transform3D(0.92143446, 0, -0.38853386, 0, 1, 0, 0.38853386, 0, 0.92143446, 16.041393, 99.44984, 5.3721857)
+
 [node name="bridge" type="Node3D" parent="." unique_id=1307490053]
 
 [node name="Tree" parent="bridge" unique_id=2143920079 instance=ExtResource("9_ix6w0")]
@@ -210,25 +214,25 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 39.47674, 99.61269, 7.506218)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23.476742, 99.61269, 12.506218)
 
 [node name="IceCube" parent="." unique_id=1793228314 instance=ExtResource("14_yexxi")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.234447, 98, -17.154594)
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -16.234447, 98, -17.154594)
 
 [node name="IceCube2" parent="." unique_id=953216176 instance=ExtResource("14_yexxi")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.17173386, 98, 33.4791)
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0.17173386, 98, 33.4791)
 
 [node name="IceCube3" parent="." unique_id=219118062 instance=ExtResource("14_yexxi")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.17173386, 99, 42.4791)
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0.17173386, 99, 42.4791)
 
 [node name="IceCube4" parent="." unique_id=1018189911 instance=ExtResource("14_yexxi")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.17173386, 100, 52.4791)
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0.17173386, 100, 52.4791)
 
 [node name="IceCube6" parent="." unique_id=457615464 instance=ExtResource("14_yexxi")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.17173386, 101, 61.479095)
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0.17173386, 101, 61.479095)
 
 [node name="IceCube7" parent="." unique_id=1032265432 instance=ExtResource("14_yexxi")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.17173386, 102, 69.479095)
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0.17173386, 102, 69.479095)
 
 [node name="IceCube5" parent="." unique_id=589309088 instance=ExtResource("14_yexxi")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13, 98, -24)
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -13, 98, -24)
 
 [node name="pedestal" type="StaticBody3D" parent="." unique_id=1835191612]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 35, 100, 10.317753)
@@ -268,6 +272,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.3566875, 99.606445, -12.41
 
 [node name="Checkpoint3" parent="." unique_id=867683272 instance=ExtResource("20_gbrv7")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.64331245, 99.606445, -12.416647)
+
+[node name="Blackhole" parent="." unique_id=1206704492 instance=ExtResource("21_j7jrj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.76217, 99.45165, -33.757767)
 
 [connection signal="activated" from="Star/PropSignalsComponent" to="Star/PlayerEventsLogic" method="show_hint" binds= ["Star Activated", 3.0]]
 [connection signal="deactivated" from="Star/PropSignalsComponent" to="Star/PlayerEventsLogic" method="show_hint" binds= ["Star Deactivated", 3.0]]

@@ -2,9 +2,9 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bdn2edovu1wc2"
-path.s3tc="res://.godot/imported/heart.png-5d457948ef7563ccb0bc4ed32cbddea7.s3tc.ctex"
-path.etc2="res://.godot/imported/heart.png-5d457948ef7563ccb0bc4ed32cbddea7.etc2.ctex"
+uid="uid://dxgxd8l7fp25r"
+path.s3tc="res://.godot/imported/texture_08.svg-f51d83b87162ecb738fa8678e2cb416e.s3tc.ctex"
+path.etc2="res://.godot/imported/texture_08.svg-f51d83b87162ecb738fa8678e2cb416e.etc2.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
@@ -12,8 +12,8 @@ metadata={
 
 [deps]
 
-source_file="res://textures/heart.png"
-dest_files=["res://.godot/imported/heart.png-5d457948ef7563ccb0bc4ed32cbddea7.s3tc.ctex", "res://.godot/imported/heart.png-5d457948ef7563ccb0bc4ed32cbddea7.etc2.ctex"]
+source_file="res://textures/proto/texture_08.svg"
+dest_files=["res://.godot/imported/texture_08.svg-f51d83b87162ecb738fa8678e2cb416e.s3tc.ctex", "res://.godot/imported/texture_08.svg-f51d83b87162ecb738fa8678e2cb416e.etc2.ctex"]
 
 [params]
 
@@ -40,3 +40,6 @@ process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
 detect_3d/compress_to=0
+svg/scale=1.0
+editor/scale_with_editor_scale=false
+editor/convert_colors_with_editor_theme=false

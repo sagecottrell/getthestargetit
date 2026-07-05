@@ -1,9 +1,13 @@
 [gd_resource type="CylinderMesh" format=3 uid="uid://b5prye3b5uc4q"]
 
-[ext_resource type="Material" uid="uid://crh5vtp846oie" path="res://prefabs/octagon/octagon.tres" id="1_5g7f5"]
+[ext_resource type="Texture2D" uid="uid://dxgxd8l7fp25r" path="res://textures/proto/texture_08.svg" id="1_5g7f5"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jiibc"]
+albedo_texture = ExtResource("1_5g7f5")
+uv1_triplanar = true
 
 [resource]
-material = ExtResource("1_5g7f5")
+material = SubResource("StandardMaterial3D_jiibc")
 top_radius = 15.0
 bottom_radius = 15.0
 height = 100.0
