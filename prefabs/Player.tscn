@@ -156,10 +156,9 @@ parameters/TimeScale/scale = 1.5
 parameters/BlendCrouch/blend_amount = 0.0
 parameters/BlendHurt/blend_amount = 0.0
 
-[node name="PlayerVisualRoot" type="Node3D" parent="." index="16" unique_id=2025236611 node_paths=PackedStringArray("color_meshes")]
+[node name="PlayerVisualRoot" type="Node3D" parent="." index="16" unique_id=2025236611]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 script = ExtResource("5_xgtsh")
-color_meshes = [NodePath("blockbench_export/root/Waist/Head2/Hat Layer"), NodePath("blockbench_export/root/Waist/Body2/Body Layer"), NodePath("blockbench_export/root/Waist/Right Arm2/Right Arm Layer"), NodePath("blockbench_export/root/Waist/Left Arm2/Left Arm Layer"), NodePath("blockbench_export/root/Right Leg2/Right Leg Layer"), NodePath("blockbench_export/root/Left Leg2/Left Leg Layer")]
 metadata/_custom_type_script = "uid://c4mo7inp0b5q0"
 
 [node name="blockbench_export" parent="PlayerVisualRoot" index="0" unique_id=2079496628 instance=ExtResource("6_xgtsh")]
