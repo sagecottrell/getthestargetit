@@ -1,7 +1,7 @@
 class_name PlayerVisualRoot
 extends Node3D
 
-@export var color_meshes: Array[MeshInstance3D]
+var color_meshes: Array[Node]
 var all_meshes: Array[Node]
 
 @export var player_color: Color:
@@ -15,6 +15,7 @@ var all_meshes: Array[Node]
 func _ready():
 	apply_color()
 	all_meshes = find_children("", "MeshInstance3D")
+	color_meshes = find_children("* Layer")
 
 func hide_meshes():
 	for child in all_meshes:
