@@ -37,5 +37,6 @@
 - [X] countdown
 	- [X] player unlock button
 - [ ] client disconnect logic
+- [ ] mole enemy
 
 ## bugs

@@ -264,7 +264,10 @@ shape = SubResource("ConcavePolygonShape3D_1nuv2")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.034197807, 101.6118, 77.06252)
 
 [node name="Checkpoint2" parent="." unique_id=461311173 instance=ExtResource("20_gbrv7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.6433125, 99.606445, 8.583353)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.3566875, 99.606445, -12.416647)
+
+[node name="Checkpoint3" parent="." unique_id=867683272 instance=ExtResource("20_gbrv7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.64331245, 99.606445, -12.416647)
 
 [connection signal="activated" from="Star/PropSignalsComponent" to="Star/PlayerEventsLogic" method="show_hint" binds= ["Star Activated", 3.0]]
 [connection signal="deactivated" from="Star/PropSignalsComponent" to="Star/PlayerEventsLogic" method="show_hint" binds= ["Star Deactivated", 3.0]]
