@@ -137,16 +137,10 @@ func _ready():
 	
 	#emerged.connect(_on_controller_emerged.bind())
 	#submerged.connect(_on_controller_subemerged.bind())
-
-func set_rank(pid: int, rank: String):
-	if pid != name.to_int():
-		return
-	$Ranking.text = rank
-
-func _on_set_physics_locked(locked: bool):
-	physics_locked = locked
-	$Collision.set_deferred("disabled", locked)
-
+	
+	SignalBus.on_set_game_coop.connect(_on_coop)
+	SignalBus.on_set_game_versus.connect(_on_versus)
+	
 func _physics_process(delta):
 	if not is_multiplayer_authority():
 		return
@@ -202,6 +196,21 @@ func _input(event: InputEvent) -> void:
 	# Mouse look (only if the mouse is captured).
 	if not camera_locked and event is InputEventMouseMotion and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
 		rotate_head(event.screen_relative)
+
+func set_rank(pid: int, rank: String):
+	if pid != name.to_int():
+		return
+	$Ranking.text = rank
+
+func _on_set_physics_locked(locked: bool):
+	physics_locked = locked
+	$Collision.set_deferred("disabled", locked)
+
+func _on_coop():
+	collision_mask |= 2
+
+func _on_versus():
+	collision_mask &= ~2
 
 func _on_game_start():
 	SignalBus.restore_movement()
