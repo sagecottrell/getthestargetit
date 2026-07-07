@@ -11,14 +11,6 @@
 [sub_resource type="LabelSettings" id="LabelSettings_qw60f"]
 font_color = Color(0, 1, 1, 1)
 
-[sub_resource type="LabelSettings" id="LabelSettings_xmmr6"]
-font_size = 70
-outline_size = 8
-outline_color = Color(0.14117648, 0.078431375, 0.23529412, 1)
-shadow_size = 13
-shadow_color = Color(0, 0, 0, 0.654902)
-shadow_offset = Vector2(5.615, 2.71)
-
 [node name="ServerGUI" type="CanvasLayer" unique_id=810692013]
 script = ExtResource("1_oj2u2")
 
@@ -96,17 +88,22 @@ layout_mode = 2
 tooltip_text = "Unlock Player Movement"
 icon = ExtResource("4_xmmr6")
 
-[node name="TimerDisplay" type="Label" parent="LevelControls" unique_id=1431125609]
+[node name="TimerDisplay" type="RichTextLabel" parent="LevelControls" unique_id=389359016]
 unique_name_in_owner = true
 layout_mode = 0
-offset_left = 421.0
-offset_right = 632.0
+offset_right = 1152.0
 offset_bottom = 92.0
-label_settings = SubResource("LabelSettings_xmmr6")
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 5
+theme_override_constants/shadow_offset_y = 5
+theme_override_constants/outline_size = 14
+theme_override_font_sizes/normal_font_size = 67
+bbcode_enabled = true
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="PauseMenu" type="Control" parent="." unique_id=1136212381]
+visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_right = 1152.0
