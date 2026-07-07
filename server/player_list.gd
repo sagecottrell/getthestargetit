@@ -7,6 +7,7 @@ func _ready():
 	SignalBus.on_player_setup.connect(_on_add_player)
 	SignalBus.on_any_win.connect(_on_any_won)
 	SignalBus.on_reset_rankings.connect(clear_places)
+	SignalBus.on_client_ready.connect(_on_client_ready)
 
 func _on_add_player(pid: int, info: PlayerInfo):
 	var display: PlayerInfoDisplay = preload("res://server/PlayerInfoDisplay.tscn").instantiate()
@@ -20,4 +21,8 @@ func _on_any_won(pid: int, place: String):
 
 func clear_places():
 	for child in player_list_items.values():
-		child.hide_place()
+		child.reset()
+
+func _on_client_ready(pid: int):
+	if pid in player_list_items:
+		player_list_items[pid]._on_client_ready()

@@ -4,6 +4,11 @@ func _ready():
 	$HBoxContainer/SwitchCamButton.visible = false
 	SignalBus.on_change_scene.connect(_on_change_scene)
 	SignalBus.on_server_changing_level.connect(_on_changing_level)
+	reset()
+
+func reset():
+	%place.visible = false
+	%ready.visible = false
 
 func _on_change_scene(_node):
 	$HBoxContainer/SwitchCamButton.visible = true
@@ -19,8 +24,8 @@ func set_place(n: String):
 	%place.visible = true
 	%place.text = n
 
-func hide_place():
-	%place.visible = false
-
 func _on_switch_cam_button_pressed() -> void:
 	SignalBus.cam_switch(name.to_int(), false)
+
+func _on_client_ready():
+	%ready.visible = true

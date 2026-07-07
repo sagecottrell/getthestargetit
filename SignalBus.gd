@@ -162,6 +162,14 @@ signal on_client_won(pid: int)
 func client_won():
 	on_client_won.emit(multiplayer.get_remote_sender_id())
 
+## when the client is loaded into the level and is ready to play
+signal on_client_ready(pid: int)
+@rpc("any_peer")
+func client_ready():
+	on_client_ready.emit(multiplayer.get_remote_sender_id())
+func c_client_ready():
+	client_ready.rpc()
+
 # ================================================================================================
 # RPC server to auth-client
 # ================================================================================================

@@ -31,6 +31,7 @@ func pre_level_push():
 func _on_recieve_scene_text(text: String):
 	SignalBus.change_scene(Str2Node.tscn_string_to_node(text))
 	gui.on_ingame()
+	SignalBus.c_client_ready()
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_end"):

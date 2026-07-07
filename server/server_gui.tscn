@@ -103,7 +103,6 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="PauseMenu" type="Control" parent="." unique_id=1136212381]
-visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_right = 1152.0
