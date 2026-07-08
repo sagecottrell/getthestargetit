@@ -56,3 +56,4 @@ func _on_cp_collected(cp: Node3D):
 	else:
 		plane.set_surface_override_material(0, null)
 		collected = false
+	$marker.visible = collected

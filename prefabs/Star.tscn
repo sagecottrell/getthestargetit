@@ -2,9 +2,24 @@
 
 [ext_resource type="Script" uid="uid://cx5fgac64bpar" path="res://prefabs/star/starScript.gd" id="1_5hr4g"]
 [ext_resource type="PackedScene" uid="uid://c3yoyn357ckex" path="res://prefabs/star/model.gltf" id="1_21kng"]
+[ext_resource type="Texture2D" uid="uid://bhncelb8y32on" path="res://textures/goalmarker.png" id="3_2sda5"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_5hr4g"]
 radius = 0.7
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7c6qd"]
+no_depth_test = true
+shading_mode = 0
+albedo_texture = ExtResource("3_2sda5")
+texture_filter = 2
+disable_receive_shadows = true
+billboard_mode = 1
+billboard_keep_scale = true
+fixed_size = true
+distance_fade_mode = 1
+
+[sub_resource type="QuadMesh" id="QuadMesh_vccua"]
+material = SubResource("StandardMaterial3D_7c6qd")
 
 [node name="Star" type="Node3D" unique_id=1036149878]
 script = ExtResource("1_5hr4g")
@@ -17,5 +32,9 @@ collision_mask = 3
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Collision" unique_id=603265922]
 shape = SubResource("SphereShape3D_5hr4g")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1135111486]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 2, 0)
+mesh = SubResource("QuadMesh_vccua")
 
 [connection signal="body_entered" from="Collision" to="." method="on_collide"]

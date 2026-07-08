@@ -15,12 +15,10 @@ duration = 0.0
 
 [sub_resource type="Resource" id="Resource_70wo7"]
 script = ExtResource("4_1nynx")
-duration = 0.0
 metadata/_custom_type_script = "uid://8umksf8e80fw"
 
 [sub_resource type="Resource" id="Resource_0ep8a"]
 script = ExtResource("4_1nynx")
-duration = 0.0
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_elntb"]
 properties/0/path = NodePath(".:position")
@@ -164,10 +162,10 @@ metadata/_custom_type_script = "uid://c4mo7inp0b5q0"
 [node name="blockbench_export" parent="PlayerVisualRoot" index="0" unique_id=2079496628 instance=ExtResource("6_xgtsh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
 
-[node name="Right Arm2" parent="PlayerVisualRoot/blockbench_export/root/Waist" parent_id_path=PackedInt32Array(2079496628, 1113985881) index="2" unique_id=1363812366]
-transform = Transform3D(1, 0, 0, 0, 0.9955199, -0.09454869, 0, 0.09454869, 0.9955199, 0.3125, 0.625, 0)
+[node name="Right Arm2" parent="PlayerVisualRoot/blockbench_export/root/Waist" parent_id_path=PackedInt32Array(2079496628, 119327456) index="2" unique_id=1984803296]
+transform = Transform3D(1, 0, 0, 0, 0.98687226, 0.1615004, 0, -0.1615004, 0.98687226, 0.3125, 0.625, 0)
 
-[node name="Left Arm2" parent="PlayerVisualRoot/blockbench_export/root/Waist" parent_id_path=PackedInt32Array(2079496628, 1113985881) index="3" unique_id=106449799]
-transform = Transform3D(1, 0, 0, 0, 0.9955199, 0.09454869, 0, -0.09454869, 0.9955199, -0.3125, 0.625, 0)
+[node name="Left Arm2" parent="PlayerVisualRoot/blockbench_export/root/Waist" parent_id_path=PackedInt32Array(2079496628, 119327456) index="3" unique_id=557636322]
+transform = Transform3D(1, 0, 0, 0, 0.98687226, -0.1615004, 0, 0.1615004, 0.98687226, -0.3125, 0.625, 0)
 
 [editable path="PlayerVisualRoot/blockbench_export"]

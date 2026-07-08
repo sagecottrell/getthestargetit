@@ -22,6 +22,7 @@
 [ext_resource type="PackedScene" uid="uid://b01kqj2o2ige6" path="res://prefabs/Checkpoint.tscn" id="20_gbrv7"]
 [ext_resource type="PackedScene" uid="uid://bokv1c2ivakrm" path="res://prefabs/blackhole.tscn" id="21_j7jrj"]
 [ext_resource type="PackedScene" uid="uid://btu2gxdxxsg1m" path="res://prefabs/setpieces/spire1.tscn" id="22_wxpum"]
+[ext_resource type="Script" uid="uid://bd046eokvcnu2" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="23_v5r4t"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_0kh3j"]
 panorama = ExtResource("2_df8lk")
@@ -38,6 +39,10 @@ sky = SubResource("Sky_t5ash")
 ambient_light_color = Color(1, 1, 1, 1)
 tonemap_mode = 2
 glow_enabled = true
+
+[sub_resource type="Resource" id="Resource_v5r4t"]
+script = ExtResource("7_k8yl0")
+duration = 0.0
 
 [sub_resource type="Resource" id="Resource_ix6w0"]
 script = ExtResource("7_k8yl0")
@@ -67,6 +72,16 @@ data = PackedVector3Array(-0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0
 [node name="Testscene" type="Node3D" unique_id=1867083525]
 script = ExtResource("1_k8yl0")
 
+[node name="Camera3D" type="Camera3D" parent="." unique_id=417200083]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 99.32045, 83.156364)
+top_level = true
+
+[node name="PhantomCameraHost" type="Node" parent="Camera3D" unique_id=1777519013]
+process_priority = 300
+process_physics_priority = 300
+script = ExtResource("23_v5r4t")
+metadata/_custom_type_script = "uid://bd046eokvcnu2"
+
 [node name="Lighting" type="Node" parent="." unique_id=889023895]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="Lighting" unique_id=1938912819]
@@ -80,14 +95,16 @@ directional_shadow_max_distance = 250.0
 [node name="Star" parent="." unique_id=1036149878 instance=ExtResource("1_bqvsh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 99.32045, 85)
 
-[node name="PropSignalsComponent" type="Node" parent="Star" unique_id=1036855450]
-script = ExtResource("14_kgcq4")
-start_active = false
-metadata/_custom_type_script = "uid://2a77n8l854rc"
-
 [node name="PlayerEventsLogic" type="Node" parent="Star" unique_id=1264044424]
 script = ExtResource("19_kciqv")
 metadata/_custom_type_script = "uid://8wro8myvb4sw"
+
+[node name="PhantomCamera3D" type="Node3D" parent="Star" unique_id=1029162867]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, -1.8436356)
+script = ExtResource("6_pxpqt")
+priority = 100
+tween_resource = SubResource("Resource_v5r4t")
+metadata/_custom_type_script = "uid://csjccrhj5wnx7"
 
 [node name="PlayerSpawn" parent="." unique_id=1298073336 instance=ExtResource("5_pxpqt")]
 transform = Transform3D(-0.9986523, 0, -0.051900335, 0, 1, 0, 0.051900335, 0, -0.9986523, 0, 101, 0)
@@ -105,24 +122,27 @@ transform = Transform3D(-0.9986523, 0, -0.051900335, 0, 1, 0, 0.051900335, 0, -0
 transform = Transform3D(-0.9986523, 0, -0.051900335, 0, 1, 0, 0.051900335, 0, -0.9986523, 4, 101, 0)
 
 [node name="PhantomCamera3D" type="Node3D" parent="." unique_id=1004881554]
-transform = Transform3D(-0.8660254, 0, 0.50000006, 0, 1, 0, -0.50000006, 0, -0.8660254, 0, 106.148346, -17.732723)
+transform = Transform3D(-0.83946, 0.26553863, -0.4741266, 0, 0.87248427, 0.48864222, 0.5434214, 0.41019562, -0.73241574, -12.491429, 110.903275, -15.347109)
 script = ExtResource("6_pxpqt")
 priority = 50
 tween_resource = SubResource("Resource_ix6w0")
+tween_on_load = false
 metadata/_custom_type_script = "uid://csjccrhj5wnx7"
 
 [node name="PhantomCamera3D2" type="Node3D" parent="." unique_id=679253071]
-transform = Transform3D(0.9983798, 0, 0.056900233, -0.021087252, 0.9287924, 0.37, -0.052848507, -0.37060043, 0.92728764, 0, 101.148346, 95.622025)
+transform = Transform3D(0.9983798, 1.3805942e-09, 0.05690023, -0.03285725, 0.8164234, 0.5765181, -0.04645469, -0.5774537, 0.8151008, 0, 107.685555, 93.48742)
 script = ExtResource("6_pxpqt")
 priority = 50
 tween_resource = SubResource("Resource_ix6w0")
+tween_on_load = false
 metadata/_custom_type_script = "uid://csjccrhj5wnx7"
 
 [node name="PhantomCamera3D3" type="Node3D" parent="." unique_id=133932300]
-transform = Transform3D(-0.1991381, -0.36656874, 0.9088297, -0.02108725, 0.92879224, 0.36999997, -0.97974443, 0.054516412, -0.19268787, 49.487762, 106.148346, 4.045311)
+transform = Transform3D(-0.041092016, -0.9864539, 0.1588076, -0.06366686, 0.1612038, 0.98486537, -0.9971248, 0.030359358, -0.069428615, 54.921818, 120.228584, 13.056462)
 script = ExtResource("6_pxpqt")
 priority = 50
 tween_resource = SubResource("Resource_ix6w0")
+tween_on_load = false
 metadata/_custom_type_script = "uid://csjccrhj5wnx7"
 
 [node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="." unique_id=2070496638]
@@ -152,6 +172,25 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 99.44984, 0)
 
 [node name="3x3Platform4" parent="." unique_id=1304054501 instance=ExtResource("8_k8yl0")]
 transform = Transform3D(0.92143446, 0, -0.38853386, 0, 1, 0, 0.38853386, 0, 0.92143446, 16.041393, 99.44984, 5.3721857)
+
+[node name="IceCube4" parent="." unique_id=1018189911 instance=ExtResource("14_yexxi")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0.17173386, 96, 53.4791)
+
+[node name="comeback" type="Node" parent="IceCube4" unique_id=1993529906]
+script = ExtResource("5_1nuv2")
+duration = 3.0
+final_value = 0.0
+property = "position:x"
+relative = 1
+metadata/_custom_type_script = "uid://d31fb4ihe08c"
+
+[node name="setfaraway" type="Node" parent="IceCube4" unique_id=813283310]
+script = ExtResource("5_1nuv2")
+duration = 1.0
+final_value = -100.0
+property = "position:x"
+relative = 1
+metadata/_custom_type_script = "uid://d31fb4ihe08c"
 
 [node name="bridge" type="Node3D" parent="." unique_id=1307490053]
 
@@ -184,28 +223,28 @@ relative = 1
 metadata/_custom_type_script = "uid://d31fb4ihe08c"
 
 [node name="IceCube" parent="bridge" unique_id=1793228314 instance=ExtResource("14_yexxi")]
-transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -11.2344475, 98, -16.154594)
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -5, 96, 48)
 
 [node name="IceCube2" parent="bridge" unique_id=953216176 instance=ExtResource("14_yexxi")]
-transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0.17173386, 96, 30.4791)
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0.17173386, 96, 29.4791)
 
 [node name="IceCube3" parent="bridge" unique_id=219118062 instance=ExtResource("14_yexxi")]
-transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0.17173386, 96, 39.4791)
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0.17173386, 96, 35.4791)
+
+[node name="IceCube4" parent="bridge" unique_id=1075171924 instance=ExtResource("14_yexxi")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0.17173386, 96, 41.4791)
 
 [node name="IceCube8" parent="bridge" unique_id=1340152977 instance=ExtResource("14_yexxi")]
-transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0.17173386, 96, 48.4791)
-
-[node name="IceCube4" parent="bridge" unique_id=1018189911 instance=ExtResource("14_yexxi")]
-transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0.17173386, 96, 56.4791)
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 96, 48)
 
 [node name="IceCube6" parent="bridge" unique_id=457615464 instance=ExtResource("14_yexxi")]
-transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0.17173386, 96, 64.479095)
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0.17173386, 95, 62.479095)
 
 [node name="IceCube7" parent="bridge" unique_id=1032265432 instance=ExtResource("14_yexxi")]
 transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0.17173386, 95, 69.479095)
 
 [node name="IceCube5" parent="bridge" unique_id=589309088 instance=ExtResource("14_yexxi")]
-transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -13, 98, -24)
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -10, 96, 48)
 
 [node name="pedestal2" type="StaticBody3D" parent="bridge/IceCube5" unique_id=1932484044]
 transform = Transform3D(0.33333334, 0, 0, 0, 0.33333334, 0, 0, 0, 0.33333334, 0, 0.66666794, -0.22741604)
@@ -283,10 +322,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -29.2706, 99.45165, 12.482986
 [node name="Spire1" parent="." unique_id=206799308 instance=ExtResource("22_wxpum")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 51, 97, 11)
 
-[connection signal="activated" from="Star/PropSignalsComponent" to="Star/PlayerEventsLogic" method="show_hint" binds= ["Star Activated", 3.0]]
-[connection signal="deactivated" from="Star/PropSignalsComponent" to="Star/PlayerEventsLogic" method="show_hint" binds= ["Star Deactivated", 3.0]]
 [connection signal="body_entered" from="deathplane" to="." method="_on_deathplane_body_entered"]
-[connection signal="ready" from="bridge" to="bridge/setfaraway" method="animate"]
-[connection signal="button_pressed" from="bridge/IceCube5/pedestal2/activateStar" to="Star/PropSignalsComponent" method="activate"]
+[connection signal="ready" from="IceCube4/setfaraway" to="IceCube4/setfaraway" method="animate"]
+[connection signal="ready" from="bridge/setfaraway" to="bridge/setfaraway" method="animate"]
+[connection signal="button_pressed" from="bridge/IceCube5/pedestal2/activateStar" to="IceCube4/comeback" method="animate"]
 [connection signal="player_collide" from="Nuclearcube" to="." method="_on_deathplane_body_entered"]
 [connection signal="button_pressed" from="pedestal/spawnBridgeButton" to="bridge/comeback" method="animate"]

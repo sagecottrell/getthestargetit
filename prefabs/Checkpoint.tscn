@@ -3,8 +3,23 @@
 [ext_resource type="Script" uid="uid://ck5juac4a8v8y" path="res://prefabs/checkpoint/checkpoint.gd" id="1_pm1em"]
 [ext_resource type="PackedScene" uid="uid://dagetov3rjbw3" path="res://prefabs/checkpoint/checkpoint.gltf" id="1_x8iep"]
 [ext_resource type="Material" uid="uid://bu4as83qpdmyb" path="res://prefabs/checkpoint/owned-material.tres" id="2_a60b8"]
+[ext_resource type="Texture2D" uid="uid://14th2chgbvrp" path="res://textures/checkpointmarker.png" id="4_fmkd8"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_vccua"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7c6qd"]
+no_depth_test = true
+shading_mode = 0
+albedo_texture = ExtResource("4_fmkd8")
+texture_filter = 2
+disable_receive_shadows = true
+billboard_mode = 1
+billboard_keep_scale = true
+fixed_size = true
+distance_fade_mode = 1
+
+[sub_resource type="QuadMesh" id="QuadMesh_wurf6"]
+material = SubResource("StandardMaterial3D_7c6qd")
 
 [node name="Checkpoint" type="Node3D" unique_id=2037637097]
 script = ExtResource("1_pm1em")
@@ -19,5 +34,10 @@ collision_mask = 2
 shape = SubResource("CylinderShape3D_vccua")
 
 [node name="blockbench_export" parent="." unique_id=1870796430 instance=ExtResource("1_x8iep")]
+
+[node name="marker" type="MeshInstance3D" parent="." unique_id=1339325142]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 2, 0)
+visible = false
+mesh = SubResource("QuadMesh_wurf6")
 
 [editable path="blockbench_export"]

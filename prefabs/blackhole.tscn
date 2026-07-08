@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://bokv1c2ivakrm"]
 
 [ext_resource type="Script" uid="uid://dw84lkpg0jm4n" path="res://prefabs/DamageField.gd" id="1_baxed"]
-[ext_resource type="Texture2D" uid="uid://dxgxd8l7fp25r" path="res://textures/proto/texture_08.svg" id="2_rjea8"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7xt6h"]
 render_priority = 1
@@ -47,7 +46,7 @@ radius = 25.0
 height = 50.0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_baxed"]
-albedo_texture = ExtResource("2_rjea8")
+albedo_color = Color(0.18039216, 0.18039216, 0.18039216, 1)
 
 [node name="Blackhole" type="Node3D" unique_id=1206704492]
 
@@ -84,3 +83,15 @@ transparency = 0.5
 cast_shadow = 0
 mesh = SubResource("SphereMesh_7c6qd")
 surface_material_override/0 = SubResource("StandardMaterial3D_baxed")
+
+[node name="Label3D" type="Label3D" parent="." unique_id=1564209248]
+transparency = 0.77
+visibility_range_end = 25.0
+billboard = 1
+no_depth_test = true
+fixed_size = true
+modulate = Color(0, 0, 0, 1)
+text = "black hole is comfy
+incredibly safe and warm
+please do not worry"
+uppercase = true
