@@ -14,8 +14,8 @@
 [ext_resource type="PackedScene" uid="uid://h4ks4xpce6t7" path="res://prefabs/cube.tscn" id="11_6ea13"]
 [ext_resource type="PackedScene" uid="uid://dy84oa60r7n18" path="res://prefabs/nuclearcube.tscn" id="12_t7qil"]
 [ext_resource type="PackedScene" uid="uid://ck23wxn4q834b" path="res://prefabs/SimpleEnemy.tscn" id="13_f0rtv"]
-[ext_resource type="Script" uid="uid://2a77n8l854rc" path="res://prefabs/PropSignalsComponent.gd" id="14_kgcq4"]
 [ext_resource type="PackedScene" uid="uid://cepxnhvb2wy6h" path="res://prefabs/IceCube.tscn" id="14_yexxi"]
+[ext_resource type="Script" uid="uid://dpajkhws0btds" path="res://prefabs/tweens/tween_tree.gd" id="15_v5r4t"]
 [ext_resource type="Texture2D" uid="uid://m5us13vug6au" path="res://textures/rock.png" id="17_eq453"]
 [ext_resource type="PackedScene" uid="uid://suvyr4b7yflf" path="res://prefabs/PushButtonOnce.tscn" id="19_gbrv7"]
 [ext_resource type="Script" uid="uid://8wro8myvb4sw" path="res://prefabs/logic/player_events.gd" id="19_kciqv"]
@@ -171,28 +171,42 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 99.44984, 0)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 99.44984, 0)
 
 [node name="3x3Platform4" parent="." unique_id=1304054501 instance=ExtResource("8_k8yl0")]
-transform = Transform3D(0.92143446, 0, -0.38853386, 0, 1, 0, 0.38853386, 0, 0.92143446, 16.041393, 99.44984, 5.3721857)
+transform = Transform3D(0.99997574, 0, -0.006964504, 0, 1, 0, 0.006964504, 0, 0.99997574, 16.041393, 99.44984, 5.3721857)
 
-[node name="IceCube4" parent="." unique_id=1018189911 instance=ExtResource("14_yexxi")]
-transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0.17173386, 96, 53.4791)
-
-[node name="comeback" type="Node" parent="IceCube4" unique_id=1993529906]
+[node name="TweenComponent" type="Node" parent="3x3Platform4" unique_id=1154027174]
 script = ExtResource("5_1nuv2")
-duration = 3.0
-final_value = 0.0
-property = "position:x"
+start_active = true
+duration = 5.0
+final_value = 360
+property = "rotation_degrees:y"
 relative = 1
-metadata/_custom_type_script = "uid://d31fb4ihe08c"
-
-[node name="setfaraway" type="Node" parent="IceCube4" unique_id=813283310]
-script = ExtResource("5_1nuv2")
-duration = 1.0
-final_value = -100.0
-property = "position:x"
-relative = 1
+loops = 0
 metadata/_custom_type_script = "uid://d31fb4ihe08c"
 
 [node name="bridge" type="Node3D" parent="." unique_id=1307490053]
+
+[node name="3x3Platform5" parent="bridge" unique_id=1903620610 instance=ExtResource("8_k8yl0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 97, 60)
+
+[node name="TweenTree" type="Node" parent="bridge/3x3Platform5" unique_id=724124564]
+script = ExtResource("15_v5r4t")
+start_active = true
+loops = 0
+metadata/_custom_type_script = "uid://dpajkhws0btds"
+
+[node name="fwd" type="Node" parent="bridge/3x3Platform5/TweenTree" unique_id=673331233]
+script = ExtResource("5_1nuv2")
+duration = 2.0
+final_value = 10
+property = "position:x"
+metadata/_custom_type_script = "uid://d31fb4ihe08c"
+
+[node name="back" type="Node" parent="bridge/3x3Platform5/TweenTree" unique_id=1109470635]
+script = ExtResource("5_1nuv2")
+duration = 2.0
+final_value = 0
+property = "position:x"
+metadata/_custom_type_script = "uid://d31fb4ihe08c"
 
 [node name="Tree" parent="bridge" unique_id=2143920079 instance=ExtResource("9_ix6w0")]
 transform = Transform3D(1, 0, 0, 0, 0.2277886, -0.97371054, 0, 0.97371054, 0.2277886, 0, 97.94835, 14.868952)
@@ -209,14 +223,13 @@ transform = Transform3D(2.255, 0, 0, 0, 2.255, 0, 0, 0, 2.255, -0.07251465, 94.5
 [node name="comeback" type="Node" parent="bridge" unique_id=847439876]
 script = ExtResource("5_1nuv2")
 duration = 3.0
-final_value = 0.0
 property = "position:x"
 relative = 1
 metadata/_custom_type_script = "uid://d31fb4ihe08c"
 
 [node name="setfaraway" type="Node" parent="bridge" unique_id=923580611]
 script = ExtResource("5_1nuv2")
-duration = 1.0
+start_active = true
 final_value = -100.0
 property = "position:x"
 relative = 1
@@ -225,23 +238,40 @@ metadata/_custom_type_script = "uid://d31fb4ihe08c"
 [node name="IceCube" parent="bridge" unique_id=1793228314 instance=ExtResource("14_yexxi")]
 transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -5, 96, 48)
 
-[node name="IceCube2" parent="bridge" unique_id=953216176 instance=ExtResource("14_yexxi")]
-transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0.17173386, 96, 29.4791)
-
-[node name="IceCube3" parent="bridge" unique_id=219118062 instance=ExtResource("14_yexxi")]
-transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0.17173386, 96, 35.4791)
-
-[node name="IceCube4" parent="bridge" unique_id=1075171924 instance=ExtResource("14_yexxi")]
-transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0.17173386, 96, 41.4791)
-
-[node name="IceCube8" parent="bridge" unique_id=1340152977 instance=ExtResource("14_yexxi")]
+[node name="IceCube6" parent="bridge" unique_id=761096997 instance=ExtResource("14_yexxi")]
 transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 96, 48)
 
-[node name="IceCube6" parent="bridge" unique_id=457615464 instance=ExtResource("14_yexxi")]
-transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0.17173386, 95, 62.479095)
+[node name="IceCube2" parent="bridge" unique_id=953216176 instance=ExtResource("14_yexxi")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 96, 30)
+
+[node name="IceCube3" parent="bridge" unique_id=219118062 instance=ExtResource("14_yexxi")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 96, 36)
+
+[node name="IceCube4" parent="bridge" unique_id=1075171924 instance=ExtResource("14_yexxi")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 96, 42)
+
+[node name="IceCube9" parent="bridge" unique_id=1419120080 instance=ExtResource("14_yexxi")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 95, 65)
 
 [node name="IceCube7" parent="bridge" unique_id=1032265432 instance=ExtResource("14_yexxi")]
-transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0.17173386, 95, 69.479095)
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 95, 70)
+
+[node name="IceCube10" parent="bridge" unique_id=1018189911 instance=ExtResource("14_yexxi")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 96, 54)
+
+[node name="comeback" type="Node" parent="bridge/IceCube10" unique_id=1993529906]
+script = ExtResource("5_1nuv2")
+duration = 3.0
+property = "position:x"
+relative = 1
+metadata/_custom_type_script = "uid://d31fb4ihe08c"
+
+[node name="setfaraway" type="Node" parent="bridge/IceCube10" unique_id=813283310]
+script = ExtResource("5_1nuv2")
+final_value = -100.0
+property = "position:x"
+relative = 1
+metadata/_custom_type_script = "uid://d31fb4ihe08c"
 
 [node name="IceCube5" parent="bridge" unique_id=589309088 instance=ExtResource("14_yexxi")]
 transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -10, 96, 48)
@@ -251,6 +281,7 @@ transform = Transform3D(0.33333334, 0, 0, 0, 0.33333334, 0, 0, 0, 0.33333334, 0,
 
 [node name="activateStar" parent="bridge/IceCube5/pedestal2" unique_id=38299381 instance=ExtResource("19_gbrv7")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+disabled_message = "Ice Cube Activated"
 
 [node name="button" type="MeshInstance3D" parent="bridge/IceCube5/pedestal2/activateStar" unique_id=1974973544]
 mesh = SubResource("CylinderMesh_j7jrj")
@@ -262,17 +293,13 @@ mesh = SubResource("BoxMesh_7c6qd")
 shape = SubResource("ConcavePolygonShape3D_1nuv2")
 
 [node name="Cube" parent="." unique_id=2129962462 instance=ExtResource("11_6ea13")]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 95.6106, 77)
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 95, 77)
 
 [node name="Nuclearcube" parent="." unique_id=559031872 instance=ExtResource("12_t7qil")]
 transform = Transform3D(24, 0, 0, 0, 24, 0, 0, 0, 24, 0, 81.96615, 85.005615)
 
 [node name="SimpleEnemy" parent="." unique_id=508805129 instance=ExtResource("13_f0rtv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 31.476742, 99.61269, 19.506218)
-
-[node name="PropSignalsComponent" type="Node" parent="SimpleEnemy" unique_id=83518371]
-script = ExtResource("14_kgcq4")
-metadata/_custom_type_script = "uid://2a77n8l854rc"
 
 [node name="SimpleEnemy2" parent="." unique_id=867760921 instance=ExtResource("13_f0rtv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 38.47674, 99.61269, 14.506218)
@@ -297,6 +324,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 50, 108, 10.317753)
 
 [node name="spawnBridgeButton" parent="pedestal" unique_id=597924799 instance=ExtResource("19_gbrv7")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+disabled_message = "Bridge Activated"
 
 [node name="button" type="MeshInstance3D" parent="pedestal/spawnBridgeButton" unique_id=2127580329]
 mesh = SubResource("CylinderMesh_j7jrj")
@@ -308,7 +336,7 @@ mesh = SubResource("BoxMesh_7c6qd")
 shape = SubResource("ConcavePolygonShape3D_1nuv2")
 
 [node name="Checkpoint" parent="." unique_id=2037637097 instance=ExtResource("20_gbrv7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.034197807, 96.6118, 77.06252)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 96, 77)
 
 [node name="Checkpoint2" parent="." unique_id=461311173 instance=ExtResource("20_gbrv7")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.3566875, 99.606445, -12.416647)
@@ -323,8 +351,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -29.2706, 99.45165, 12.482986
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 51, 97, 11)
 
 [connection signal="body_entered" from="deathplane" to="." method="_on_deathplane_body_entered"]
-[connection signal="ready" from="IceCube4/setfaraway" to="IceCube4/setfaraway" method="animate"]
-[connection signal="ready" from="bridge/setfaraway" to="bridge/setfaraway" method="animate"]
-[connection signal="button_pressed" from="bridge/IceCube5/pedestal2/activateStar" to="IceCube4/comeback" method="animate"]
+[connection signal="ready" from="bridge/IceCube10/setfaraway" to="bridge/IceCube10/setfaraway" method="animate"]
+[connection signal="button_pressed" from="bridge/IceCube5/pedestal2/activateStar" to="bridge/IceCube10/comeback" method="animate"]
 [connection signal="player_collide" from="Nuclearcube" to="." method="_on_deathplane_body_entered"]
 [connection signal="button_pressed" from="pedestal/spawnBridgeButton" to="bridge/comeback" method="animate"]

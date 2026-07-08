@@ -10,6 +10,9 @@ extends FPSController3D
 		return first_person
 @onready var first_person_cam: PhantomCamera3D = %FirstPersonCamera
 @onready var third_person_cam: PhantomCamera3D = %ThirdPersonCamera
+@onready var first_person_cam_li: PhantomCamera3D = %FirstPersonCameraLoadIn
+@onready var third_person_cam_li: PhantomCamera3D = %ThirdPersonCameraLoadIn
+
 @onready var free_cam: PhantomCamera3D = $FreeCam
 @onready var win_cam: PhantomCamera3D = $CameraOnWin
 @onready var vis_root: PlayerVisualRoot = $PlayerVisualRoot
@@ -93,6 +96,7 @@ func _ready():
 	is_self = name.to_int() == multiplayer.get_unique_id()
 	
 	if is_multiplayer_authority():
+		
 		SignalBus.restored_movement.connect(func(): movement_locked = false)
 		SignalBus.restricted_movement.connect(func(): movement_locked = true)
 		SignalBus.on_teleport_player_to.connect(func(target): global_position = target.global_position)
@@ -107,7 +111,10 @@ func _ready():
 		
 		SignalBus.on_local_win.connect(on_win)
 		SignalBus.on_game_start.connect(_on_game_start)
-		switch_to_fp_or_tp_cam()
+		
+		#switch_to_fp_or_tp_cam()
+		_li_cam_start()
+		
 		movement_locked = true  # start locked, the server will send an unlock signal
 		_on_set_physics_locked(true)
 		
@@ -128,6 +135,7 @@ func _ready():
 		add_to_group("player")
 	else:
 		SignalBus.on_cam_switch.connect(on_cam_switch)
+		$Crosshair.visible = false
 	
 	vis_root.player_color = player_color
 	$Nametag.text = player_name
@@ -140,6 +148,9 @@ func _ready():
 	
 	SignalBus.on_set_game_coop.connect(_on_coop)
 	SignalBus.on_set_game_versus.connect(_on_versus)
+	
+	first_person_cam_li.tween_completed.connect(_li_cam_complete)
+	third_person_cam_li.tween_completed.connect(_li_cam_complete)
 	
 func _physics_process(delta):
 	if not is_multiplayer_authority():
@@ -215,6 +226,17 @@ func _on_versus():
 func _on_game_start():
 	SignalBus.restore_movement()
 	SignalBus.player_set_physics_lock(false)
+
+func _li_cam_complete():
+	first_person_cam_li.priority = 0
+	third_person_cam_li.priority = 0
+	switch_to_fp_or_tp_cam()
+
+func _li_cam_start():
+	if first_person:
+		first_person_cam_li.priority = 300
+	else:
+		third_person_cam_li.priority = 300
 
 func disable_cams():
 	free_cam.priority = 0

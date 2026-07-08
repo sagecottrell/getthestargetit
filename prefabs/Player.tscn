@@ -2,6 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://8oy3xm2sff8" path="res://addons/character-controller/fps/fps_controller_3d.tscn" id="1_dgc4i"]
 [ext_resource type="Script" uid="uid://bm7pjd2tyd4wt" path="res://prefabs/player/player.gd" id="2_1kmib"]
+[ext_resource type="Texture2D" uid="uid://cgsnuppm5tvo2" path="res://textures/crosshair.png" id="3_70wo7"]
 [ext_resource type="Script" uid="uid://csjccrhj5wnx7" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_3d.gd" id="3_mamfr"]
 [ext_resource type="Script" uid="uid://8umksf8e80fw" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="4_1nynx"]
 [ext_resource type="Script" uid="uid://7aw77s8t0acj" path="res://prefabs/health_manager.gd" id="5_0ep8a"]
@@ -9,16 +10,30 @@
 [ext_resource type="Script" uid="uid://c4mo7inp0b5q0" path="res://prefabs/player/playervisualroot.gd" id="5_xgtsh"]
 [ext_resource type="PackedScene" uid="uid://b0p4xtqkmbmoy" path="res://prefabs/player/player.gltf" id="6_xgtsh"]
 
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_rwuho"]
+blend_mode = 1
+
 [sub_resource type="Resource" id="Resource_1nynx"]
 script = ExtResource("4_1nynx")
 duration = 0.0
 
+[sub_resource type="Resource" id="Resource_rwuho"]
+script = ExtResource("4_1nynx")
+duration = 0.0
+metadata/_custom_type_script = "uid://8umksf8e80fw"
+
 [sub_resource type="Resource" id="Resource_70wo7"]
 script = ExtResource("4_1nynx")
+duration = 3.0
 metadata/_custom_type_script = "uid://8umksf8e80fw"
+
+[sub_resource type="Resource" id="Resource_yhksc"]
+script = ExtResource("4_1nynx")
+duration = 0.0
 
 [sub_resource type="Resource" id="Resource_0ep8a"]
 script = ExtResource("4_1nynx")
+duration = 3.0
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_elntb"]
 properties/0/path = NodePath(".:position")
@@ -61,35 +76,46 @@ crouch = false
 hurt = false
 state = 0
 
-[node name="CameraOnWin" type="Node3D" parent="." index="0" unique_id=2068749882]
+[node name="Crosshair" type="CanvasLayer" parent="." index="0" unique_id=18041020]
+
+[node name="crosshair" type="CenterContainer" parent="Crosshair" index="0" unique_id=27846317]
+offset_right = 1152.0
+offset_bottom = 648.0
+
+[node name="TextureRect" type="TextureRect" parent="Crosshair/crosshair" index="0" unique_id=442156175]
+material = SubResource("CanvasItemMaterial_rwuho")
+layout_mode = 2
+texture = ExtResource("3_70wo7")
+
+[node name="CameraOnWin" type="Node3D" parent="." index="1" unique_id=2068749882]
 transform = Transform3D(1, 0, 0, 0, 0.9659258, 0.25881904, 0, -0.25881904, 0.9659258, 0, 3, 5)
 script = ExtResource("3_mamfr")
 tween_resource = SubResource("Resource_1nynx")
 metadata/_custom_type_script = "uid://csjccrhj5wnx7"
 
-[node name="FreeCam" type="Node3D" parent="." index="1" unique_id=1205535065]
+[node name="FreeCam" type="Node3D" parent="." index="2" unique_id=1205535065]
 transform = Transform3D(1, 0, 0, 0, 0.9659258, 0.25881904, 0, -0.25881904, 0.9659258, 0, 3, 5)
 script = ExtResource("3_mamfr")
 tween_resource = SubResource("Resource_1nynx")
 metadata/_custom_type_script = "uid://csjccrhj5wnx7"
 
-[node name="Collision" parent="." index="2" unique_id=727390688]
+[node name="Collision" parent="." index="3" unique_id=727390688]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 
-[node name="HealthManager" type="Node" parent="." index="3" unique_id=968631098]
+[node name="HealthManager" type="Node" parent="." index="4" unique_id=968631098]
 script = ExtResource("5_0ep8a")
 
-[node name="Head Check" parent="." index="4" unique_id=1466819994]
+[node name="Head Check" parent="." index="5" unique_id=1466819994]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 
-[node name="Crouch Ability 3D" parent="." index="7" unique_id=1541717803 node_paths=PackedStringArray("collision", "head_check")]
+[node name="Crouch Ability 3D" parent="." index="8" unique_id=1541717803 node_paths=PackedStringArray("collision", "head_check")]
 collision = NodePath("../Collision")
 head_check = NodePath("../Head Check")
 
-[node name="Swim Ability 3D" parent="." index="10" unique_id=1022382486]
+[node name="Swim Ability 3D" parent="." index="11" unique_id=1022382486]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 
-[node name="Head" parent="." index="11" unique_id=1782836025]
+[node name="Head" parent="." index="12" unique_id=1782836025]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.64, 0)
 
 [node name="Head Bob" parent="Head" index="0" unique_id=1006493639 node_paths=PackedStringArray("head")]
@@ -99,49 +125,67 @@ head = NodePath("../FirstPersonCamera")
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.34620988)
 script = ExtResource("3_mamfr")
-priority = 1
-look_at_mode = 1
-tween_resource = SubResource("Resource_70wo7")
+tween_resource = SubResource("Resource_rwuho")
 tween_on_load = false
+inactive_update_mode = 1
 metadata/_custom_type_script = "uid://csjccrhj5wnx7"
 
-[node name="ThirdPersonCamera" type="Node3D" parent="Head" index="2" unique_id=475707984]
+[node name="FirstPersonCameraLoadIn" type="Node3D" parent="Head" index="2" unique_id=600939509]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.34620988)
+script = ExtResource("3_mamfr")
+tween_resource = SubResource("Resource_70wo7")
+tween_on_load = false
+inactive_update_mode = 1
+metadata/_custom_type_script = "uid://csjccrhj5wnx7"
+
+[node name="ThirdPersonCamera" type="Node3D" parent="Head" index="3" unique_id=475707984]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 0.8926156, 0.4508186, 0, -0.4508186, 0.8926156, 0, 1.87333, 4.654275)
+script = ExtResource("3_mamfr")
+tween_resource = SubResource("Resource_yhksc")
+tween_on_load = false
+inactive_update_mode = 1
+metadata/_custom_type_script = "uid://csjccrhj5wnx7"
+
+[node name="ThirdPersonCameraLoadIn" type="Node3D" parent="Head" index="4" unique_id=1536060653]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 0.8926156, 0.4508186, 0, -0.4508186, 0.8926156, 0, 1.87333, 4.654275)
 script = ExtResource("3_mamfr")
 tween_resource = SubResource("Resource_0ep8a")
 tween_on_load = false
+inactive_update_mode = 1
 metadata/_custom_type_script = "uid://csjccrhj5wnx7"
 
-[node name="RemoteTransform3D" type="RemoteTransform3D" parent="Head" index="3" unique_id=2137948890]
+[node name="RemoteTransform3D" type="RemoteTransform3D" parent="Head" index="5" unique_id=2137948890]
 remote_path = NodePath("../../PlayerVisualRoot/blockbench_export/root/Waist/Head2")
 update_position = false
 update_scale = false
 
-[node name="RayCast3D" type="RayCast3D" parent="Head" index="4" unique_id=653178753]
+[node name="RayCast3D" type="RayCast3D" parent="Head" index="6" unique_id=653178753]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.3552361)
 target_position = Vector3(0, 0, -1.5)
 collision_mask = 8
 collide_with_areas = true
 
-[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." index="12" unique_id=967940243]
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." index="13" unique_id=967940243]
 delta_interval = 0.01
 replication_config = SubResource("SceneReplicationConfig_elntb")
 
-[node name="Nametag" type="Label3D" parent="." index="13" unique_id=787512276]
+[node name="Nametag" type="Label3D" parent="." index="14" unique_id=787512276]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.2554884, 0)
 billboard = 1
 no_depth_test = true
 text = "Tester"
 
-[node name="Ranking" type="Label3D" parent="." index="14" unique_id=948623207]
+[node name="Ranking" type="Label3D" parent="." index="15" unique_id=948623207]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.6710804, 0)
 billboard = 1
 no_depth_test = true
 text = "loser"
 font_size = 77
 
-[node name="AnimationTree" type="AnimationTree" parent="." index="15" unique_id=80266036]
+[node name="AnimationTree" type="AnimationTree" parent="." index="16" unique_id=80266036]
 process_mode = 3
 root_node = NodePath("../PlayerVisualRoot/blockbench_export")
 tree_root = ExtResource("5_64pgi")
@@ -154,7 +198,7 @@ parameters/TimeScale/scale = 1.5
 parameters/BlendCrouch/blend_amount = 0.0
 parameters/BlendHurt/blend_amount = 0.0
 
-[node name="PlayerVisualRoot" type="Node3D" parent="." index="16" unique_id=2025236611]
+[node name="PlayerVisualRoot" type="Node3D" parent="." index="17" unique_id=2025236611]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 script = ExtResource("5_xgtsh")
 metadata/_custom_type_script = "uid://c4mo7inp0b5q0"
@@ -163,9 +207,9 @@ metadata/_custom_type_script = "uid://c4mo7inp0b5q0"
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
 
 [node name="Right Arm2" parent="PlayerVisualRoot/blockbench_export/root/Waist" parent_id_path=PackedInt32Array(2079496628, 119327456) index="2" unique_id=1984803296]
-transform = Transform3D(1, 0, 0, 0, 0.98687226, 0.1615004, 0, -0.1615004, 0.98687226, 0.3125, 0.625, 0)
+transform = Transform3D(1, 0, 0, 0, 0.99761826, 0.06897066, 0, -0.06897066, 0.99761826, 0.3125, 0.625, 0)
 
 [node name="Left Arm2" parent="PlayerVisualRoot/blockbench_export/root/Waist" parent_id_path=PackedInt32Array(2079496628, 119327456) index="3" unique_id=557636322]
-transform = Transform3D(1, 0, 0, 0, 0.98687226, -0.1615004, 0, 0.1615004, 0.98687226, -0.3125, 0.625, 0)
+transform = Transform3D(1, 0, 0, 0, 0.99761826, -0.06897066, 0, 0.06897066, 0.99761826, -0.3125, 0.625, 0)
 
 [editable path="PlayerVisualRoot/blockbench_export"]

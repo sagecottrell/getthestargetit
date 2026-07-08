@@ -1,3 +1,4 @@
+@tool
 class_name InteractableButton
 extends Area3D
 
@@ -15,7 +16,7 @@ signal on_disabled()
 func interact() -> void:
 	if enabled:
 		emit_signal("button_pressed")
-	else:
+	elif not Engine.is_editor_hint():
 		SignalBus.player_show_interactable_text(disabled_message)
 
 func hover():
@@ -39,3 +40,5 @@ func set_button_enabled(e: bool):
 		enable()
 	else:
 		disable()
+
+@export_tool_button("interact") var interact_button = interact

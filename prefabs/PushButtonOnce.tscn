@@ -17,7 +17,7 @@ shape = SubResource("SphereShape3D_vccua")
 [node name="tweendown" type="Node" parent="." unique_id=789101660]
 script = ExtResource("2_nj3em")
 duration = 0.5
-final_value = -0.1
+final_value = -0.05
 property = "position:y"
 relative = 1
 metadata/_custom_type_script = "uid://d31fb4ihe08c"
