@@ -125,7 +125,8 @@ func _editor_start_loop_forever():
 func _notification(what: int) -> void:
 	if what == NOTIFICATION_EDITOR_PRE_SAVE:
 		# Temporarily reset changes before the editor writes the file
-		stop_and_reset()
+		if index > -1:
+			stop_and_reset()
 
 @export_tool_button("Preview", "Callable") var preview_action = _editor_start_loop_forever
 @export_tool_button("Pause", "Callable") var pause_action = pause

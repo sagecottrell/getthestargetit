@@ -121,6 +121,7 @@ func animate_property(s_property: String, s_final_value: Variant, s_duration: fl
 	active_tween.finished.connect(_completed)
 
 func _completed():
+	active_tween = null
 	on_completed.emit()
 
 func instant_finish():
@@ -132,7 +133,8 @@ func _notification(what: int) -> void:
 	match what:
 		NOTIFICATION_EDITOR_PRE_SAVE:
 			# Temporarily reset changes before the editor writes the file
-			stop_and_reset()
+			if active_tween:
+				stop_and_reset()
 		NOTIFICATION_PATH_RENAMED:
 			get_tweened_parent()
 	
@@ -141,7 +143,6 @@ func _editor_start_loop_forever():
 	if Engine.is_editor_hint():
 		t_loops = 0
 		animate()
-
 
 @export_tool_button("Preview", "Callable") var preview_action = _editor_start_loop_forever
 @export_tool_button("Pause", "Callable") var pause_action = pause
