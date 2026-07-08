@@ -14,6 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://h4ks4xpce6t7" path="res://prefabs/cube.tscn" id="11_6ea13"]
 [ext_resource type="PackedScene" uid="uid://dy84oa60r7n18" path="res://prefabs/nuclearcube.tscn" id="12_t7qil"]
 [ext_resource type="PackedScene" uid="uid://ck23wxn4q834b" path="res://prefabs/SimpleEnemy.tscn" id="13_f0rtv"]
+[ext_resource type="Script" uid="uid://dg651kavpd41u" path="res://prefabs/logic/activation_range.gd" id="13_ogpjp"]
 [ext_resource type="PackedScene" uid="uid://cepxnhvb2wy6h" path="res://prefabs/IceCube.tscn" id="14_yexxi"]
 [ext_resource type="Script" uid="uid://dpajkhws0btds" path="res://prefabs/tweens/tween_tree.gd" id="15_v5r4t"]
 [ext_resource type="Texture2D" uid="uid://m5us13vug6au" path="res://textures/rock.png" id="17_eq453"]
@@ -49,6 +50,9 @@ script = ExtResource("7_k8yl0")
 duration = 0.0
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_1nuv2"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_vccua"]
+radius = 19.645357
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gbrv7"]
 albedo_color = Color(1, 0, 0.07058824, 1)
@@ -207,6 +211,13 @@ duration = 2.0
 final_value = 0
 property = "position:x"
 metadata/_custom_type_script = "uid://d31fb4ihe08c"
+
+[node name="ActivationRange" type="Area3D" parent="bridge/3x3Platform5" unique_id=2107428678]
+script = ExtResource("13_ogpjp")
+metadata/_custom_type_script = "uid://dg651kavpd41u"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="bridge/3x3Platform5/ActivationRange" unique_id=1007726957]
+shape = SubResource("SphereShape3D_vccua")
 
 [node name="Tree" parent="bridge" unique_id=2143920079 instance=ExtResource("9_ix6w0")]
 transform = Transform3D(1, 0, 0, 0, 0.2277886, -0.97371054, 0, 0.97371054, 0.2277886, 0, 97.94835, 14.868952)
