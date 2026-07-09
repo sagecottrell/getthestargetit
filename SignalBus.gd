@@ -43,7 +43,7 @@ func s_resume_timer():
 	s_on_resume_timer.emit()
 
 # ================================================================================================
-# NORPC auth-client to auth-client
+# NORPC auth-client to self
 # ================================================================================================
 
 ## when the user selects "connect", this signal is emitted to tell things that we are now a client
@@ -147,7 +147,7 @@ func checkpoint_collected(cp: Node3D):
 	on_checkpoint_collected.emit(cp)
 	
 # ================================================================================================
-# RPC auth-client to server
+# RPC auth-client to all
 # ================================================================================================
 
 signal on_player_setup(pid: int, info: PlayerInfo)
@@ -169,7 +169,7 @@ func client_ready():
 	on_client_ready.emit(multiplayer.get_remote_sender_id())
 func c_client_ready():
 	client_ready.rpc()
-
+	
 # ================================================================================================
 # RPC server to auth-client
 # ================================================================================================

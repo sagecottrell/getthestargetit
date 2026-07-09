@@ -67,6 +67,8 @@ enum State {
 		hurt = value
 		if not is_node_ready():
 			return
+		if hurt:
+			$HurtNoisesPlayer.play()
 		anim_tree.set("parameters/BlendHurt/blend_amount", int(value))
 	get:
 		return hurt
