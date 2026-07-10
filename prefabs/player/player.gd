@@ -143,6 +143,8 @@ func _ready():
 	$Nametag.text = player_name
 	$Ranking.text = ""
 	
+	stepped.connect(func(): $FootstepsPlayer.play())
+	
 	SignalBus.on_any_win.connect(set_rank)
 	
 	#emerged.connect(_on_controller_emerged.bind())

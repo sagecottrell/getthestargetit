@@ -1,0 +1,143 @@
+[gd_scene format=3 uid="uid://tyk65np6j3r6"]
+
+[ext_resource type="Script" uid="uid://bep2mitlubi2y" path="res://baseScene.gd" id="1_qds8s"]
+[ext_resource type="Script" uid="uid://bd046eokvcnu2" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="2_61mps"]
+[ext_resource type="Texture2D" uid="uid://svijnbaaeuol" path="res://textures/Free DEMO Pixel Skies Background pack by Digital Moons/demo01_PixelSky.png" id="3_bxcji"]
+[ext_resource type="PackedScene" uid="uid://c5x2v82qqhmqu" path="res://prefabs/Star.tscn" id="4_d4dxr"]
+[ext_resource type="Script" uid="uid://8wro8myvb4sw" path="res://prefabs/logic/player_events.gd" id="5_oe4bp"]
+[ext_resource type="Script" uid="uid://csjccrhj5wnx7" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_3d.gd" id="6_e0hj5"]
+[ext_resource type="Script" uid="uid://8umksf8e80fw" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="7_tl4r2"]
+[ext_resource type="PackedScene" uid="uid://x18ax2thkbko" path="res://prefabs/PlayerSpawn.tscn" id="8_ontw5"]
+[ext_resource type="PackedScene" uid="uid://c0akl332hihh1" path="res://prefabs/octagon.tscn" id="9_jyehd"]
+[ext_resource type="PackedScene" uid="uid://bgnb5bwdh3a5b" path="res://prefabs/3x3Platform.tscn" id="10_jpuvj"]
+[ext_resource type="PackedScene" uid="uid://h4ks4xpce6t7" path="res://prefabs/cube.tscn" id="19_28rjf"]
+[ext_resource type="PackedScene" uid="uid://ck23wxn4q834b" path="res://prefabs/SimpleEnemy.tscn" id="21_twfc1"]
+[ext_resource type="PackedScene" uid="uid://b01kqj2o2ige6" path="res://prefabs/Checkpoint.tscn" id="22_gqyf4"]
+[ext_resource type="PackedScene" uid="uid://btu2gxdxxsg1m" path="res://prefabs/setpieces/spire1.tscn" id="24_o31hk"]
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_0kh3j"]
+panorama = ExtResource("3_bxcji")
+filter = false
+
+[sub_resource type="Sky" id="Sky_t5ash"]
+sky_material = SubResource("PanoramaSkyMaterial_0kh3j")
+radiance_size = 0
+
+[sub_resource type="Environment" id="Environment_df8lk"]
+background_mode = 2
+background_energy_multiplier = 0.5
+sky = SubResource("Sky_t5ash")
+ambient_light_color = Color(1, 1, 1, 1)
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="Resource" id="Resource_v5r4t"]
+script = ExtResource("7_tl4r2")
+duration = 0.0
+
+[sub_resource type="Resource" id="Resource_ix6w0"]
+script = ExtResource("7_tl4r2")
+duration = 0.0
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_1nuv2"]
+
+[node name="Testscene" type="Node3D" unique_id=1867083525]
+script = ExtResource("1_qds8s")
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=417200083]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 19, 40, 26.156364)
+top_level = true
+
+[node name="PhantomCameraHost" type="Node" parent="Camera3D" unique_id=1777519013]
+process_priority = 300
+process_physics_priority = 300
+script = ExtResource("2_61mps")
+metadata/_custom_type_script = "uid://bd046eokvcnu2"
+
+[node name="Lighting" type="Node" parent="." unique_id=889023895]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Lighting" unique_id=1938912819]
+environment = SubResource("Environment_df8lk")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Lighting" unique_id=622337092]
+transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866026, -0.5, 0.75, -0.433013, 0, 5, 0)
+shadow_enabled = true
+directional_shadow_max_distance = 250.0
+
+[node name="Star" parent="." unique_id=1036149878 instance=ExtResource("4_d4dxr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19, 40, 28)
+
+[node name="PlayerEventsLogic" type="Node" parent="Star" unique_id=1264044424]
+script = ExtResource("5_oe4bp")
+metadata/_custom_type_script = "uid://8wro8myvb4sw"
+
+[node name="PhantomCamera3D" type="Node3D" parent="Star" unique_id=1029162867]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, -1.8436356)
+script = ExtResource("6_e0hj5")
+priority = 100
+tween_resource = SubResource("Resource_v5r4t")
+metadata/_custom_type_script = "uid://csjccrhj5wnx7"
+
+[node name="PlayerSpawn" parent="." unique_id=1298073336 instance=ExtResource("8_ontw5")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 31, 0)
+
+[node name="PlayerSpawn4" parent="." unique_id=1198570206 instance=ExtResource("8_ontw5")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -4, 31, 0)
+
+[node name="PlayerSpawn5" parent="." unique_id=699222399 instance=ExtResource("8_ontw5")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 4, 31, 0)
+
+[node name="PhantomCamera3D" type="Node3D" parent="." unique_id=1004881554]
+transform = Transform3D(-0.83946, 0.26553863, -0.4741266, 0, 0.87248427, 0.48864222, 0.5434214, 0.41019562, -0.73241574, -12.491429, 41.903275, -15.347109)
+script = ExtResource("6_e0hj5")
+priority = 50
+tween_resource = SubResource("Resource_ix6w0")
+tween_on_load = false
+metadata/_custom_type_script = "uid://csjccrhj5wnx7"
+
+[node name="PhantomCamera3D3" type="Node3D" parent="." unique_id=133932300]
+transform = Transform3D(-0.041092016, -0.9015392, 0.43074155, -0.06366686, 0.43259197, 0.8993389, -0.9971248, 0.009531727, -0.07517425, 23.647545, 51.228584, 29.919579)
+script = ExtResource("6_e0hj5")
+priority = 50
+tween_resource = SubResource("Resource_ix6w0")
+tween_on_load = false
+metadata/_custom_type_script = "uid://csjccrhj5wnx7"
+
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="." unique_id=2070496638]
+spawn_path = NodePath("..")
+
+[node name="deathplane" type="Area3D" parent="." unique_id=1015344977]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="deathplane" unique_id=1794330788]
+shape = SubResource("WorldBoundaryShape3D_1nuv2")
+debug_color = Color(0.99215686, 0, 0.27058825, 1)
+
+[node name="Octagon" parent="." unique_id=879052091 instance=ExtResource("9_jyehd")]
+
+[node name="Octagon3" parent="." unique_id=1133224250 instance=ExtResource("9_jyehd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 28)
+
+[node name="3x3Platform" parent="." unique_id=23620910 instance=ExtResource("10_jpuvj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 30, 0)
+
+[node name="3x3Platform2" parent="." unique_id=1439385277 instance=ExtResource("10_jpuvj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 30, 0)
+
+[node name="3x3Platform3" parent="." unique_id=1643658215 instance=ExtResource("10_jpuvj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 30, 0)
+
+[node name="Cube" parent="." unique_id=2129962462 instance=ExtResource("19_28rjf")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 23, 31, 22)
+
+[node name="SimpleEnemy" parent="." unique_id=508805129 instance=ExtResource("21_twfc1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.2024765, 30.612694, 28.369331)
+
+[node name="Checkpoint2" parent="." unique_id=461311173 instance=ExtResource("22_gqyf4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 30, 30)
+
+[node name="Spire1" parent="." unique_id=206799308 instance=ExtResource("24_o31hk")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 22, 27, 28)
+
+[connection signal="body_entered" from="deathplane" to="." method="_on_deathplane_body_entered"]

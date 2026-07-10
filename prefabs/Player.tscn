@@ -9,10 +9,13 @@
 [ext_resource type="AnimationNodeBlendTree" uid="uid://dk2kgdbwdv8d4" path="res://prefabs/player/mut-exclusive-states.tres" id="5_64pgi"]
 [ext_resource type="Script" uid="uid://c4mo7inp0b5q0" path="res://prefabs/player/playervisualroot.gd" id="5_xgtsh"]
 [ext_resource type="PackedScene" uid="uid://b0p4xtqkmbmoy" path="res://prefabs/player/player.gltf" id="6_xgtsh"]
-[ext_resource type="Script" uid="uid://k5xgkll6l7vg" path="res://prefabs/player/dmg/DamageFlashEffect.gd" id="7_beuee"]
 [ext_resource type="AudioStream" uid="uid://b5mildp24a5qu" path="res://audio/player/hurt1.wav" id="10_rwuho"]
 [ext_resource type="AudioStream" uid="uid://cxkbdxn4wsm3a" path="res://audio/player/hurt2.wav" id="11_634ti"]
 [ext_resource type="AudioStream" uid="uid://cohlv1dmpimgv" path="res://audio/player/hurt3.wav" id="12_beuee"]
+[ext_resource type="AudioStream" uid="uid://byvdapm0n8d83" path="res://audio/fx/footstep00.ogg" id="13_8mk5r"]
+[ext_resource type="AudioStream" uid="uid://jqq1ii4funn3" path="res://audio/fx/footstep02.ogg" id="14_1y3c5"]
+[ext_resource type="AudioStream" uid="uid://c2ya17uyy6hj8" path="res://audio/fx/footstep01.ogg" id="15_v0g1t"]
+[ext_resource type="AudioStream" uid="uid://dkkv7f1r5pplf" path="res://audio/fx/footstep03.ogg" id="16_ea582"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_rwuho"]
 blend_mode = 1
@@ -25,19 +28,6 @@ duration = 0.0
 script = ExtResource("4_1nynx")
 duration = 0.0
 metadata/_custom_type_script = "uid://8umksf8e80fw"
-
-[sub_resource type="CompositorEffect" id="CompositorEffect_632n6"]
-resource_local_to_scene = false
-resource_name = ""
-enabled = true
-effect_callback_type = 4
-needs_motion_vectors = false
-needs_normal_roughness = false
-script = ExtResource("7_beuee")
-metadata/_custom_type_script = "uid://k5xgkll6l7vg"
-
-[sub_resource type="Compositor" id="Compositor_beuee"]
-compositor_effects = Array[CompositorEffect]([SubResource("CompositorEffect_632n6")])
 
 [sub_resource type="Resource" id="Resource_70wo7"]
 script = ExtResource("4_1nynx")
@@ -79,6 +69,15 @@ stream_0/stream = ExtResource("10_rwuho")
 stream_1/stream = ExtResource("11_634ti")
 stream_2/stream = ExtResource("12_beuee")
 
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_634ti"]
+random_pitch = 1.2599211
+random_volume_offset_db = 1.0
+streams_count = 4
+stream_0/stream = ExtResource("13_8mk5r")
+stream_1/stream = ExtResource("14_1y3c5")
+stream_2/stream = ExtResource("15_v0g1t")
+stream_3/stream = ExtResource("16_ea582")
+
 [node name="Player" unique_id=1167805719 node_paths=PackedStringArray("anim_tree") instance=ExtResource("1_dgc4i")]
 collision_layer = 2
 collision_mask = 5
@@ -99,6 +98,7 @@ invuln_length = 1.0
 crouch = false
 hurt = false
 state = 0
+step_lengthen = 1.0
 
 [node name="Crosshair" type="CanvasLayer" parent="." index="0" unique_id=18041020]
 
@@ -152,7 +152,6 @@ script = ExtResource("3_mamfr")
 tween_resource = SubResource("Resource_rwuho")
 tween_on_load = false
 inactive_update_mode = 1
-compositor = SubResource("Compositor_beuee")
 metadata/_custom_type_script = "uid://csjccrhj5wnx7"
 
 [node name="FirstPersonCameraLoadIn" type="Node3D" parent="Head" index="2" unique_id=600939509]
@@ -232,14 +231,20 @@ metadata/_custom_type_script = "uid://c4mo7inp0b5q0"
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
 
 [node name="Right Arm2" parent="PlayerVisualRoot/blockbench_export/root/Waist" parent_id_path=PackedInt32Array(2079496628, 119327456) index="2" unique_id=1984803296]
-transform = Transform3D(1, 0, 0, 0, 0.9999993, 0.0007222172, 0, -0.0007222172, 0.9999993, 0.3125, 0.625, 0)
+transform = Transform3D(1, 0, 0, 0, 0.9948272, 0.10157714, 0, -0.10157714, 0.9948272, 0.3125, 0.625, 0)
 
 [node name="Left Arm2" parent="PlayerVisualRoot/blockbench_export/root/Waist" parent_id_path=PackedInt32Array(2079496628, 119327456) index="3" unique_id=557636322]
-transform = Transform3D(1, 0, 0, 0, 0.9999993, -0.0007222172, 0, 0.0007222172, 0.9999993, -0.3125, 0.625, 0)
+transform = Transform3D(1, 0, 0, 0, 0.9948272, -0.10157714, 0, 0.10157714, 0.9948272, -0.3125, 0.625, 0)
 
 [node name="HurtNoisesPlayer" type="AudioStreamPlayer3D" parent="." index="18" unique_id=1344424882]
 stream = SubResource("AudioStreamRandomizer_af5gg")
 pitch_scale = 2.0
 bus = &"Voiceover"
+
+[node name="FootstepsPlayer" type="AudioStreamPlayer3D" parent="." index="19" unique_id=174013049]
+stream = SubResource("AudioStreamRandomizer_634ti")
+volume_db = -8.0
+max_db = -8.0
+bus = &"Sounds"
 
 [editable path="PlayerVisualRoot/blockbench_export"]

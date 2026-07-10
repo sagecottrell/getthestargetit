@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://do4twu8peuk88" path="res://client/spinnycube.tscn" id="1_258n8"]
 [ext_resource type="PackedScene" uid="uid://c8shjom1y8o36" path="res://client/HitpointDisplay.tscn" id="2_0sjya"]
 [ext_resource type="Texture2D" uid="uid://c6ahqcj8kboeq" path="res://prefabs/player/player.png" id="2_50si4"]
+[ext_resource type="Script" uid="uid://duw5urxoj7t7q" path="res://client/flashes.gd" id="3_ueb45"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_vccua"]
 font_size = 272
@@ -35,6 +36,28 @@ fill_to = Vector2(0.36324787, 0.33333334)
 gradient = SubResource("Gradient_0sjya")
 fill = 1
 fill_from = Vector2(0.517094, 0.47435898)
+
+[sub_resource type="Gradient" id="Gradient_s20g0"]
+offsets = PackedFloat32Array(0.18911175, 0.42979944)
+colors = PackedColorArray(1, 1, 1, 0, 0.84313726, 0, 0, 0.29803923)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_3q5su"]
+gradient = SubResource("Gradient_s20g0")
+width = 90
+height = 90
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="Gradient" id="Gradient_u0bqd"]
+offsets = PackedFloat32Array(0.20630373, 0.41260746)
+colors = PackedColorArray(1, 1, 1, 0, 0.17422563, 0.6398282, 0, 0.29803923)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_0sjya"]
+gradient = SubResource("Gradient_u0bqd")
+width = 90
+height = 90
+fill = 1
+fill_from = Vector2(0.5, 0.5)
 
 [node name="ClientGUI" type="CanvasLayer" unique_id=489950663]
 script = ExtResource("1_6i4td")
@@ -179,6 +202,34 @@ offset_left = -299.0
 offset_top = -415.0
 grow_horizontal = 0
 grow_vertical = 0
+
+[node name="Control" type="Control" parent="ingame" unique_id=1247221174]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("3_ueb45")
+
+[node name="DamageFlash" type="NinePatchRect" parent="ingame/Control" unique_id=559901661]
+layout_mode = 0
+offset_right = 1152.0
+offset_bottom = 648.0
+texture = SubResource("GradientTexture2D_3q5su")
+region_rect = Rect2(0, 0, 90, 90)
+patch_margin_left = 30
+patch_margin_top = 30
+patch_margin_right = 30
+patch_margin_bottom = 30
+
+[node name="HealFlash" type="NinePatchRect" parent="ingame/Control" unique_id=908278133]
+layout_mode = 0
+offset_right = 1152.0
+offset_bottom = 648.0
+texture = SubResource("GradientTexture2D_0sjya")
+region_rect = Rect2(0, 0, 90, 90)
+patch_margin_left = 30
+patch_margin_top = 30
+patch_margin_right = 30
+patch_margin_bottom = 30
 
 [node name="waitingroom" type="Control" parent="." unique_id=1738976274]
 visible = false
