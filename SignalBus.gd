@@ -281,6 +281,13 @@ signal on_server_message(msg: String)
 func s_server_message(msg: String):
 	on_server_message.emit(msg)
 
+
+## when all players should be given free movement
+signal on_free_movement_all()
+@rpc()
+func s_free_movement_all():
+	on_free_movement_all.emit()
+	
 # ================================================================================================
 # ================================================================================================
 

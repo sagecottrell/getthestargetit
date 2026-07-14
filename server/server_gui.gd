@@ -57,6 +57,7 @@ func _on_start_countdown_button_pressed() -> void:
 		SignalBus.s_countdown.rpc(part, 1.0 if is_last else 3.0)
 		await tree.create_timer(1.0).timeout
 	SignalBus.s_game_start.rpc()
+	SignalBus.s_free_movement_all.rpc()
 	SignalBus.s_resume_timer()
 
 
@@ -74,5 +75,4 @@ func _on_countdown_finish():
 
 
 func _on_unlock_players_button_pressed() -> void:
-	SignalBus.s_countdown.rpc("go!", 1.0)
-	SignalBus.s_game_start.rpc()
+	SignalBus.s_free_movement_all.rpc()

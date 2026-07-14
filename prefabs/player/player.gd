@@ -105,6 +105,7 @@ func _ready():
 		SignalBus.on_set_player_v.connect(func(v): velocity = v)
 		SignalBus.on_player_set_physics_lock.connect(_on_set_physics_locked)
 		SignalBus.on_player_invulnerable.connect(hp.set_invulnerable)
+		SignalBus.on_free_movement_all.connect(_on_free_movement_all)
 		
 		SignalBus.on_checkpoint_collected.connect(func (cp): spawn_point = cp)
 		
@@ -112,7 +113,6 @@ func _ready():
 		SignalBus.on_force_thirdperson.connect(switch_to_third_person)
 		
 		SignalBus.on_local_win.connect(on_win)
-		SignalBus.on_game_start.connect(_on_game_start)
 		
 		#switch_to_fp_or_tp_cam()
 		_li_cam_start()
@@ -222,7 +222,7 @@ func _on_coop():
 func _on_versus():
 	collision_mask &= ~2
 
-func _on_game_start():
+func _on_free_movement_all():
 	SignalBus.restore_movement()
 	SignalBus.player_set_physics_lock(false)
 	hp._end_invuln()
