@@ -5,51 +5,53 @@
 [node name="Multiplayer" type="Node" unique_id=307702401]
 script = ExtResource("1_xbtfq")
 
-[node name="UI" type="PanelContainer" parent="." unique_id=1875339033]
+[node name="CenterContainer" type="CenterContainer" parent="." unique_id=692968092]
+offset_right = 1152.0
+offset_bottom = 648.0
+
+[node name="UI" type="PanelContainer" parent="CenterContainer" unique_id=1875339033]
+unique_name_in_owner = true
 process_mode = 3
-offset_left = 466.0
-offset_top = 224.0
-offset_right = 685.0
-offset_bottom = 423.0
+layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
-[node name="Net" type="VBoxContainer" parent="UI" unique_id=525925329]
+[node name="Net" type="VBoxContainer" parent="CenterContainer/UI" unique_id=525925329]
 layout_mode = 2
 theme_override_constants/separation = 40
 
-[node name="Options" type="HBoxContainer" parent="UI/Net" unique_id=906712591]
+[node name="Options" type="HBoxContainer" parent="CenterContainer/UI/Net" unique_id=906712591]
 layout_mode = 2
 alignment = 1
 
-[node name="Host" type="Button" parent="UI/Net/Options" unique_id=1149951056]
+[node name="Host" type="Button" parent="CenterContainer/UI/Net/Options" unique_id=1149951056]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 size_flags_horizontal = 4
 text = "Host"
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="UI/Net" unique_id=1549906241]
+[node name="VBoxContainer2" type="VBoxContainer" parent="CenterContainer/UI/Net" unique_id=1549906241]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="UI/Net/VBoxContainer2" unique_id=1822815930]
+[node name="Label" type="Label" parent="CenterContainer/UI/Net/VBoxContainer2" unique_id=1822815930]
 layout_mode = 2
 text = "Direct:"
 horizontal_alignment = 1
 
-[node name="PlayerName" type="LineEdit" parent="UI/Net/VBoxContainer2" unique_id=1789314991]
+[node name="PlayerName" type="LineEdit" parent="CenterContainer/UI/Net/VBoxContainer2" unique_id=1789314991]
 unique_name_in_owner = true
 layout_mode = 2
 placeholder_text = "Name:"
 max_length = 20
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="UI/Net/VBoxContainer2" unique_id=392654677]
+[node name="HBoxContainer2" type="HBoxContainer" parent="CenterContainer/UI/Net/VBoxContainer2" unique_id=392654677]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="UI/Net/VBoxContainer2/HBoxContainer2" unique_id=1804455651]
+[node name="Label" type="Label" parent="CenterContainer/UI/Net/VBoxContainer2/HBoxContainer2" unique_id=1804455651]
 layout_mode = 2
 text = "Player Color"
 
-[node name="PlayerColor" type="ColorPickerButton" parent="UI/Net/VBoxContainer2/HBoxContainer2" unique_id=508789453]
+[node name="PlayerColor" type="ColorPickerButton" parent="CenterContainer/UI/Net/VBoxContainer2/HBoxContainer2" unique_id=508789453]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
@@ -58,14 +60,14 @@ color = Color(1, 0, 0, 1)
 edit_alpha = false
 edit_intensity = false
 
-[node name="HBoxContainer" type="HBoxContainer" parent="UI/Net/VBoxContainer2" unique_id=1232338982]
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/UI/Net/VBoxContainer2" unique_id=1232338982]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="UI/Net/VBoxContainer2/HBoxContainer" unique_id=1132872349]
+[node name="Label" type="Label" parent="CenterContainer/UI/Net/VBoxContainer2/HBoxContainer" unique_id=1132872349]
 layout_mode = 2
 text = "Remote"
 
-[node name="Remote" type="LineEdit" parent="UI/Net/VBoxContainer2/HBoxContainer" unique_id=41860893]
+[node name="Remote" type="LineEdit" parent="CenterContainer/UI/Net/VBoxContainer2/HBoxContainer" unique_id=41860893]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
@@ -73,9 +75,9 @@ text = "127.0.0.1"
 placeholder_text = "ip address or host"
 expand_to_text_length = true
 
-[node name="Connect" type="Button" parent="UI/Net/VBoxContainer2" unique_id=129437415]
+[node name="Connect" type="Button" parent="CenterContainer/UI/Net/VBoxContainer2" unique_id=129437415]
 layout_mode = 2
 text = "Connect"
 
-[connection signal="pressed" from="UI/Net/Options/Host" to="." method="_on_host_pressed"]
-[connection signal="pressed" from="UI/Net/VBoxContainer2/Connect" to="." method="_on_connect_pressed"]
+[connection signal="pressed" from="CenterContainer/UI/Net/Options/Host" to="." method="_on_host_pressed"]
+[connection signal="pressed" from="CenterContainer/UI/Net/VBoxContainer2/Connect" to="." method="_on_connect_pressed"]

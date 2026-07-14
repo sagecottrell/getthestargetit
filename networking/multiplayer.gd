@@ -46,7 +46,7 @@ func _on_connect_pressed():
 		OS.alert("client create: " + String(err))
 		return
 	
-	$UI.process_mode = Node.PROCESS_MODE_DISABLED
+	%UI.process_mode = Node.PROCESS_MODE_DISABLED
 		
 	multiplayer.multiplayer_peer = peer
 	multiplayer.connected_to_server.connect(client_start_game)
@@ -56,14 +56,14 @@ func _on_connect_pressed():
 func host_start_game():
 	# Hide the UI and unpause to start the game.
 	prints("hosting", multiplayer.multiplayer_peer.get_connection_status())
-	$UI.hide()
+	%UI.hide()
 	get_tree().paused = false
 	on_host.emit()
 
 func client_start_game():
 	print("client connected")
 	# Hide the UI and unpause to start the game.
-	$UI.hide()
+	%UI.hide()
 	get_tree().paused = false
 	on_client.emit(get_playerinfo())
 
@@ -72,7 +72,7 @@ func get_playerinfo() -> PlayerInfo:
 	return PlayerInfo.new(%PlayerName.text, Color.from_hsv(color.h, 1, 1))
 
 func reset():
-	$UI.show()
+	%UI.show()
 	get_tree().paused = true
 	multiplayer.multiplayer_peer = null
 

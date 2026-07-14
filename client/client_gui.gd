@@ -14,11 +14,15 @@ extends CanvasLayer
 @onready var interactable_display = %InteractableDisplay
 @onready var timer_display = %TimerDisplay
 @onready var server_messages = %ServerMessages
+@onready var pausemenu = $pausemenu
+
+var unpause_restore_ingame: bool = false
 
 func _ready() -> void:
 	levelswitch.visible = false
 	waitingroom.visible = false
 	ingame.visible = false
+	pausemenu.visible = false
 	%TimerDisplay.text = ""
 	
 	urdead.visible = false
@@ -36,16 +40,48 @@ func on_waiting_room():
 	levelswitch.visible = false
 	waitingroom.visible = true
 	ingame.visible = false
+	pausemenu.visible = false
 
 func on_ingame():
 	levelswitch.visible = false
 	waitingroom.visible = false
 	ingame.visible = true
+	pausemenu.visible = false
 
 func on_levelswitch():
 	levelswitch.visible = true
 	waitingroom.visible = false
 	ingame.visible = false
+	pausemenu.visible = false
+
+func on_pause():
+	pausemenu.visible = true
+	if ingame.visible:
+		unpause_restore_ingame = true
+		ingame.visible = false
+		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+
+func on_unpause():
+	pausemenu.visible = false
+	if unpause_restore_ingame:
+		unpause_restore_ingame = false
+		ingame.visible = true
+		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+
+func _unhandled_key_input(event: InputEvent) -> void:
+	if event.is_action_pressed("ui_cancel"):
+		if pausemenu.visible:
+			on_unpause()
+		else:
+			on_pause()
+		get_viewport().set_input_as_handled()
+		
+func _input(event: InputEvent) -> void:
+	# 1. Capture on click
+	if event is InputEventMouseButton and event.pressed and ingame.visible:
+		if Input.mouse_mode != Input.MOUSE_MODE_CAPTURED:
+			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+			get_viewport().set_input_as_handled()
 
 # ============================================================================
 # countdown
@@ -115,3 +151,17 @@ func _on_server_msg(msg: String):
 	server_messages.add_child(label)
 	await get_tree().create_timer(2).timeout
 	label.queue_free()
+
+
+func _on_h_slider_value_changed(value: float) -> void:
+	var new_scale = value / 100.0
+	get_viewport().scaling_3d_scale = new_scale
+	%"3dScaleLabel".text = "%s" % [new_scale]
+
+# ============================================================================
+# unstuck
+# ============================================================================
+
+func _on_unstuck_button_pressed() -> void:
+	on_unpause()
+	SignalBus.unstuck()

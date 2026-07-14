@@ -48,15 +48,17 @@ func hurt(amount: int = 1, ignore_invuln: bool = false):
 
 var invuln_timer: SceneTreeTimer
 func set_invulnerable(add_time: float):
-	invulnerable = true
+	if not invulnerable:
+		on_invuln_start.emit()
+		invulnerable = true
 	if add_time < 0:
-		invuln_timer.timeout.disconnect(_end_invuln)
-		invuln_timer.time_left = 0
+		if invuln_timer:
+			invuln_timer.timeout.disconnect(_end_invuln)
+			invuln_timer.time_left = 0
 		return
 	if invuln_timer:
 		invuln_timer.time_left += add_time
 		return
-	on_invuln_start.emit()
 	invuln_timer = get_tree().create_timer(add_time)
 	invuln_timer.timeout.connect(_end_invuln)
 
@@ -65,3 +67,9 @@ func _end_invuln():
 	SignalBus.player_set_invulnerable(false)
 	invulnerable = false
 	invuln_timer = null
+
+func kill():
+	CurrentHP = 0
+	current_hp.emit(MaxHP, 0)
+	on_invuln_end.emit()
+	on_die.emit()

@@ -101,6 +101,7 @@ state = 0
 step_lengthen = 1.0
 
 [node name="Crosshair" type="CanvasLayer" parent="." index="0" unique_id=18041020]
+layer = 0
 
 [node name="crosshair" type="CenterContainer" parent="Crosshair" index="0" unique_id=27846317]
 offset_right = 1152.0
@@ -231,10 +232,10 @@ metadata/_custom_type_script = "uid://c4mo7inp0b5q0"
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
 
 [node name="Right Arm2" parent="PlayerVisualRoot/blockbench_export/root/Waist" parent_id_path=PackedInt32Array(2079496628, 119327456) index="2" unique_id=1984803296]
-transform = Transform3D(1, 0, 0, 0, 0.9987692, 0.049589097, 0, -0.049589097, 0.9987692, 0.3125, 0.625, 0)
+transform = Transform3D(1, 0, 0, 0, 0.9906524, 0.13640666, 0, -0.13640666, 0.9906524, 0.3125, 0.625, 0)
 
 [node name="Left Arm2" parent="PlayerVisualRoot/blockbench_export/root/Waist" parent_id_path=PackedInt32Array(2079496628, 119327456) index="3" unique_id=557636322]
-transform = Transform3D(1, 0, 0, 0, 0.9987692, -0.049589097, 0, 0.049589097, 0.9987692, -0.3125, 0.625, 0)
+transform = Transform3D(1, 0, 0, 0, 0.9906524, -0.13640666, 0, 0.13640666, 0.9906524, -0.3125, 0.625, 0)
 
 [node name="HurtNoisesPlayer" type="AudioStreamPlayer3D" parent="." index="18" unique_id=1344424882]
 stream = SubResource("AudioStreamRandomizer_af5gg")

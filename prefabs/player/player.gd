@@ -118,6 +118,7 @@ func _ready():
 		_li_cam_start()
 		
 		movement_locked = true  # start locked, the server will send an unlock signal
+		camera_locked = true
 		_on_set_physics_locked(true)
 		
 		crouched.connect(func(): crouch = true)
@@ -130,10 +131,13 @@ func _ready():
 		SignalBus.on_hurt.connect(hp.hurt)
 		SignalBus.on_killed.connect(_on_killed)
 		SignalBus.on_respawn.connect(_reset)
+		SignalBus.on_unstuck.connect(_on_unstuck)
+		SignalBus.on_kill.connect(hp.kill)
 		hp.on_hurt.connect(_on_hurt)
 		hp.on_die.connect(SignalBus.killed) ## these signals may seem redundant, but it's important to include the signal bus in the process
 		hp.current_hp.connect(SignalBus.client_player_hp)
 		
+		hp.set_invulnerable(-1)
 		add_to_group("player")
 	else:
 		SignalBus.on_cam_switch.connect(on_cam_switch)
@@ -192,16 +196,6 @@ func _physics_process(delta):
 func _input(event: InputEvent) -> void:
 	if not is_multiplayer_authority():
 		return
-		
-	# 1. Capture on click
-	if event is InputEventMouseButton and event.pressed:
-		if Input.mouse_mode != Input.MOUSE_MODE_CAPTURED:
-			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-			get_viewport().set_input_as_handled()
-
-	# 2. Release on pressing Escape (ui_cancel)
-	if event.is_action_pressed("ui_cancel"):
-		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	
 	if event.is_action_pressed("interact"):
 		var collider = interact_ray.get_collider()
@@ -230,10 +224,16 @@ func _on_versus():
 func _on_game_start():
 	SignalBus.restore_movement()
 	SignalBus.player_set_physics_lock(false)
+	hp._end_invuln()
+
+func _on_unstuck():
+	if not movement_locked:
+		hp.kill()
 
 func _li_cam_complete():
 	first_person_cam_li.priority = 0
 	third_person_cam_li.priority = 0
+	camera_locked = false
 	switch_to_fp_or_tp_cam()
 
 func _li_cam_start():

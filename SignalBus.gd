@@ -62,8 +62,9 @@ func unstuck():
 	on_unstuck.emit()
 
 ## when the local player should die
+signal on_kill()
 func kill():
-	hurt(100, true)
+	on_kill.emit()
 
 ## when the local player has died
 signal on_killed()

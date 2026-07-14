@@ -300,7 +300,6 @@ patch_margin_right = 30
 patch_margin_bottom = 30
 
 [node name="waitingroom" type="Control" parent="." unique_id=1738976274]
-visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
@@ -316,7 +315,7 @@ stretch = true
 own_world_3d = true
 handle_input_locally = false
 size = Vector2i(1152, 648)
-render_target_update_mode = 0
+render_target_update_mode = 4
 
 [node name="Spinnycube" parent="waitingroom/SubViewportContainer/SubViewport" unique_id=1896426331 instance=ExtResource("1_258n8")]
 
@@ -329,7 +328,6 @@ offset_bottom = 564.0
 text = "waiting on host..."
 
 [node name="levelswitch" type="Control" parent="." unique_id=727852054]
-visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_right = 1152.0
@@ -359,6 +357,43 @@ offset_transform_position = Vector2(-50, -50)
 layout_mode = 2
 text = "Server is changing level..."
 horizontal_alignment = 1
+
+[node name="pausemenu" type="CenterContainer" parent="." unique_id=1980108808]
+offset_right = 1152.0
+offset_bottom = 648.0
+
+[node name="PanelContainer" type="PanelContainer" parent="pausemenu" unique_id=1463500573]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="pausemenu/PanelContainer" unique_id=983126594]
+layout_mode = 2
+
+[node name="UnstuckButton" type="Button" parent="pausemenu/PanelContainer/VBoxContainer" unique_id=368742951]
+layout_mode = 2
+text = "Unstuck"
+
+[node name="HSeparator" type="HSeparator" parent="pausemenu/PanelContainer/VBoxContainer" unique_id=1379235844]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="pausemenu/PanelContainer/VBoxContainer" unique_id=36112864]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="pausemenu/PanelContainer/VBoxContainer/HBoxContainer" unique_id=1658607310]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "3D Scale:"
+
+[node name="3dScaleLabel" type="Label" parent="pausemenu/PanelContainer/VBoxContainer/HBoxContainer" unique_id=1392324278]
+unique_name_in_owner = true
+layout_mode = 2
+text = "1.0"
+
+[node name="HSlider" type="HSlider" parent="pausemenu/PanelContainer/VBoxContainer" unique_id=515358109]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+min_value = 1.0
+max_value = 500.0
+value = 100.0
 
 [node name="Audio" type="Node" parent="." unique_id=1288236891]
 script = ExtResource("6_u0bqd")
@@ -390,3 +425,6 @@ bus = &"Voiceover"
 [node name="checkpointget" type="AudioStreamPlayer" parent="Audio" unique_id=1607409839]
 stream = ExtResource("7_s20g0")
 bus = &"Voiceover"
+
+[connection signal="pressed" from="pausemenu/PanelContainer/VBoxContainer/UnstuckButton" to="." method="_on_unstuck_button_pressed"]
+[connection signal="value_changed" from="pausemenu/PanelContainer/VBoxContainer/HSlider" to="." method="_on_h_slider_value_changed"]
