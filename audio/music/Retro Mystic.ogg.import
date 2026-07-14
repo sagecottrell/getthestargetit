@@ -12,8 +12,8 @@ dest_files=["res://.godot/imported/Retro Mystic.ogg-4a8a27b131bb3d3946677353cd64
 
 [params]
 
-loop=false
-loop_offset=0
-bpm=0
+loop=true
+loop_offset=0.0
+bpm=0.0
 beat_count=0
 bar_beats=4

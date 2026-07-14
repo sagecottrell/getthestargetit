@@ -158,7 +158,7 @@ func c_player_setup(json: String):
 	
 ## when a client submits a win
 signal on_client_won(pid: int)
-@rpc("any_peer")
+@rpc("any_peer", "call_local")
 func client_won():
 	on_client_won.emit(multiplayer.get_remote_sender_id())
 

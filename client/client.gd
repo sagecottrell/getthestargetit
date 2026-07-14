@@ -14,7 +14,7 @@ func _on_multiplayer_on_client(info: PlayerInfo) -> void:
 	
 	gui.on_waiting_room()
 	
-	SignalBus.on_local_win.connect(SignalBus.client_won.rpc_id.bind(1))
+	SignalBus.on_local_win.connect(SignalBus.client_won.rpc)
 	SignalBus.on_recieve_scene_text.connect(_on_recieve_scene_text)
 	SignalBus.on_server_changing_level.connect(pre_level_push)
 	multiplayer.server_disconnected.connect(_on_server_disconnect)

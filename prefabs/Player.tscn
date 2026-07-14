@@ -22,7 +22,7 @@ blend_mode = 1
 
 [sub_resource type="Resource" id="Resource_1nynx"]
 script = ExtResource("4_1nynx")
-duration = 0.0
+duration = 0.1
 
 [sub_resource type="Resource" id="Resource_rwuho"]
 script = ExtResource("4_1nynx")

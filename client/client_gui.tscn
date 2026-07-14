@@ -13,7 +13,12 @@
 [ext_resource type="AudioStream" uid="uid://fdcebv0woygn" path="res://audio/vc/1.wav" id="9_22gin"]
 [ext_resource type="AudioStream" uid="uid://6dqjhe743uhh" path="res://audio/vc/go.wav" id="10_nl3b0"]
 [ext_resource type="AudioStream" uid="uid://b1nrpq7ksmfu7" path="res://audio/fx/lowFrequency_explosion_000.ogg" id="11_h8tpc"]
-[ext_resource type="AudioStream" uid="uid://drvbrurpi3pud" path="res://client/audio/winorlose.tres" id="12_22gin"]
+[ext_resource type="AudioStream" uid="uid://b5lnlj2ppca85" path="res://audio/vc/gameover4.ogg" id="12_nl3b0"]
+[ext_resource type="AudioStream" uid="uid://xmidub7fqahk" path="res://audio/music/Retro Beat.ogg" id="12_rqy1m"]
+[ext_resource type="AudioStream" uid="uid://bo1h8f43s2tw4" path="res://audio/music/Retro Polka.ogg" id="13_fswaa"]
+[ext_resource type="AudioStream" uid="uid://btn0y6u30pdn" path="res://audio/music/win1.mp3" id="13_nl3b0"]
+[ext_resource type="AudioStream" uid="uid://bvy4kfm5qoait" path="res://audio/music/Retro Comedy.ogg" id="14_dgeo1"]
+[ext_resource type="AudioStream" uid="uid://b58w024youmro" path="res://audio/music/Retro Reggae.ogg" id="15_nu4gl"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_vccua"]
 font_size = 272
@@ -79,9 +84,48 @@ clip_1/auto_advance = 0
 clip_2/name = &"1"
 clip_2/stream = ExtResource("9_22gin")
 clip_2/auto_advance = 0
-clip_3/name = &"Go"
+clip_3/name = &"go!"
 clip_3/stream = ExtResource("10_nl3b0")
 clip_3/auto_advance = 0
+_transitions = {
+Vector2i(-1, -1): {
+"fade_beats": 1.0,
+"fade_mode": 4,
+"from_time": 0,
+"to_time": 1
+},
+Vector2i(0, -1): {
+"fade_beats": 1.0,
+"fade_mode": 4,
+"from_time": 0,
+"to_time": 1
+},
+Vector2i(1, -1): {
+"fade_beats": 1.0,
+"fade_mode": 4,
+"from_time": 0,
+"to_time": 1
+},
+Vector2i(2, -1): {
+"fade_beats": 1.0,
+"fade_mode": 4,
+"from_time": 0,
+"to_time": 1
+},
+Vector2i(3, -1): {
+"fade_beats": 1.0,
+"fade_mode": 4,
+"from_time": 0,
+"to_time": 1
+}
+}
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_nl3b0"]
+streams_count = 4
+stream_0/stream = ExtResource("12_rqy1m")
+stream_1/stream = ExtResource("13_fswaa")
+stream_2/stream = ExtResource("14_dgeo1")
+stream_3/stream = ExtResource("15_nu4gl")
 
 [node name="ClientGUI" type="CanvasLayer" unique_id=489950663]
 script = ExtResource("1_6i4td")
@@ -328,10 +372,15 @@ stream = ExtResource("11_h8tpc")
 bus = &"Voiceover"
 
 [node name="music" type="AudioStreamPlayer" parent="Audio" unique_id=1456413151]
+stream = SubResource("AudioStreamRandomizer_nl3b0")
 bus = &"Music"
 
-[node name="winorlose" type="AudioStreamPlayer" parent="Audio" unique_id=1909836048]
-stream = ExtResource("12_22gin")
+[node name="lose" type="AudioStreamPlayer" parent="Audio" unique_id=1909836048]
+stream = ExtResource("12_nl3b0")
+bus = &"Music"
+
+[node name="win" type="AudioStreamPlayer" parent="Audio" unique_id=1220875858]
+stream = ExtResource("13_nl3b0")
 bus = &"Music"
 
 [node name="teammatedied" type="AudioStreamPlayer" parent="Audio" unique_id=541171197]
