@@ -35,6 +35,7 @@ func _ready() -> void:
 	SignalBus.on_timer_change.connect(func (t): timer_display.text = TimeHelpers.format_seconds(t))
 	SignalBus.on_game_over.connect(func (s): timer_display.text = s)
 	SignalBus.on_server_message.connect(_on_server_msg)
+	SignalBus.on_server_changing_level.connect(func (): timer_display.text = "")
 
 func on_waiting_room():
 	levelswitch.visible = false
@@ -58,14 +59,12 @@ func on_pause():
 	pausemenu.visible = true
 	if ingame.visible:
 		unpause_restore_ingame = true
-		ingame.visible = false
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 
 func on_unpause():
 	pausemenu.visible = false
 	if unpause_restore_ingame:
 		unpause_restore_ingame = false
-		ingame.visible = true
 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
 func _unhandled_key_input(event: InputEvent) -> void:
@@ -78,7 +77,7 @@ func _unhandled_key_input(event: InputEvent) -> void:
 		
 func _input(event: InputEvent) -> void:
 	# 1. Capture on click
-	if event is InputEventMouseButton and event.pressed and ingame.visible:
+	if event is InputEventMouseButton and event.pressed and ingame.visible and not pausemenu.visible:
 		if Input.mouse_mode != Input.MOUSE_MODE_CAPTURED:
 			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 			get_viewport().set_input_as_handled()
