@@ -126,6 +126,7 @@ func _ready():
 		sprinted.connect(func(): state = State.sprint)
 		submerged.connect(func(): state = State.swim)
 		jumped.connect(SignalBus.jumped)
+		SignalBus.on_jumped.connect(_play_jump_sound)
 		
 		SignalBus.on_heal.connect(hp.heal)
 		SignalBus.on_hurt.connect(hp.hurt)
@@ -229,6 +230,9 @@ func _on_game_start():
 func _on_unstuck():
 	if not movement_locked:
 		hp.kill()
+
+func _play_jump_sound():
+	$JumpPlayer.play()
 
 func _li_cam_complete():
 	first_person_cam_li.priority = 0

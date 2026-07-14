@@ -5,6 +5,7 @@
 [ext_resource type="Script" uid="uid://dw84lkpg0jm4n" path="res://prefabs/DamageField.gd" id="3_0qmr4"]
 [ext_resource type="Script" uid="uid://dg651kavpd41u" path="res://prefabs/logic/activation_range.gd" id="4_uuyo2"]
 [ext_resource type="AudioStream" uid="uid://byilxsblhh5kp" path="res://audio/fx/slime_001.ogg" id="5_p26sh"]
+[ext_resource type="AudioStream" uid="uid://duc3l3g2v40wi" path="res://audio/fx/creature4.ogg" id="6_ndv40"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_kgcq4"]
 
@@ -85,7 +86,7 @@ script = ExtResource("1_iphls")
 [node name="blockbench_export" parent="." unique_id=1399087127 instance=ExtResource("1_0ce06")]
 
 [node name="head" parent="blockbench_export/root" parent_id_path=PackedInt32Array(1399087127, 1829007539) index="2" unique_id=653088348]
-transform = Transform3D(1, 0, 0, 0, 0.99892557, -0.04633779, 0, 0.04633779, 0.99892557, 0, 0.125, 0.1875)
+transform = Transform3D(1, 0, 0, 0, 0.99950063, -0.031588964, 0, 0.031588964, 0.99950063, 0, 0.125, 0.1875)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1332645728]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
@@ -146,12 +147,19 @@ metadata/_edit_lock_ = true
 shape = SubResource("SphereShape3D_vccua")
 metadata/_edit_lock_ = true
 
-[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="." unique_id=1436557360]
+[node name="PassiveAudio" type="AudioStreamPlayer3D" parent="." unique_id=1436557360]
 stream = ExtResource("5_p26sh")
 attenuation_model = 3
 volume_db = -11.0
 autoplay = true
-bus = &"Sounds"
+bus = &"EnemySounds"
+parameters/looping = false
+
+[node name="DeathAudio" type="AudioStreamPlayer3D" parent="." unique_id=1312357700]
+stream = ExtResource("6_ndv40")
+attenuation_model = 3
+volume_db = -5.343
+bus = &"EnemySounds"
 parameters/looping = false
 
 [connection signal="body_entered" from="Aggro" to="." method="_on_aggro_body_entered"]

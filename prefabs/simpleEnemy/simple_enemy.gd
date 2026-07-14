@@ -2,6 +2,8 @@ extends CharacterBody3D
 
 @onready var aggro = $Aggro
 @onready var lookbeforeleap = $RayCast3D
+@onready var passive_audio = $PassiveAudio
+@onready var death_audio = $DeathAudio
 
 enum State {
 	idle=0,
@@ -81,6 +83,7 @@ func jump():
 
 func kill():
 	state = State.dead
+	death_audio.play()
 
 func _on_aggro_body_entered(body: Node3D) -> void:
 	if body is Player and body.is_multiplayer_authority():

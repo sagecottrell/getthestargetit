@@ -59,8 +59,9 @@ func set_invulnerable(add_time: float):
 	if invuln_timer:
 		invuln_timer.time_left += add_time
 		return
-	invuln_timer = get_tree().create_timer(add_time)
-	invuln_timer.timeout.connect(_end_invuln)
+	if is_inside_tree():
+		invuln_timer = get_tree().create_timer(add_time)
+		invuln_timer.timeout.connect(_end_invuln)
 
 func _end_invuln():
 	on_invuln_end.emit()

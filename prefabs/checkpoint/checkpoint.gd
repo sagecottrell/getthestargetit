@@ -18,7 +18,7 @@ func _ready():
 	SignalBus.on_set_game_versus.connect(_on_versus)
 
 func _process(_delta):
-	if player:
+	if player and player.is_inside_tree():
 		if not player.global_position.is_equal_approx(global_position):
 			look_at(player.global_position)
 			rotation_degrees.x = 0

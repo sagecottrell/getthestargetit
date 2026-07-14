@@ -112,13 +112,13 @@ tween_resource = SubResource("Resource_v5r4t")
 metadata/_custom_type_script = "uid://csjccrhj5wnx7"
 
 [node name="PlayerSpawn" parent="." unique_id=1298073336 instance=ExtResource("5_pxpqt")]
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 101, 0)
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 99.39167, 0)
 
 [node name="PlayerSpawn4" parent="." unique_id=1198570206 instance=ExtResource("5_pxpqt")]
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -4, 101, 0)
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -4, 99.39167, 0)
 
 [node name="PlayerSpawn5" parent="." unique_id=699222399 instance=ExtResource("5_pxpqt")]
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 4, 101, 0)
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 4, 99.39167, 0)
 
 [node name="PhantomCamera3D" type="Node3D" parent="." unique_id=1004881554]
 transform = Transform3D(-0.83946, 0.26553863, -0.4741266, 0, 0.87248427, 0.48864222, 0.5434214, 0.41019562, -0.73241574, -12.491429, 110.903275, -15.347109)
@@ -162,13 +162,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 69, 0)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 75.72573, 69, 7.8631153)
 
 [node name="3x3Platform" parent="." unique_id=23620910 instance=ExtResource("8_k8yl0")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 99.44984, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 99.06672, 0)
 
 [node name="3x3Platform2" parent="." unique_id=1439385277 instance=ExtResource("8_k8yl0")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 99.44984, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 99.053024, 0)
 
 [node name="3x3Platform3" parent="." unique_id=1643658215 instance=ExtResource("8_k8yl0")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 99.44984, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 98.97644, 0)
 
 [node name="bridge" type="Node3D" parent="." unique_id=1307490053]
 
@@ -333,10 +333,10 @@ shape = SubResource("ConcavePolygonShape3D_1nuv2")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 96, 77)
 
 [node name="Checkpoint2" parent="." unique_id=461311173 instance=ExtResource("20_gbrv7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.3566875, 99.606445, -12.416647)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 99, -12)
 
-[node name="Checkpoint3" parent="." unique_id=867683272 instance=ExtResource("20_gbrv7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.64331245, 99.606445, -12.416647)
+[node name="Checkpoint3" parent="." unique_id=1674526092 instance=ExtResource("20_gbrv7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 99, -12)
 
 [node name="Blackhole" parent="." unique_id=1206704492 instance=ExtResource("21_j7jrj")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -29.2706, 99.45165, 12.482986)

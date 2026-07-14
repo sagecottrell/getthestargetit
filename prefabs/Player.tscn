@@ -16,6 +16,7 @@
 [ext_resource type="AudioStream" uid="uid://jqq1ii4funn3" path="res://audio/fx/footstep02.ogg" id="14_1y3c5"]
 [ext_resource type="AudioStream" uid="uid://c2ya17uyy6hj8" path="res://audio/fx/footstep01.ogg" id="15_v0g1t"]
 [ext_resource type="AudioStream" uid="uid://dkkv7f1r5pplf" path="res://audio/fx/footstep03.ogg" id="16_ea582"]
+[ext_resource type="AudioStream" uid="uid://bo1hpwhej0f72" path="res://audio/player/jump1.ogg" id="17_1y3c5"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_rwuho"]
 blend_mode = 1
@@ -77,6 +78,11 @@ stream_0/stream = ExtResource("13_8mk5r")
 stream_1/stream = ExtResource("14_1y3c5")
 stream_2/stream = ExtResource("15_v0g1t")
 stream_3/stream = ExtResource("16_ea582")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_4f34u"]
+random_pitch = 1.122462
+streams_count = 1
+stream_0/stream = ExtResource("17_1y3c5")
 
 [node name="Player" unique_id=1167805719 node_paths=PackedStringArray("anim_tree") instance=ExtResource("1_dgc4i")]
 collision_layer = 2
@@ -232,10 +238,10 @@ metadata/_custom_type_script = "uid://c4mo7inp0b5q0"
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
 
 [node name="Right Arm2" parent="PlayerVisualRoot/blockbench_export/root/Waist" parent_id_path=PackedInt32Array(2079496628, 119327456) index="2" unique_id=1984803296]
-transform = Transform3D(1, 0, 0, 0, 0.9906524, 0.13640666, 0, -0.13640666, 0.9906524, 0.3125, 0.625, 0)
+transform = Transform3D(1, 0, 0, 0, 0.99874395, -0.050093845, 0, 0.050093845, 0.99874395, 0.3125, 0.625, 0)
 
 [node name="Left Arm2" parent="PlayerVisualRoot/blockbench_export/root/Waist" parent_id_path=PackedInt32Array(2079496628, 119327456) index="3" unique_id=557636322]
-transform = Transform3D(1, 0, 0, 0, 0.9906524, -0.13640666, 0, 0.13640666, 0.9906524, -0.3125, 0.625, 0)
+transform = Transform3D(1, 0, 0, 0, 0.99874395, 0.050093845, 0, -0.050093845, 0.99874395, -0.3125, 0.625, 0)
 
 [node name="HurtNoisesPlayer" type="AudioStreamPlayer3D" parent="." index="18" unique_id=1344424882]
 stream = SubResource("AudioStreamRandomizer_af5gg")
@@ -247,5 +253,12 @@ stream = SubResource("AudioStreamRandomizer_634ti")
 volume_db = -8.0
 max_db = -8.0
 bus = &"Sounds"
+
+[node name="JumpPlayer" type="AudioStreamPlayer3D" parent="." index="20" unique_id=1378782166]
+stream = SubResource("AudioStreamRandomizer_4f34u")
+volume_db = -8.0
+max_db = -8.0
+pitch_scale = 2.0
+bus = &"PlayerSounds"
 
 [editable path="PlayerVisualRoot/blockbench_export"]
