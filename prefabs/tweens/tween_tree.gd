@@ -92,6 +92,8 @@ func animate():
 	next()
 	
 func next():
+	if children.size() == 0:
+		return
 	var c = current()
 	if c != null:
 		c.on_completed.disconnect(next)
