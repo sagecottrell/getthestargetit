@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://x18ax2thkbko" path="res://prefabs/PlayerSpawn.tscn" id="8_ontw5"]
 [ext_resource type="PackedScene" uid="uid://c0akl332hihh1" path="res://prefabs/octagon.tscn" id="9_jyehd"]
 [ext_resource type="PackedScene" uid="uid://bgnb5bwdh3a5b" path="res://prefabs/3x3Platform.tscn" id="10_jpuvj"]
+[ext_resource type="PackedScene" uid="uid://ctdo51tmam2d" path="res://prefabs/setpieces/twistybridge.tscn" id="15_ormg5"]
 [ext_resource type="PackedScene" uid="uid://h4ks4xpce6t7" path="res://prefabs/cube.tscn" id="19_28rjf"]
 [ext_resource type="PackedScene" uid="uid://ck23wxn4q834b" path="res://prefabs/SimpleEnemy.tscn" id="21_twfc1"]
 [ext_resource type="PackedScene" uid="uid://b01kqj2o2ige6" path="res://prefabs/Checkpoint.tscn" id="22_gqyf4"]
@@ -45,7 +46,7 @@ duration = 0.0
 script = ExtResource("1_qds8s")
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=417200083]
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 19, 40, 26.156364)
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 19, 40, 69.156364)
 top_level = true
 
 [node name="PhantomCameraHost" type="Node" parent="Camera3D" unique_id=1777519013]
@@ -65,7 +66,7 @@ shadow_enabled = true
 directional_shadow_max_distance = 250.0
 
 [node name="Star" parent="." unique_id=1036149878 instance=ExtResource("4_d4dxr")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19, 40, 28)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19, 40, 71)
 
 [node name="PlayerEventsLogic" type="Node" parent="Star" unique_id=1264044424]
 script = ExtResource("5_oe4bp")
@@ -96,7 +97,7 @@ tween_on_load = false
 metadata/_custom_type_script = "uid://csjccrhj5wnx7"
 
 [node name="PhantomCamera3D3" type="Node3D" parent="." unique_id=133932300]
-transform = Transform3D(-0.041092016, -0.9015392, 0.43074155, -0.06366686, 0.43259197, 0.8993389, -0.9971248, 0.009531727, -0.07517425, 23.647545, 51.228584, 29.919579)
+transform = Transform3D(-0.041092016, -0.9015392, 0.43074155, -0.06366686, 0.43259197, 0.8993389, -0.9971248, 0.009531727, -0.07517425, 23.647545, 51.228584, 72.91958)
 script = ExtResource("6_e0hj5")
 priority = 50
 tween_resource = SubResource("Resource_ix6w0")
@@ -117,7 +118,7 @@ debug_color = Color(0.99215686, 0, 0.27058825, 1)
 [node name="Octagon" parent="." unique_id=879052091 instance=ExtResource("9_jyehd")]
 
 [node name="Octagon3" parent="." unique_id=1133224250 instance=ExtResource("9_jyehd")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 28)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 71)
 
 [node name="3x3Platform" parent="." unique_id=23620910 instance=ExtResource("10_jpuvj")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 30, 0)
@@ -129,15 +130,18 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 30, 0)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 30, 0)
 
 [node name="Cube" parent="." unique_id=2129962462 instance=ExtResource("19_28rjf")]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 23, 31, 22)
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 23, 31, 65)
 
 [node name="SimpleEnemy" parent="." unique_id=508805129 instance=ExtResource("21_twfc1")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.2024765, 30.612694, 28.369331)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.2024765, 30.612694, 71.36933)
 
 [node name="Checkpoint2" parent="." unique_id=461311173 instance=ExtResource("22_gqyf4")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 30, 30)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 30, 73)
 
 [node name="Spire1" parent="." unique_id=206799308 instance=ExtResource("24_o31hk")]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 22, 27, 28)
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 22, 27, 71)
+
+[node name="Twistybridge" parent="." unique_id=261313552 instance=ExtResource("15_ormg5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 30, 38)
 
 [connection signal="body_entered" from="deathplane" to="." method="_on_deathplane_body_entered"]

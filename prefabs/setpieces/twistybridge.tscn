@@ -17,7 +17,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 18)
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 15)
 
 [node name="3x3Platform3" parent="." unique_id=2098943739 instance=ExtResource("1_0b5h3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.01, 12)
+transform = Transform3D(0.99860233, 0, 0.052852135, 0, 1, 0, -0.052852135, 0, 0.99860233, 0, 0.01, 12)
 
 [node name="TweenComponent" type="Node" parent="3x3Platform3" unique_id=317482607]
 script = ExtResource("3_p0b8o")
@@ -35,6 +35,7 @@ metadata/_custom_type_script = "uid://dg651kavpd41u"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="3x3Platform3/ActivationRange" unique_id=1205546678]
 shape = SubResource("SphereShape3D_8in4t")
+debug_color = Color(0, 0, 0.69803923, 0.41960785)
 
 [node name="3x3Platform4" parent="." unique_id=959319702 instance=ExtResource("1_0b5h3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 6)
@@ -97,3 +98,4 @@ metadata/_custom_type_script = "uid://dg651kavpd41u"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="3x3Platform7/ActivationRange" unique_id=665396232]
 shape = SubResource("SphereShape3D_8in4t")
+debug_color = Color(0, 0, 0.69803923, 0.41960785)

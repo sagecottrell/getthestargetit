@@ -119,7 +119,12 @@ func current() -> TweenComponent:
 		return children[index]
 	return null
 
+func reinit():
+	for child in children:
+		child.reinit()
+
 func _editor_start_loop_forever():
+	reinit()
 	if Engine.is_editor_hint():
 		t_loops = 0
 		animate()

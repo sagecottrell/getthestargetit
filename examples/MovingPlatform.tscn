@@ -1,24 +1,63 @@
-[gd_scene format=3 uid="uid://djrn33kg2elg6"]
+[gd_scene format=3 uid="uid://yhllheu5xcg0"]
 
-[ext_resource type="PackedScene" uid="uid://bgnb5bwdh3a5b" path="res://prefabs/3x3Platform.tscn" id="1_hmekm"]
-[ext_resource type="Script" uid="uid://d17wtyh035ct8" path="res://prefabs/path_follow_3d.gd" id="1_l5lmh"]
+[ext_resource type="Script" uid="uid://dpajkhws0btds" path="res://prefabs/tweens/tween_tree.gd" id="1_l0etf"]
+[ext_resource type="Script" uid="uid://d31fb4ihe08c" path="res://prefabs/tweens/tweener.gd" id="2_vjlrk"]
+[ext_resource type="PackedScene" uid="uid://bgnb5bwdh3a5b" path="res://prefabs/3x3Platform.tscn" id="3_f3ukq"]
+[ext_resource type="Script" uid="uid://dg651kavpd41u" path="res://prefabs/logic/activation_range.gd" id="4_17e6i"]
 
-[sub_resource type="Curve3D" id="Curve3D_hmekm"]
-closed = true
+[sub_resource type="Curve3D" id="Curve3D_r7gw0"]
 _data = {
-"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 1.8274791, 0, -6.4396253, 0, 0, 0, 0, 0, 0, 15.467252, 0, -6.232962, 0, 0, 0, 0, 0, 0, 16.93686, 0, 4.1920524, 0, 0, 0, 0, 0, 0, 11.012513, 0, 9.289746, 0, 0, 0, 0, 0, 0, 2.3785808, 0, 8.463093, 0, 0, 0, 0, 0, 0, -5.612399, 0, -2.9952369),
-"tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0)
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8, 0),
+"tilts": PackedFloat32Array(0, 0)
 }
-point_count = 6
+point_count = 2
 
-[node name="MovingPlatform" type="Node3D" unique_id=2056712890]
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_r7gw0"]
+height = 10.0
+radius = 7.0
 
-[node name="Path3D" type="Path3D" parent="." unique_id=346949891]
-curve = SubResource("Curve3D_hmekm")
+[node name="MovingPlatform" type="Node3D" unique_id=370839302]
 
-[node name="PathFollow3D" type="PathFollow3D" parent="Path3D" unique_id=644645582]
-transform = Transform3D(-0.015149769, 0, -0.999885, 0, 1, 0, 0.999885, 0, -0.015149769, 1.8274791, 0, -6.4396253)
+[node name="Path3D" type="Path3D" parent="." unique_id=88108823]
+curve = SubResource("Curve3D_r7gw0")
+
+[node name="PathFollow3D" type="PathFollow3D" parent="Path3D" unique_id=2016506320]
+transform = Transform3D(-4.3710003e-08, 0.9999844, -4.3711317e-08, 0, -4.3710706e-08, -0.9999984, -0.9999683, -4.3710706e-08, 1.9106823e-15, 0, 4.412511, 0)
+progress = 4.4124455
 tilt_enabled = false
-script = ExtResource("1_l5lmh")
 
-[node name="3x3Platform" parent="Path3D/PathFollow3D" unique_id=23620910 instance=ExtResource("1_hmekm")]
+[node name="TweenTree" type="Node" parent="Path3D/PathFollow3D" unique_id=465854843]
+script = ExtResource("1_l0etf")
+start_active = true
+loops = 0
+metadata/_custom_type_script = "uid://dpajkhws0btds"
+
+[node name="up" type="Node" parent="Path3D/PathFollow3D/TweenTree" unique_id=99332945]
+script = ExtResource("2_vjlrk")
+duration = 3.0
+final_value = 1.0
+property = "progress_ratio"
+metadata/_custom_type_script = "uid://d31fb4ihe08c"
+
+[node name="down" type="Node" parent="Path3D/PathFollow3D/TweenTree" unique_id=1101352631]
+script = ExtResource("2_vjlrk")
+duration = 3.0
+trans_type = 1
+property = "progress_ratio"
+metadata/_custom_type_script = "uid://d31fb4ihe08c"
+
+[node name="RemoteTransform3D" type="RemoteTransform3D" parent="Path3D/PathFollow3D" unique_id=1900516013]
+remote_path = NodePath("../../3x3Platform4")
+update_rotation = false
+update_scale = false
+
+[node name="3x3Platform4" parent="Path3D" unique_id=1395291941 instance=ExtResource("3_f3ukq")]
+
+[node name="ActivationRange" type="Area3D" parent="Path3D" unique_id=901082147]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 0)
+script = ExtResource("4_17e6i")
+metadata/_custom_type_script = "uid://dg651kavpd41u"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Path3D/ActivationRange" unique_id=147618318]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.8604736, 0)
+shape = SubResource("CylinderShape3D_r7gw0")
