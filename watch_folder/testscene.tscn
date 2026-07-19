@@ -352,9 +352,7 @@ metadata/_custom_type_script = "uid://dpajkhws0btds"
 [node name="up" type="Node" parent="Path3D/PathFollow3D/TweenTree" unique_id=1495457408]
 script = ExtResource("5_1nuv2")
 duration = 3.0
-static_final_value = false
 final_value = 1.0
-fetch_final_value = "../curve:get_baked_length"
 property = "progress_ratio"
 metadata/_custom_type_script = "uid://d31fb4ihe08c"
 

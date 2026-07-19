@@ -18,20 +18,7 @@ var active_tween: Tween
 @export var trans_type: Tween.TransitionType
 @export var ease_type: Tween.EaseType
 
-@export var static_final_value: bool = true:
-	set(v):
-		static_final_value = v
-		notify_property_list_changed()
-	get:
-		return static_final_value
-
 @export var final_value: Variant = 0.0
-@export var fetch_final_value: String:
-	set(v):
-		fetch_final_value = v
-		update_configuration_warnings()
-	get:
-		return fetch_final_value
 		
 ## a property string, can have nested selectors (like `position:x`)
 @export var property: String:
@@ -77,12 +64,7 @@ func _ready():
 		animate()
 
 func animate():
-	var value = final_value
-	if not static_final_value:
-		value = parent.get_indexed(fetch_final_value)
-		if value is Callable:
-			value = value.call()
-	animate_property(property, value, duration, trans_type, ease_type)
+	animate_property(property, final_value, duration, trans_type, ease_type)
 
 func get_tweened_parent():
 	var p = get_parent()
@@ -196,23 +178,8 @@ func _get_configuration_warnings():
 		warnings.append("must set a property!")
 	elif parent.get_indexed(property) == null:
 		warnings.append("parent node does not contain the property '%s'" % [property])
-	
-	if not static_final_value:
-		if fetch_final_value == null or len(fetch_final_value) == 0:
-			warnings.append("must set a fetch final value")
-		elif parent.get_indexed(fetch_final_value) == null:
-			## TODO: check if it's a method
-			## not parent.has_method(fetch_final_value)
-			warnings.append("parent node does not contain the property '%s'" % [fetch_final_value])
 	return warnings
 
-func _validate_property(pp: Dictionary) -> void:
-	# If the condition isn't met, hide the property in the inspector
-	if pp.name == "fetch_final_value" and static_final_value:
-		pp.usage = PROPERTY_USAGE_NO_EDITOR
-	if pp.name == "final_value" and not static_final_value:
-		pp.usage = PROPERTY_USAGE_NO_EDITOR
-		
 @export_tool_button("Preview", "Callable") var preview_action = _editor_start_loop_forever
 @export_tool_button("Pause", "Callable") var pause_action = pause
 @export_tool_button("Resume", "Callable") var resume_action = resume
