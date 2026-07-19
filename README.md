@@ -10,8 +10,10 @@
 ## todo
 
 - [X] simple enemy that follows the player, force player to respawn
+	- [ ] mole enemy
+	- [ ] angry sun
 - [X] player HP
-- [ ] sounds
+- [X] sounds
 - [X] player death animation
 - [X] timer
 - [X] checkpoints
@@ -29,7 +31,7 @@
 - [ ] example scenes
 	- [X] gravity area
 	- [ ] CSG cave using path3d
-	- [ ] moving platform
+	- [X] moving platform
 - [ ] server switch cameras
 	- [X] level cameras
 	- [ ] player first person camera
@@ -37,7 +39,6 @@
 - [X] countdown
 	- [X] player unlock button
 - [ ] client disconnect logic
-- [ ] mole enemy
 - [ ] noclip
 - [ ] dedicated server + rooms
 
