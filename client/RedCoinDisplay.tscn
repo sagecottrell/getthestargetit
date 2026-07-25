@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://bhkmi57r4uunr"]
+
+[ext_resource type="Script" uid="uid://dde0hmfu3151a" path="res://client/red_coin_display.gd" id="1_0bgdy"]
+[ext_resource type="Texture2D" uid="uid://cj6cu82jdbywg" path="res://textures/uncollected-red-coin.png" id="1_3j47t"]
+[ext_resource type="Texture2D" uid="uid://dtmuj2uoyqttl" path="res://textures/collected-red-coin.png" id="2_3j47t"]
+
+[node name="RedCoinDisplay" type="HBoxContainer" unique_id=686526519]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_0bgdy")
+
+[node name="prefab" type="CenterContainer" parent="." unique_id=1703733866]
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="Empty" type="TextureRect" parent="prefab" unique_id=1558360525]
+layout_mode = 2
+offset_transform_enabled = true
+texture = ExtResource("1_3j47t")
+
+[node name="Full" type="TextureRect" parent="prefab" unique_id=1489991182]
+layout_mode = 2
+offset_transform_enabled = true
+texture = ExtResource("2_3j47t")

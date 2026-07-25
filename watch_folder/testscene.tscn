@@ -10,8 +10,10 @@
 [ext_resource type="PackedScene" uid="uid://c0akl332hihh1" path="res://prefabs/octagon.tscn" id="7_pxpqt"]
 [ext_resource type="PackedScene" uid="uid://bgnb5bwdh3a5b" path="res://prefabs/3x3Platform.tscn" id="8_k8yl0"]
 [ext_resource type="PackedScene" uid="uid://wibtes6m0u1h" path="res://prefabs/tree.tscn" id="9_ix6w0"]
+[ext_resource type="PackedScene" uid="uid://si74bv6l1r78" path="res://prefabs/RedCoin.tscn" id="10_mpg03"]
 [ext_resource type="PackedScene" uid="uid://cw4cypd2q7pdr" path="res://prefabs/rock1.tscn" id="10_oewem"]
 [ext_resource type="PackedScene" uid="uid://h4ks4xpce6t7" path="res://prefabs/cube.tscn" id="11_6ea13"]
+[ext_resource type="Script" uid="uid://dpvmykf43bjky" path="res://prefabs/logic/game_events.gd" id="11_w3r7n"]
 [ext_resource type="PackedScene" uid="uid://dy84oa60r7n18" path="res://prefabs/nuclearcube.tscn" id="12_t7qil"]
 [ext_resource type="PackedScene" uid="uid://ck23wxn4q834b" path="res://prefabs/SimpleEnemy.tscn" id="13_f0rtv"]
 [ext_resource type="Script" uid="uid://dg651kavpd41u" path="res://prefabs/logic/activation_range.gd" id="13_ogpjp"]
@@ -168,6 +170,26 @@ debug_color = Color(0.99215686, 0, 0.27058825, 1)
 
 [node name="Octagon" parent="." unique_id=879052091 instance=ExtResource("7_pxpqt")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 69, 0)
+
+[node name="Octagon2" parent="." unique_id=782994976 instance=ExtResource("7_pxpqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 69, -28)
+
+[node name="RedCoin" parent="Octagon2" unique_id=2099021630 instance=ExtResource("10_mpg03")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 31, -6)
+
+[node name="RedCoin2" parent="Octagon2" unique_id=1362587591 instance=ExtResource("10_mpg03")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 31, 0)
+
+[node name="RedCoin3" parent="Octagon2" unique_id=2130301506 instance=ExtResource("10_mpg03")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 31, 0)
+
+[node name="GameEvents" type="Node" parent="Octagon2" unique_id=1506534536]
+script = ExtResource("11_w3r7n")
+metadata/_custom_type_script = "uid://dpvmykf43bjky"
+
+[node name="PlayerEventsLogic" type="Node" parent="Octagon2" unique_id=1627586892]
+script = ExtResource("19_kciqv")
+metadata/_custom_type_script = "uid://8wro8myvb4sw"
 
 [node name="Octagon3" parent="." unique_id=1133224250 instance=ExtResource("7_pxpqt")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 75, 69, 7)
@@ -376,5 +398,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.8604736, 0)
 shape = SubResource("CylinderShape3D_mpg03")
 
 [connection signal="body_entered" from="deathplane" to="." method="_on_deathplane_body_entered"]
+[connection signal="on_all_red_coins_collected" from="Octagon2/GameEvents" to="Octagon2/PlayerEventsLogic" method="show_hint" binds= ["All red coins collected", 3.0]]
 [connection signal="player_collide" from="Nuclearcube" to="." method="_on_deathplane_body_entered"]
 [connection signal="button_pressed" from="Spire1/pedestal/spawnBridgeButton" to="bridge/comeback" method="animate"]

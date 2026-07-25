@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://si74bv6l1r78"]
+
+[ext_resource type="Script" uid="uid://w2rx0i5414p0" path="res://prefabs/redcoin/redcoin.gd" id="1_6f1je"]
+[ext_resource type="PackedScene" uid="uid://btutdcdaols87" path="res://prefabs/redcoin/redcoin.gltf" id="1_vkabx"]
+[ext_resource type="AudioStream" uid="uid://wmghgo7xo8pe" path="res://audio/fx/pickup2.ogg" id="3_nn1vn"]
+[ext_resource type="AudioStream" uid="uid://oox0a0la2dm6" path="res://audio/fx/jingles-retro_11.ogg" id="4_1l3a1"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_vccua"]
+
+[node name="RedCoin" type="Node3D" unique_id=2099021630 groups=["redcoin"]]
+script = ExtResource("1_6f1je")
+
+[node name="blockbench_export" parent="." unique_id=536514419 instance=ExtResource("1_vkabx")]
+
+[node name="root" parent="blockbench_export" index="0" unique_id=1946529471]
+transform = Transform3D(0.14814903, 0, 0.98896503, 0, 1, 0, -0.98896503, 0, 0.14814903, 3.416071e-17, 1.3877788e-17, 0)
+
+[node name="Area3D" type="Area3D" parent="." unique_id=680813133]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=797322408]
+shape = SubResource("SphereShape3D_vccua")
+
+[node name="PickupAudio" type="AudioStreamPlayer3D" parent="." unique_id=1049409745]
+stream = ExtResource("3_nn1vn")
+bus = &"Sounds"
+
+[node name="AllPickedupAudio" type="AudioStreamPlayer3D" parent="." unique_id=826310979]
+stream = ExtResource("4_1l3a1")
+
+[editable path="blockbench_export"]

@@ -26,7 +26,7 @@
 		- [X] nuclear cube
 	- [ ] interactables
 		- [X] button
-		- [ ] red coins
+		- [X] red coins
 		- [X] signal relays (source engine style)
 - [ ] example scenes
 	- [X] gravity area

@@ -146,6 +146,15 @@ func player_set_invulnerable(add_time: float = 3):
 signal on_checkpoint_collected(cp: Node3D)
 func checkpoint_collected(cp: Node3D):
 	on_checkpoint_collected.emit(cp)
+
+# when a red coin has been touched
+signal on_red_coin_collected(coin: Node3D)
+func red_coin_collected(coin: Node3D):
+	on_red_coin_collected.emit(coin)
+
+signal on_all_red_coins_collected()
+func all_red_coins_collected():
+	on_all_red_coins_collected.emit()
 	
 # ================================================================================================
 # RPC auth-client to all

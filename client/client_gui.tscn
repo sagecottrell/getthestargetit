@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://do4twu8peuk88" path="res://client/spinnycube.tscn" id="1_258n8"]
 [ext_resource type="PackedScene" uid="uid://c8shjom1y8o36" path="res://client/HitpointDisplay.tscn" id="2_0sjya"]
 [ext_resource type="Texture2D" uid="uid://c6ahqcj8kboeq" path="res://prefabs/player/player.png" id="2_50si4"]
+[ext_resource type="PackedScene" uid="uid://bhkmi57r4uunr" path="res://client/RedCoinDisplay.tscn" id="3_fswaa"]
 [ext_resource type="Script" uid="uid://duw5urxoj7t7q" path="res://client/flashes.gd" id="3_ueb45"]
 [ext_resource type="Script" uid="uid://g1logyu88bnp" path="res://client/audio.gd" id="6_u0bqd"]
 [ext_resource type="AudioStream" uid="uid://7qbfrs5letpj" path="res://audio/vc/ateammatehasdied.wav" id="7_3q5su"]
@@ -203,6 +204,17 @@ offset_left = -15.0
 offset_top = -112.0
 offset_right = 17.0
 offset_bottom = -80.0
+grow_vertical = 0
+
+[node name="RedCoinDisplay" parent="ingame" unique_id=686526519 instance=ExtResource("3_fswaa")]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+offset_left = -15.0
+offset_top = -30.0
+offset_right = 15.0
 grow_vertical = 0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="ingame" unique_id=1360120093]

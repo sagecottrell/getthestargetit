@@ -22,8 +22,8 @@ radius = 7.0
 curve = SubResource("Curve3D_r7gw0")
 
 [node name="PathFollow3D" type="PathFollow3D" parent="Path3D" unique_id=2016506320]
-transform = Transform3D(-4.3710003e-08, 0.9999844, -4.3711317e-08, 0, -4.3710706e-08, -0.9999984, -0.9999683, -4.3710706e-08, 1.9106823e-15, 0, 4.412511, 0)
-progress = 4.4124455
+transform = Transform3D(-4.3710003e-08, 0.9999844, -4.3711317e-08, 0, -4.3710706e-08, -0.9999984, -0.9999683, -4.3710706e-08, 1.9106823e-15, 0, 7.287714, 0)
+progress = 7.2870593
 tilt_enabled = false
 
 [node name="TweenTree" type="Node" parent="Path3D/PathFollow3D" unique_id=465854843]
@@ -52,6 +52,7 @@ update_rotation = false
 update_scale = false
 
 [node name="3x3Platform4" parent="Path3D" unique_id=1395291941 instance=ExtResource("3_f3ukq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8972127, 0)
 
 [node name="ActivationRange" type="Area3D" parent="Path3D" unique_id=901082147]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 0)
