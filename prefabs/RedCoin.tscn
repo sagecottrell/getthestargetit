@@ -12,8 +12,11 @@ script = ExtResource("1_6f1je")
 
 [node name="blockbench_export" parent="." unique_id=536514419 instance=ExtResource("1_vkabx")]
 
-[node name="root" parent="blockbench_export" index="0" unique_id=1946529471]
-transform = Transform3D(0.14814903, 0, 0.98896503, 0, 1, 0, -0.98896503, 0, 0.14814903, 3.416071e-17, 1.3877788e-17, 0)
+[node name="root" parent="blockbench_export" index="0" unique_id=614820972]
+transform = Transform3D(0.623949, -0.29905376, -0.7219795, 2.9802322e-08, 0.92387944, -0.38268343, 0.78146505, 0.23877491, 0.5764536, 3.416071e-17, 1.3877788e-17, 0)
+
+[node name="cone2" parent="blockbench_export/root" index="0" unique_id=1946111116]
+transform = Transform3D(-0.22137567, 0, -0.9751886, 0, 1, 0, 0.9751886, 0, -0.22137567, 0, -0.5, 0)
 
 [node name="Area3D" type="Area3D" parent="." unique_id=680813133]
 collision_layer = 0
