@@ -8,7 +8,7 @@ func _ready():
 	dir_watcher.files_deleted.connect(_on_directory_watcher_files_deleted)
 	dir_watcher.files_modified.connect(_on_directory_watcher_files_modified)
 	
-	var saved_watch_dir: String = SettingsManager.load_setting("Server", "watch_path", "")
+	var saved_watch_dir: String = SettingsManager.server_watch_path
 	if not saved_watch_dir.is_empty():
 		dir_watcher.add_scan_directory(saved_watch_dir)
 		watch_path.text = saved_watch_dir
@@ -17,7 +17,7 @@ func _on_watch_path_text_submitted(new_text: String) -> void:
 	dir_watcher.remove_scan_directory(watch_path.text)
 	dir_watcher.add_scan_directory(new_text)
 	if not new_text.is_empty():
-		SettingsManager.save_setting("Server", "watch_path", new_text)
+		SettingsManager.server_watch_path = new_text
 
 func _on_directory_watcher_files_modified(files: PackedStringArray) -> void:
 	prints("modified", files)

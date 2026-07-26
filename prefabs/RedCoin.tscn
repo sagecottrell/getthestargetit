@@ -31,5 +31,6 @@ bus = &"Sounds"
 
 [node name="AllPickedupAudio" type="AudioStreamPlayer3D" parent="." unique_id=826310979]
 stream = ExtResource("4_1l3a1")
+bus = &"Sounds"
 
 [editable path="blockbench_export"]

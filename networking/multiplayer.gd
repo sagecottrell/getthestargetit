@@ -17,6 +17,8 @@ func _ready():
 	if DisplayServer.get_name() == "headless":
 		print("Automatically starting dedicated server.")
 		_on_host_pressed.call_deferred()
+	
+	%Remote.text = SettingsManager.client_connect_addr
 
 
 func _on_host_pressed():
@@ -41,12 +43,21 @@ func _on_connect_pressed():
 		return
 	prints("connecting to", txt)
 	var peer = ENetMultiplayerPeer.new()
-	var err = peer.create_client(txt, PORT)
+	
+	var parts = txt.split(":", true, 1)
+	var port = PORT
+	var ip = txt
+	if len(parts) == 2:
+		port = int(parts[1])
+		ip = parts[0]
+	
+	var err = peer.create_client(ip, port)
 	if err != Error.OK:
 		OS.alert("client create: " + String(err))
 		return
 	
 	%UI.process_mode = Node.PROCESS_MODE_DISABLED
+	SettingsManager.client_connect_addr = txt
 		
 	multiplayer.multiplayer_peer = peer
 	multiplayer.connected_to_server.connect(client_start_game)

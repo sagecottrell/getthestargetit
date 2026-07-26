@@ -9,10 +9,10 @@ func _ready():
 
 func _set_time(t: int):
 	base_time = t
-	SettingsManager.save_setting("Server", "timer_start_value", t)
+	SettingsManager.server_timer_start = t
 
 func _notify_base_timer():
-	SignalBus.s_set_time(SettingsManager.load_setting("Server", "timer_start_value", 60))
+	SignalBus.s_set_time(SettingsManager.server_timer_start)
 
 func _on_resume():
 	if is_stopped():

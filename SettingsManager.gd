@@ -5,8 +5,7 @@ var config = ConfigFile.new()
 
 func _ready() -> void:
 	# Load existing settings on startup, or create defaults if none exist
-	if load_settings() != OK:
-		save_default_settings()
+	config.load(SETTINGS_FILE_PATH)
 
 # Save a setting value under a specific section and key
 func save_setting(section: String, key: String, value: Variant) -> void:
@@ -17,57 +16,51 @@ func save_setting(section: String, key: String, value: Variant) -> void:
 func load_setting(section: String, key: String, default_value: Variant) -> Variant:
 	return config.get_value(section, key, default_value)
 
-# Generate default configuration if the file is missing
-func save_default_settings() -> void:
-	graphics_fullscreen = false
-	graphics_3dscale = 1
-	audio_master_volume = 0.8
-	server_watch_path = ""
-	server_timer_start = 60
-	config.save(SETTINGS_FILE_PATH)
-
-# Load the file from disk
-func load_settings() -> Error:
-	return config.load(SETTINGS_FILE_PATH)
 
 var graphics_fullscreen: bool:
 	set(b):
-		config.set_value("Graphics", "fullscreen", b)
+		save_setting("Graphics", "fullscreen", b)
 	get:
 		return config.get_value("Graphics", "fullscreen", true)
 
 var graphics_3dscale: float:
 	set(b):
-		config.set_value("Graphics", "3dscale", b)
+		save_setting("Graphics", "3dscale", b)
 	get:
-		return config.get_value("Graphics", "3dscale", 1.0)
+		return config.get_value("Graphics", "3dscale", 100)
 
 var audio_master_volume: float:
 	set(b):
-		config.set_value("Audio", "master_volume", b)
+		save_setting("Audio", "master_volume", b)
 	get:
-		return config.get_value("Audio", "master_volume", .8)
+		return config.get_value("Audio", "master_volume", 80)
 
 var audio_sfx_volume: float:
 	set(b):
-		config.set_value("Audio", "sfx", 1)
+		save_setting("Audio", "sfx", b)
 	get:
-		return config.get_value("Audio", "sfx", 1)
+		return config.get_value("Audio", "sfx", 100)
 
 var audio_music_volume: float:
 	set(b):
-		config.set_value("Audio", "music", 1)
+		save_setting("Audio", "music", b)
 	get:
-		return config.get_value("Audio", "music", 1)
+		return config.get_value("Audio", "music", 100)
+
+var client_connect_addr: String:
+	set(b):
+		save_setting("Client", "connect_addr", b)
+	get:
+		return config.get_value("Client", "connect_addr", "127.0.0.1:%d" % [MultiplayerInfo.PORT])
 
 var server_watch_path: String:
 	set(b):
-		config.set_value("Server", "watch_path", b)
+		save_setting("Server", "watch_path", b)
 	get:
 		return config.get_value("Server", "watch_path", "")
 
 var server_timer_start: int:
 	set(b):
-		config.set_value("Server", "timer_start_value", b)
+		save_setting("Server", "timer_start_value", b)
 	get:
 		return config.get_value("Server", "timer_start_value", 60)

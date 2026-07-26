@@ -28,6 +28,7 @@ layout_mode = 2
 current_tab = 1
 
 [node name="Graphics" type="VBoxContainer" parent="PanelContainer/VBoxContainer/TabContainer" unique_id=360018356]
+unique_name_in_owner = true
 visible = false
 layout_mode = 2
 metadata/_tab_index = 0
@@ -37,6 +38,7 @@ layout_mode = 2
 Name = "Scale"
 
 [node name="Audio" type="VBoxContainer" parent="PanelContainer/VBoxContainer/TabContainer" unique_id=651814956]
+unique_name_in_owner = true
 layout_mode = 2
 metadata/_tab_index = 1
 
