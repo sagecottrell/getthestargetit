@@ -36,6 +36,7 @@ func _ready() -> void:
 	SignalBus.on_game_over.connect(func (s): timer_display.text = s)
 	SignalBus.on_server_message.connect(_on_server_msg)
 	SignalBus.on_server_changing_level.connect(func (): timer_display.text = "")
+	SignalBus.on_unstuck.connect(on_unpause)
 
 func on_waiting_room():
 	levelswitch.visible = false
@@ -150,17 +151,3 @@ func _on_server_msg(msg: String):
 	server_messages.add_child(label)
 	await get_tree().create_timer(2).timeout
 	label.queue_free()
-
-
-func _on_h_slider_value_changed(value: float) -> void:
-	var new_scale = value / 100.0
-	get_viewport().scaling_3d_scale = new_scale
-	%"3dScaleLabel".text = "%s" % [new_scale]
-
-# ============================================================================
-# unstuck
-# ============================================================================
-
-func _on_unstuck_button_pressed() -> void:
-	on_unpause()
-	SignalBus.unstuck()

@@ -1,0 +1,58 @@
+[gd_scene format=3 uid="uid://uyivfsnk5hb7"]
+
+[ext_resource type="Script" uid="uid://ccpa6atyqqs41" path="res://client/pausemenu.gd" id="1_2igkj"]
+[ext_resource type="PackedScene" uid="uid://cox5hifpvdxb" path="res://core_ui/slider_w_label.tscn" id="2_gq320"]
+
+[node name="pausemenu" type="CenterContainer" unique_id=1705813628]
+offset_top = 164.0
+offset_right = 1152.0
+offset_bottom = 277.0
+script = ExtResource("1_2igkj")
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=180679092]
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer" unique_id=367388004]
+layout_mode = 2
+
+[node name="UnstuckButton" type="Button" parent="PanelContainer/VBoxContainer" unique_id=822414012]
+layout_mode = 2
+text = "Unstuck"
+
+[node name="HSeparator" type="HSeparator" parent="PanelContainer/VBoxContainer" unique_id=539310704]
+layout_mode = 2
+
+[node name="TabContainer" type="TabContainer" parent="PanelContainer/VBoxContainer" unique_id=710981618]
+layout_mode = 2
+current_tab = 1
+
+[node name="Graphics" type="VBoxContainer" parent="PanelContainer/VBoxContainer/TabContainer" unique_id=360018356]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 0
+
+[node name="Scale" parent="PanelContainer/VBoxContainer/TabContainer/Graphics" unique_id=1962400496 instance=ExtResource("2_gq320")]
+layout_mode = 2
+Name = "Scale"
+
+[node name="Audio" type="VBoxContainer" parent="PanelContainer/VBoxContainer/TabContainer" unique_id=651814956]
+layout_mode = 2
+metadata/_tab_index = 1
+
+[node name="MainAudio" parent="PanelContainer/VBoxContainer/TabContainer/Audio" unique_id=22637435 instance=ExtResource("2_gq320")]
+layout_mode = 2
+Name = "Main Volume"
+
+[node name="SFX" parent="PanelContainer/VBoxContainer/TabContainer/Audio" unique_id=536077480 instance=ExtResource("2_gq320")]
+layout_mode = 2
+Name = "Sound Effects"
+
+[node name="Music" parent="PanelContainer/VBoxContainer/TabContainer/Audio" unique_id=1321193878 instance=ExtResource("2_gq320")]
+layout_mode = 2
+Name = "Music"
+
+[connection signal="on_value_change" from="PanelContainer/VBoxContainer/TabContainer/Graphics/Scale" to="." method="_on_scale_on_value_change"]
+[connection signal="on_value_change" from="PanelContainer/VBoxContainer/TabContainer/Audio/MainAudio" to="." method="_on_main_audio_on_value_change"]
+[connection signal="on_value_change" from="PanelContainer/VBoxContainer/TabContainer/Audio/SFX" to="." method="_on_sfx_on_value_change"]
+[connection signal="on_value_change" from="PanelContainer/VBoxContainer/TabContainer/Audio/Music" to="." method="_on_music_on_value_change"]
