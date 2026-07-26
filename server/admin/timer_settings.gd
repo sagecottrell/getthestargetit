@@ -7,9 +7,11 @@ extends Control
 
 var paused: bool = true
 
+func _enter_tree() -> void:
+	SignalBus.on_change_scene.connect(_on_change_scene)
+	
 func _ready():
 	SignalBus.on_timer_change.connect(func (time): timercurrent.text = TimeHelpers.format_seconds(time, true))
-	SignalBus.on_game_over.connect(func (t): timercurrent.text = t)
 	setTime.text_submitted.connect(_on_set_time_input_text_submitted)
 	SignalBus.s_on_set_time.connect(func (t): startingTimer.text = TimeHelpers.format_seconds(t, true))
 	
@@ -18,6 +20,8 @@ func _ready():
 	SignalBus.s_on_pause_timer.connect(_on_pause)
 	SignalBus.s_on_resume_timer.connect(_on_resume)
 
+func _on_change_scene(node: BaseScene):
+	startingTimer.text = TimeHelpers.format_seconds(node.timer, true)
 
 ## ======================================================================================
 ## ======================================================================================

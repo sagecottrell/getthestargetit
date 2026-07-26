@@ -33,12 +33,16 @@ layout_mode = 2
 [node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=617911473]
 layout_mode = 2
 
-[node name="TimerCurrent" type="Label" parent="HBoxContainer" unique_id=1280893185]
+[node name="TimerCurrent" type="RichTextLabel" parent="HBoxContainer" unique_id=2108378373]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
+bbcode_enabled = true
 text = "00:00"
-horizontal_alignment = 2
+fit_content = true
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="pauseresume" type="Button" parent="HBoxContainer" unique_id=1704160824]
 unique_name_in_owner = true

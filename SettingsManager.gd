@@ -58,9 +58,3 @@ var server_watch_path: String:
 		save_setting("Server", "watch_path", b)
 	get:
 		return config.get_value("Server", "watch_path", "")
-
-var server_timer_start: int:
-	set(b):
-		save_setting("Server", "timer_start_value", b)
-	get:
-		return config.get_value("Server", "timer_start_value", 60)

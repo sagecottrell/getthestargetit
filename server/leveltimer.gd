@@ -1,18 +1,15 @@
 extends Timer
 
-var base_time = 0
+func _enter_tree() -> void:
+	SignalBus.on_change_scene.connect(_on_change_scene)
+
 func _ready():
 	SignalBus.s_on_set_time.connect(_set_time)
 	SignalBus.s_on_resume_timer.connect(_on_resume)
 	SignalBus.s_on_pause_timer.connect(func(): paused = true)
-	_notify_base_timer.call_deferred()
 
 func _set_time(t: int):
-	base_time = t
-	SettingsManager.server_timer_start = t
-
-func _notify_base_timer():
-	SignalBus.s_set_time(SettingsManager.server_timer_start)
+	level_time = t
 
 func _on_resume():
 	if is_stopped():
@@ -20,12 +17,13 @@ func _on_resume():
 	else:
 		paused = false
 
+func _on_change_scene(node: BaseScene):
+	level_time = node.timer
 # ============================================================================
 # level timer
 # ============================================================================
 
 func start_level_timer():
-	level_time = base_time
 	if not timeout.is_connected(_on_timer_tick):
 		timeout.connect(_on_timer_tick)
 	start()

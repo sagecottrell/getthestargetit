@@ -1,6 +1,8 @@
 class_name BaseScene
 extends Node3D
 
+@export var timer: int = 120
+
 var cameras: Array[PhantomCamera3D] = []
 var server_camera_index = -1
 

@@ -43,5 +43,4 @@
 - [ ] dedicated server + rooms
 
 ## bugs
-- [ ] timer does not reset between levels
 - [ ] testscene2 the platform hitbox is not synced with visuals
